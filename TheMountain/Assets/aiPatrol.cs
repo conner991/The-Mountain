@@ -128,8 +128,7 @@ public class aiPatrol : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // give player damage here
-            Debug.Log("Hit Player: Enemy Contact");
+            player.GetComponent<PlayerHealth>().TakeDamage(20);
         }
 
         // can check for collision with attack hitbox here, or use a trigger instead to give
