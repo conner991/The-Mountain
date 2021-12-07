@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 40f;
     float horizontalMove = 0f;
     bool jump = false;
-    bool hasjumped = true;
+    // bool hasjumped = true;
     public float jumpTimer = 0;
 
     public static PlayerMovement inst;
@@ -47,8 +47,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump"))
         {
 
-            if (jumpTimer < 300)
-                jumpTimer = 300;
+            if (jumpTimer < 450)
+                jumpTimer = 450;
             jump = true;
 
             //hasjumped = true;
