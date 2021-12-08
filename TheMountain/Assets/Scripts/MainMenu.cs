@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class MainMenu : MonoBehaviour
 {
-    //public GameObject mainMenu;
+    public GameObject mainMenu;
 
     // Start is called before the first frame update
     void Start()

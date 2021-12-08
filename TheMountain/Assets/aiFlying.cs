@@ -61,8 +61,7 @@ public class aiFlying : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // give player damage here
-            Debug.Log("Hit Player: Enemy Contact");
+            player.GetComponent<PlayerHealth>().TakeDamage(20);
         }
     }
 

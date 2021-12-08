@@ -26,7 +26,7 @@ public class bulletBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // give player damage here
+            player.GetComponent<PlayerHealth>().TakeDamage(20);
             Debug.Log("Hit Player: Bullet");
         }
     }
