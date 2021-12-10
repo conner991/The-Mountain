@@ -1,3 +1,5 @@
+// Implemented by Agui Navarro
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,12 +19,6 @@ public class PlayerCombat : MonoBehaviour
     public float attackRate = 1f;  
     // player can attack at start of game
     float nextAttackTime = 0f;
-    
-    // nothing called in start
-    void Start()
-    {
-        
-    }
 
     void Update()
     {

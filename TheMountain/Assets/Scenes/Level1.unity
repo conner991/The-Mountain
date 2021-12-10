@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  maxLives: 3
+  maxLives: 4
 --- !u!114 &363470537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,8 +502,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a36bbd81b8846dd91d3ef32ed0f077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: []
-  livesRemaining: 0
+  lives:
+  - {fileID: 406739089}
+  - {fileID: 783158756}
+  - {fileID: 17036299}
+  - {fileID: 1097364964}
+  maxLives: 4
 --- !u!1 &369744029
 GameObject:
   m_ObjectHideFlags: 0

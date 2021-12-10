@@ -1,3 +1,5 @@
+// Implemented by Agui Navarro
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
 {
     // max health and lives initiations
     public int maxHealth = 100;
-    public int maxLives = 3;
+    public int maxLives = 4;
     // current health and lives declarations
     int currentHealth;
     int currentLives;
@@ -40,6 +42,7 @@ public class PlayerHealth : MonoBehaviour
         {
             // current lives subtracted by one
             currentLives--;
+            GetComponent<LifeCount>().LoseLife();
             // die function runs
             Die();
             currentHealth = 100;
@@ -55,6 +58,7 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("No lives left. Game over.");
             // game pauses and inputs no longer work
             Time.timeScale = 0;
+            return;
         }
         if (currentLives == 1) 
         {
