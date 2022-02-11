@@ -2,7 +2,9 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
-{
+{	
+	const float groundCheckRadius = 0.2f;
+	[SerializeField] Transform groundCheckCollider;
 	[SerializeField] private float m_JumpForce = 0f;                            // Amount of force added when the player jumps.
 	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
@@ -42,6 +44,14 @@ public class CharacterController2D : MonoBehaviour
 
 		if (OnCrouchEvent == null)
 			OnCrouchEvent = new BoolEvent();
+	}
+
+	void GroundCheck()
+	{
+		// Check if the GroundCheck object is colliding with other 
+		// 2D colliders that are in the "Ground" layer
+		// If yes (isGrounded true) else (isGrounded false)
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckCollider.position, groundCheckRadius);
 	}
 
 	private void FixedUpdate()
