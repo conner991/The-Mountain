@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public CharacterController2D controller;
+    public Animator animator;
 
     public float runSpeed = 40f;
     float horizontalMove = 0f;
@@ -28,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         /*
         if (hasjumped == true)
         {
@@ -44,15 +47,23 @@ public class PlayerMovement : MonoBehaviour
             //print(jumpTimer);
         }
 
-        if (Input.GetButtonUp("Jump"))
+        if (Input.GetButtonUp("jump"))
         {
+            animator.SetBool("isJumping", true);
 
             if (jumpTimer < 450)
                 jumpTimer = 450;
             jump = true;
 
+            
+
             //hasjumped = true;
         }
+    }
+
+    public void OnLanding()
+    {
+        animator.SetBool("isJumping", false);
     }
 
     void FixedUpdate()

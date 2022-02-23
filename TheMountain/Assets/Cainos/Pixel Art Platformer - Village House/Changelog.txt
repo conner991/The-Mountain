@@ -1,0 +1,10 @@
+Pixel Art Platformer - Village House
+
+1.2.0
+	- Update included "Pixel Art Platformer - Village Props" pack to 2.1.
+
+1.1.0
+	- Update included "Pixel Art Platformer - Village Props" pack to 2.0.
+
+1.0.0
+	- First Release.
