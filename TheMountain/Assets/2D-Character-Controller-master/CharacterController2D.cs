@@ -14,7 +14,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Transform m_WallCheck;                          // A position marking where to check for walls
 
-	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+	const float k_GroundedRadius = .3f; // Radius of the overlap circle to determine if grounded
     const float k_OnWallRadius = .7f; // Radius of the overlap circle to determine if Close to a wall
     public bool m_Grounded;            // Whether or not the player is grounded.
     public bool m_OnWall;            // Whether or not the player is grounded.
@@ -118,7 +118,7 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 
 		}
-        else if (!PlayerMovement.inst.wallJumpCheck && jump && m_OnWall && !m_Grounded)
+        else if (!PlayerMovement.inst.wallJumpCheck && jump && m_OnWall && !m_Grounded) //If the player Jumps on wall with wall jump remaining...
         {
             //m_Rigidbody2D.velocity = Input.GetAxisRaw("Horizontal") * PlayerMovement.inst.runSpeed;
             m_JumpForce = PlayerMovement.inst.jumpTimer;

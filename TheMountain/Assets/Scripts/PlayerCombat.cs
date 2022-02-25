@@ -25,14 +25,17 @@ public class PlayerCombat : MonoBehaviour
         // player can only attack if the time since the game started is
         // greater than or equal to the next attack time
         // user uses left mouse button to attack
-        if (Time.time >= nextAttackTime && Input.GetKeyDown(KeyCode.Mouse0))
+        if (SwordPickUp.inst.hasSword == true)
         {
-            // attack function is called
-            Attack();
-            // console shows that attack was performed
-            Debug.Log("Attacking");
-            // next attack time is set to current time plus the attack rate
-            nextAttackTime = Time.time + attackRate;
+            if (Time.time >= nextAttackTime && Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                // attack function is called
+                Attack();
+                // console shows that attack was performed
+                Debug.Log("Attacking");
+                // next attack time is set to current time plus the attack rate
+                nextAttackTime = Time.time + attackRate;
+            }
         }
     }
 

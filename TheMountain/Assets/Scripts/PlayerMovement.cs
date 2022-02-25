@@ -16,9 +16,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpTimer = 0;
     public bool wallCling;
     public bool wallJumpCheck;
-    public static PlayerMovement inst;
     public Rigidbody2D m_Rigidbody2D;
 
+    public static PlayerMovement inst;
     private void Awake()
     {
         inst = this;
@@ -55,10 +55,16 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             m_Rigidbody2D.gravityScale = 3f;
+            if (Sprint.inst.sprintActive)
+            {
+                runSpeed = 80f;
+            }
+            else runSpeed = 40f;
+        }
             horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
             animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
             //wallCling = false;
-        }
+ 
 
         if (Input.GetKey(KeyCode.Space))
         {
