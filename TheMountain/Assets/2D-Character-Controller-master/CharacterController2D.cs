@@ -42,14 +42,14 @@ public class CharacterController2D : MonoBehaviour
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 	}
-
+     /*
 	void GroundCheck()
 	{
 		// Check if the GroundCheck object is colliding with other 
 		// 2D colliders that are in the "Ground" layer
 		// If yes (isGrounded true) else (isGrounded false)
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckCollider.position, groundCheckRadius);
-	}
+	}  */
 
 	private void FixedUpdate()
 	{
@@ -141,4 +141,11 @@ public class CharacterController2D : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+
+    /*
+    public bool GroundCheck()
+    {
+        return m_Grounded;
+    }
+    */
 }

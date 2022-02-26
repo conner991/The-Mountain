@@ -50,3 +50,6 @@ TagManager:
   - name: Enemy
     uniqueID: 2043936937
     locked: 0
+  - name: Breakable Ground
+    uniqueID: 3759911577
+    locked: 0
