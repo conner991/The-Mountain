@@ -7,13 +7,6 @@ public class PlayerMovement : MonoBehaviour
 
     public CharacterController2D controller;
     public Animator animator;
-
-    public float runSpeed = 40f;
-    public float dashSpeed = 200f;
-    float currentSpeed = 40f;
-    public float maxDashTime = 0.1f;
-    float dashTime;
-    bool isDashing = false;
     float horizontalMove = 0f;
     bool jump = false;
     // bool hasjumped = true;
@@ -33,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * currentSpeed;
+        horizontalMove = Input.GetAxisRaw("Horizontal") * GetComponent<Dash>().currentSpeed;
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         /*
@@ -63,25 +56,6 @@ public class PlayerMovement : MonoBehaviour
             
 
             //hasjumped = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z) && isDashing == false)
-        {
-            Debug.Log("Dashing");
-            currentSpeed = dashSpeed;
-            isDashing = true;
-            dashTime = maxDashTime;
-
-        }
-        if (dashTime <= 0 && isDashing == true)
-        {
-            Debug.Log("Running");
-            currentSpeed = runSpeed;
-            isDashing = false;
-        }
-        else
-        {
-            dashTime -= Time.deltaTime;
         }
     }
 
