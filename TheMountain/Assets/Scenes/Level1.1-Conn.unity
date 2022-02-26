@@ -8234,6 +8234,8 @@ MonoBehaviour:
   controller: {fileID: 1654698079}
   animator: {fileID: 1654698084}
   runSpeed: 40
+  dashSpeed: 200
+  maxDashTime: 0.1
   jumpTimer: 0
 --- !u!50 &1654698077
 Rigidbody2D:
