@@ -124,7 +124,7 @@ public class CharacterController2D : MonoBehaviour
             m_JumpForce = PlayerMovement.inst.jumpTimer;
             print(Input.GetAxisRaw("Horizontal"));
             print(m_JumpForce);
-            m_Rigidbody2D.AddForce(new Vector2(Input.GetAxisRaw("Horizontal")* m_JumpForce/2, m_JumpForce*2));
+            m_Rigidbody2D.AddForce(new Vector2(Input.GetAxisRaw("Horizontal")* m_JumpForce/2, m_JumpForce*1.5f)); // CHANGE THIS FOR WALL JUMP HEIGHT
             //PlayerMovement.inst.horizontalMove = Input.GetAxisRaw("Horizontal") * PlayerMovement.inst.runSpeed;
         }
 
