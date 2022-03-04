@@ -8,9 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     public CharacterController2D controller;
     public Animator animator;
-
-    public float runSpeed = 40f;
-    public float horizontalMove = 0f;
+    float horizontalMove = 0f;
     bool jump = false;
     // bool hasjumped = true;
     public float jumpTimer = 0;
@@ -32,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        horizontalMove = Input.GetAxisRaw("Horizontal") * GetComponent<Dash>().currentSpeed;
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         /*
         if (hasjumped == true)
         {
@@ -43,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         if (!CharacterController2D.inst.m_Grounded && CharacterController2D.inst.m_OnWall && jump)
         {
             wallCling = true;
-            wallJumpForce = 
+            wallJumpForce =
             m_Rigidbody2D.AddForce(-CharacterController2D.inst.targetVelocity);
         }*/
         if (!CharacterController2D.inst.m_Grounded && CharacterController2D.inst.m_OnWall && !wallJumpCheck) //Wall contact off ground check
@@ -64,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
             horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
             animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
             //wallCling = false;
- 
+
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -94,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
             jump = true;
 
             //hasjumped = true;
-        } 
+        }
     }
 
     public void OnLanding()
@@ -128,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
             jumpTimer = 0.001f * Time.deltaTime;
             print(jumpTimer);
         }
-    
+
         yield return null;
     }
     */
