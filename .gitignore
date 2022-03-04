@@ -11,16 +11,19 @@
 /TheMountain/[Mm]emoryCaptures/
 /TheMountain/[Aa]ssets/[Bb]ayat[Gg]ames/
 /TheMountain/[Aa]ssets/WarpedCaves/
-/TheMountain/[Aa]ssets/Cainos/
+/TheMountain/[Aa]ssets/[Cc]ainos/
 /TheMountain/[Aa]ssets/IndieTalesParallax/
 /TheMountain/[Aa]ssets/KnightFiles/
 /TheMountain/[Aa]ssets/SunnyLandForestAssets/
+/TheMountain/[Aa]ssets/MonstersCreaturesFantasy/
+/TheMountain/[Aa]ssets/FootSteps-Essentials/
 
 
 
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/TheMountain/[Aa]ssets/**/*.meta
+!/TheMountain/[Aa]ssets/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /TheMountain/[Aa]ssets/AssetStoreTools*
