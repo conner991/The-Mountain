@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpTimer = 0;
     public bool wallCling;
     public bool wallJumpCheck;
+    public float runSpeed = 40f;
+    public float dashRate = 3f;
+    float nextDashTime = 0f;
     public Rigidbody2D m_Rigidbody2D;
 
     public static PlayerMovement inst;
@@ -30,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * GetComponent<Dash>().currentSpeed;
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         /*
@@ -53,14 +55,31 @@ public class PlayerMovement : MonoBehaviour
             m_Rigidbody2D.gravityScale = 0f;
             wallCling = true;
         }
-        else
+        if (wallJumpCheck)
         {
             m_Rigidbody2D.gravityScale = 3f;
+        }
+        else
+        {
+            //m_Rigidbody2D.gravityScale = 3f;
             if (Sprint.inst.sprintActive)
             {
+                Debug.Log("Sprinting");
                 runSpeed = 80f;
             }
-            else runSpeed = 40f;
+
+            if (Dash.inst.dashActive && Time.time >= nextDashTime)
+            {
+                Debug.Log("Dashing");
+                m_Rigidbody2D.gravityScale = 0f;
+                runSpeed = 300f;
+                Invoke("EndDash", 0.1f);
+                nextDashTime = Time.time + dashRate;
+            }
+            if (!Sprint.inst.sprintActive && !Dash.inst.dashActive)
+            {
+                runSpeed = 40f;
+            }
         }
             horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
             animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
@@ -119,6 +138,12 @@ public class PlayerMovement : MonoBehaviour
     {
         wallJumpCheck = true;
         wallCling = false;
+    }
+
+    void EndDash()
+    {
+        runSpeed = 40f;
+        m_Rigidbody2D.gravityScale = 3f;
     }
 
     /*
