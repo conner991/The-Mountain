@@ -9,19 +9,22 @@
 /TheMountain/[Bb]uilds/
 /TheMountain/[Ll]ogs/
 /TheMountain/[Mm]emoryCaptures/
-/TheMountain/[Aa]ssets/[Bb]ayat[Gg]ames/
-/TheMountain/[Aa]ssets/WarpedCaves/
-/TheMountain/[Aa]ssets/[Cc]ainos/
-/TheMountain/[Aa]ssets/IndieTalesParallax/
-/TheMountain/[Aa]ssets/KnightFiles/
-/TheMountain/[Aa]ssets/SunnyLandForestAssets/
-/TheMountain/[Aa]ssets/Sunny Land Forest Assets/
-/TheMountain/[Aa]ssets/FootSteps-Essentials/
-/TheMountain/[Aa]ssets/MonstersCreaturesFantasy/
+/TheMountain/[Aa]ssets/Resources/[Bb]ayat[Gg]ames/
+/TheMountain/[Aa]ssets/Resources/WarpedCaves/
+/TheMountain/[Aa]ssets/Resources/[Cc]ainos/
+/TheMountain/[Aa]ssets/Resources/IndieTalesParallax/
+/TheMountain/[Aa]ssets/Resources/KnightFiles/
+/TheMountain/[Aa]ssets/Resources/SunnyLandForestAssets/
+/TheMountain/[Aa]ssets/Resources/MonstersCreaturesFantasy/
+/TheMountain/[Aa]ssets/Resources/HealthHeartSystem/
+/TheMountain/[Aa]ssets/Resources/Sound_Resources/FootSteps-Essentials/
+
+
 
 
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
+!/TheMountain/[Aa]ssets/**/**/*.meta
 !/TheMountain/[Aa]ssets/**/*.meta
 !/TheMountain/[Aa]ssets/*.meta
 
