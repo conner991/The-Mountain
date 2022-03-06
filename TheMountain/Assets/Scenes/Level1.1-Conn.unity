@@ -135,9 +135,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9179677977744860466, guid: e237837ee6c461446a828927dc1cb85b, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1654698089}
     - target: {fileID: 9179677978331480979, guid: e237837ee6c461446a828927dc1cb85b, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9179677978331480979, guid: e237837ee6c461446a828927dc1cb85b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -188,6 +192,11 @@ PrefabInstance:
 --- !u!4 &1654698081 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2086994979354699522, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+  m_PrefabInstance: {fileID: 2086994978857637731}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &1654698089 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2086994979354699581, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
   m_PrefabInstance: {fileID: 2086994978857637731}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1505052616469606323

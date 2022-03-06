@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (Input.GetButtonUp("jump"))
+        if (Input.GetButtonUp("Jump"))
         {
             if (!wallJumpCheck && wallCling && !CharacterController2D.inst.m_Grounded)
             {
