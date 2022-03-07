@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1505052614788470914
+--- !u!1 &4974483446052503534
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1505052614788470912}
-  - component: {fileID: 1505052614788470919}
-  - component: {fileID: 1505052614788470918}
+  - component: {fileID: 4974483446052503532}
+  - component: {fileID: 4974483446052503531}
+  - component: {fileID: 4974483446052503530}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1505052614788470912
+--- !u!4 &4974483446052503532
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505052614788470914}
+  m_GameObject: {fileID: 4974483446052503534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.082066, y: 7.1986485, z: -7.7821016}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1505052614788470919
+--- !u!114 &4974483446052503531
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505052614788470914}
+  m_GameObject: {fileID: 4974483446052503534}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ab69309603bddc42ae21e5949f62061, type: 3}
@@ -58,15 +58,17 @@ MonoBehaviour:
     pitch: 0
     loop: 0
     source: {fileID: 0}
---- !u!114 &1505052614788470918
+--- !u!114 &4974483446052503530
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505052614788470914}
+  m_GameObject: {fileID: 4974483446052503534}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 738fd01cd884f854c994167dd5f33eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CC2D: {fileID: 2086994979354699580, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+  time1: 0
