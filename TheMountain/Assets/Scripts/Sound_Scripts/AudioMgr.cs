@@ -1,19 +1,20 @@
 using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class AudioMgr : MonoBehaviour
 {
-
-    public static AudioMgr instance;
-
+    public static AudioMgr inst;
+    public FootStepClass[] footSteps;
     public Sound[] sounds;
 
     void Awake()
     {
-        if (instance == null)
+        if (inst == null)
         {
-            instance = this;
+            inst = this;
         }
         else
         {
@@ -32,12 +33,21 @@ public class AudioMgr : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+        
+        foreach (FootStepClass fs in footSteps)
+        {
+            fs.source = gameObject.AddComponent<AudioSource>();
+            fs.source.clip = fs.clip;
+
+            fs.source.volume = fs.volume;
+            //fs.source.pitch = fs.pitch;
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //Play("WindBackground"); //Main theme or background audio
+        Play("Wind"); //Main theme or background audio
     }
 
     // Update is called once per frame
@@ -50,5 +60,17 @@ public class AudioMgr : MonoBehaviour
             return;
         }
         s.source.Play();
+    }
+
+    // Update is called once per frame
+    public void Playfoot(int name)
+    {
+        FootStepClass fs = Array.Find(footSteps, sound => sound.name == name);
+        if (fs == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found.");
+            return;
+        }
+        fs.source.Play();
     }
 }
