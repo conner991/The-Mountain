@@ -11,18 +11,21 @@ public class WellTeleport : MonoBehaviour
     private bool blackOut;
     private bool touchedTrigger;
 
+    private bool reset;
+
     // Start is called before the first frame update
     void Start()
     {
         blackOut = false;
+        reset = false;
         //blackImage.SetActive(false);
-        if (!blackImage.activeSelf)
+        /*if (!blackImage.activeSelf)
         {
             Color temp = blackImage.GetComponent<Image>().color;
             temp = new Color(temp.r, temp.g, temp.b, 0.0f);
             blackImage.GetComponent<Image>().color = temp;
             blackImage.SetActive(true);
-        }
+        }*/
         //StartCoroutine(FadeInAndOut(false, 1f));
     }
 
@@ -31,6 +34,13 @@ public class WellTeleport : MonoBehaviour
     {
         if (Player.IsTouching(Trigger))
         {
+            if (!blackImage.activeSelf)
+            {
+                Color temp = blackImage.GetComponent<Image>().color;
+                temp = new Color(temp.r, temp.g, temp.b, 0.0f);
+                blackImage.GetComponent<Image>().color = temp;
+                blackImage.SetActive(true);
+            }
             touchedTrigger = true;
             blackImage.SetActive(true);
             StartCoroutine(FadeInAndOut(true, 1f));
@@ -55,6 +65,12 @@ public class WellTeleport : MonoBehaviour
             touchedTrigger = false;
             Invoke("Wait", 1.5f);
         }
+
+        if (checkAlpha.a <= 0.0f && reset)
+        {
+            blackImage.SetActive(false);
+            reset = false;
+        }
     }
 
     public IEnumerator FadeInAndOut(bool fadeToBlack = true, float time = 1.0f)
@@ -75,13 +91,6 @@ public class WellTeleport : MonoBehaviour
         }
         else
         {
-            /*if (Time.time > 1f && !hasTeleported)
-            {
-                yield return new WaitForSeconds(3);
-                //Debug.Log("Teleporting");
-                //Player.transform.position = new Vector3(33.5f, 1.1f, 3);
-                hasTeleported = true;
-            }*/
             while (blackImage.GetComponent<Image>().color.a > 0)
             {
                 fadeAmount = tempColor.a - (time * Time.deltaTime);
@@ -108,7 +117,7 @@ public class WellTeleport : MonoBehaviour
 
     void Wait()
     {
-        //touchedTrigger = true;
+        reset = true;
         StartCoroutine(FadeInAndOut(false, 0.5f));
     }
 }
