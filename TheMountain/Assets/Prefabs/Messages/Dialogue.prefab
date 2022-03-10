@@ -1139,17 +1139,15 @@ MonoBehaviour:
   dialogue:
     dialogueName: Introduction
     sentences:
-    - "Hi! \nThanks for playing\nThe Mountain!"
-    - 'Welcome to the first level.
+    - 'Thanks for playing
 
-      This is the tutorial.
+      The Mountain.'
+    - 'Use WASD or the arrow keys to move,
 
-      Let''s start
-      with some movement.'
-    - 'Move left and right with either WASD or the arrow keys, press
+      Press space to jump, left shift
 
-      SPACE
-      to jump, and Q to dash.'
+      to
+      sprint, and Q to dash.'
 --- !u!1 &2061716157865139633
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,16 +2379,12 @@ MonoBehaviour:
   dialogue:
     dialogueName: Wall Jump
     sentences:
-    - Hi! You're stuck again.
     - 'Jump toward a wall and you
 
-      will notice that you''ve grabbed
-
-      onto
-      it.'
+      will notice that you''ve grabbed it.'
     - 'Charge jump off the wall
 
-      and you''re back in business!'
+      to wall jump.'
 --- !u!1 &2061716159496307362
 GameObject:
   m_ObjectHideFlags: 0
@@ -2682,7 +2676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Button: {fileID: 2061716159131164780}
   DialogueBox: {fileID: 2061716158974442406}
-  Player: {fileID: 2086994979354699581, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+  Player: {fileID: 0}
   Trigger: {fileID: 0}
 --- !u!114 &2446418167637898712
 MonoBehaviour:
@@ -2698,7 +2692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Button: {fileID: 8172260960392082772}
   DialogueBox: {fileID: 8151055611370231865}
-  Player: {fileID: 2086994979354699581, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+  Player: {fileID: 0}
   Trigger: {fileID: 0}
 --- !u!1 &5507578533500800472
 GameObject:
@@ -3205,14 +3199,9 @@ MonoBehaviour:
   dialogue:
     dialogueName: Sword
     sentences:
-    - Hey again!
-    - You just picked up a sword!
-    - 'To use it, press the left mouse
+    - 'To use the sword, press the
 
-      button. Be careful of the
-
-      cooldown,
-      however.'
+      left mouse button.'
 --- !u!1 &9130670121017312287
 GameObject:
   m_ObjectHideFlags: 0

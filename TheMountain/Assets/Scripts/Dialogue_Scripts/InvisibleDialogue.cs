@@ -19,7 +19,6 @@ public class InvisibleDialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (!areDestroyed && Player.IsTouching(Trigger))
         {
             Debug.Log("touching");
