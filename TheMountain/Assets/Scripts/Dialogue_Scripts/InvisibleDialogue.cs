@@ -21,7 +21,6 @@ public class InvisibleDialogue : MonoBehaviour
     {
         if (!areDestroyed && Player.IsTouching(Trigger))
         {
-            Debug.Log("touching");
             Button.SetActive(true);
             DialogueBox.SetActive(true);
             areDestroyed = true;

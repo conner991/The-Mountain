@@ -134,11 +134,6 @@ public class PlayerMovement : MonoBehaviour
         wallCling = false;
     }
 
-    /*void EndDash()
-    {
-        runSpeed = 40f;
-    }*/
-
     /*
     IEnumerator Charge()
     {
