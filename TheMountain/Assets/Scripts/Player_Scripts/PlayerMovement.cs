@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpTimer = 0;
     public bool wallCling;
     public bool wallJumpCheck;
+    float nextDashTime = 0f;
+    public float dashRate = 3f;
     public Rigidbody2D m_Rigidbody2D;
 
     public static PlayerMovement inst;
@@ -61,7 +63,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 runSpeed = 80f;
             }
-            else runSpeed = 40f;
+            if (Time.time >= nextDashTime && Dash.inst.dashActive)
+            {
+                m_Rigidbody2D.gravityScale = 0f;
+                runSpeed = 200f;
+                nextDashTime = Time.time + dashRate;
+            }
+            if (!Sprint.inst.sprintActive && !Dash.inst.dashActive)
+            {
+                runSpeed = 40f;
+            }
+            //else runSpeed = 40f;
         }
             animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
             //wallCling = false;
@@ -121,6 +133,11 @@ public class PlayerMovement : MonoBehaviour
         wallJumpCheck = true;
         wallCling = false;
     }
+
+    /*void EndDash()
+    {
+        runSpeed = 40f;
+    }*/
 
     /*
     IEnumerator Charge()
