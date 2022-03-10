@@ -10,8 +10,14 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     public int maxLives = 4;
     // current health and lives declarations
-    int currentHealth;
+    public int currentHealth;
     int currentLives;
+
+    public static PlayerHealth inst;
+    private void Awake()
+    {
+        inst = this;
+    }
 
     // variables initiated at first frame
     void Start()

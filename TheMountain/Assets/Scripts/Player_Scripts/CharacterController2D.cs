@@ -114,7 +114,6 @@ public class CharacterController2D : MonoBehaviour
 			// Add a vertical force to the player.
 			m_JumpForce = PlayerMovement.inst.jumpTimer;
 			m_Grounded = false;
-			print(m_JumpForce);
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 
 		}

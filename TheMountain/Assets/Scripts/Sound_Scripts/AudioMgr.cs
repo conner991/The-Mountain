@@ -57,7 +57,6 @@ public class AudioMgr : MonoBehaviour
         {
             if (!CC2D.m_Grounded)
             {
-                Debug.Log("Sound: " + audioFile);
                 audioFile.Stop();   //This needs to be changed
             }
         }
