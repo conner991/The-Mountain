@@ -11,17 +11,17 @@ public class FootSteps : MonoBehaviour
     {
         if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 )
         {
-
             time1 += Time.deltaTime;
             
-            if (time1 > 0.2 && CC2D.m_Grounded && Input.GetKey(KeyCode.LeftShift))
+            if (time1 > 0.25 && CC2D.m_Grounded && Input.GetKey(KeyCode.LeftShift))
             {
-                FindObjectOfType<AudioMgr>().Play("FootSteps");
+                FindObjectOfType<AudioMgr>().Playfoot(Random.Range(1, 50));
                 time1 = 0;
             }
             else if (time1 > 0.4 && CC2D.m_Grounded)
             {
-                FindObjectOfType<AudioMgr>().Play("FootSteps");
+                //Debug.Log("HELLO");
+                FindObjectOfType<AudioMgr>().Playfoot(Random.Range(1, 50));
                 time1 = 0;
             }
         }

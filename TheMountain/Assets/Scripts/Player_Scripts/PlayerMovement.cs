@@ -56,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
             m_Rigidbody2D.gravityScale = 3f;
             if (Sprint.inst.sprintActive)
             {
@@ -73,7 +75,6 @@ public class PlayerMovement : MonoBehaviour
             }
             //else runSpeed = 40f;
         }
-            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
             animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
             //wallCling = false;
  
@@ -95,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonUp("Jump"))
         {
+
             if (!wallJumpCheck && wallCling && !CharacterController2D.inst.m_Grounded)
             {
                 Invoke("SetWallCheckToTrue", 0.1f);
