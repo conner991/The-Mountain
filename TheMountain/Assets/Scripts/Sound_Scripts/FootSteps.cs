@@ -9,13 +9,13 @@ public class FootSteps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 )
+        if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1)
         {
             time1 += Time.deltaTime;
-            
+
             if (time1 > 0.25 && CC2D.m_Grounded && Input.GetKey(KeyCode.LeftShift))
             {
-                FindObjectOfType<AudioMgr>().Playfoot(Random.Range(1, 50));
+                FindObjectOfType<AudioMgr>().Playfoot(Random.Range(51, 65));
                 time1 = 0;
             }
             else if (time1 > 0.4 && CC2D.m_Grounded)

@@ -9,6 +9,8 @@ public class AudioMgr : MonoBehaviour
     public static AudioMgr inst;
     public FootStepClass[] footSteps;
     public Sound[] sounds;
+    public CharacterController2D CC2D;
+    static AudioSource audioFile;
 
     void Awake()
     {
@@ -49,7 +51,17 @@ public class AudioMgr : MonoBehaviour
     {
         Play("Wind"); //Main theme or background audio
     }
-
+    void Update()
+    {
+        if (audioFile != null)
+        {
+            if (!CC2D.m_Grounded)
+            {
+                Debug.Log("Sound: " + audioFile);
+                audioFile.Stop();   //This needs to be changed
+            }
+        }
+    }
     // Update is called once per frame
     public void Play(string name)
     {
@@ -71,6 +83,7 @@ public class AudioMgr : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found.");
             return;
         }
+        audioFile = fs.source;
         fs.source.Play();
     }
 }
