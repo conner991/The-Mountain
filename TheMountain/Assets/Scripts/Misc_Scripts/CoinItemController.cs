@@ -8,12 +8,12 @@ public class CoinItemController : MonoBehaviour
 
     private void Start()
     {
-        scoreManager = GameObject.Find("Canvas").GetComponent<ScoreManager>();
+        scoreManager = GameObject.Find("HUD").GetComponent<ScoreManager>();
     }
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Player") {
-            scoreManager.score += 1f; 
             Destroy(gameObject);
+            scoreManager.score += 1f; 
         }
     }
 }    
