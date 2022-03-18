@@ -23,10 +23,16 @@ public class ParallaxBackground2 : MonoBehaviour
         // How far we've moved relative to the camera
         float distance = (camera.transform.position.x * parallaxEffect);
 
-        transform.position = new Vector3(startPosition + dist, transform.position.y, transform.position.z);
+        // Move the camera
+        Vector3 newPosition = new Vector3(startPosition + distance, transform.position.y, transform.position.z);
+        transform.position = newPosition;
 
-        if (temp > startPosition + length) startPosition += length;
+        if (tempPosition > (startPosition + (length * 0.5f))) {
+            startPosition += length;
+        }
         
-        else if (temp < startPosition - length) startPosition -= length; 
+        else if (tempPosition < (startPosition - (length * 0.5f))) {
+            startPosition -= length; 
+        }
     }
 }
