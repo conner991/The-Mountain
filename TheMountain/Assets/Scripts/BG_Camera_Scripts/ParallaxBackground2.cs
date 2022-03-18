@@ -17,9 +17,11 @@ public class ParallaxBackground2 : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        float temp = (camera.transform.position.x * (1 - parallaxEffect));
-        float dist = (camera.transform.position.x * parallaxEffect);
+    {   
+        // How far we've moved relative to the camera
+        float tempPosition = (camera.transform.position.x * (1 - parallaxEffect));
+        // How far we've moved relative to the camera
+        float distance = (camera.transform.position.x * parallaxEffect);
 
         transform.position = new Vector3(startPosition + dist, transform.position.y, transform.position.z);
 
