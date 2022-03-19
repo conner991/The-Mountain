@@ -9,6 +9,7 @@ public class PlayerCombat : MonoBehaviour
     // create empty and set it to middle of player
     // here it is declared
     public Transform attackPoint;
+    public Transform player;
     // this will be set in the inspector. set it to layer that each enemy is in
     public LayerMask enemyLayers;
     // default setting for range of attack. can be changed in inspector

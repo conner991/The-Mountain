@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public CharacterController2D controller;
-    private  Animator animation;
+    private Animator animation;
 
     public float runSpeed = 40f;
     public float horizontalMove = 0f;
@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         wallJumpCheck = false;
+        //animation = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame

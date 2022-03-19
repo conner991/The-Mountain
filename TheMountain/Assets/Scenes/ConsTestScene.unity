@@ -718,6 +718,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e237837ee6c461446a828927dc1cb85b, type: 3}
+--- !u!1 &1267380967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2086994979354699579, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+  m_PrefabInstance: {fileID: 598073583}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1644477470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +1020,19 @@ CapsuleCollider2D:
   m_CorrespondingSourceObject: {fileID: 2086994979354699581, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
   m_PrefabInstance: {fileID: 598073583}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1767535971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267380967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f1c01b26ddce54f8a9919274b5f546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasSword: 0
 --- !u!1 &2019683960
 GameObject:
   m_ObjectHideFlags: 0

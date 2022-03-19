@@ -273,7 +273,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 2086994979354699580}
-  animator: {fileID: 2086994979354699527}
   runSpeed: 40
   horizontalMove: 0
   jumpTimer: 0
@@ -294,6 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 2086994979602239704}
+  player: {fileID: 2086994979354699522}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 72

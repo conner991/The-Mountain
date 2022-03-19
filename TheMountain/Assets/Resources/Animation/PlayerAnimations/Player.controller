@@ -116,7 +116,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Animation
+  m_Name: player_attack1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -419,7 +419,7 @@ AnimatorStateMachine:
     m_Position: {x: 10, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1027749272028558074}
-    m_Position: {x: 45, y: 125, z: 0}
+    m_Position: {x: 120, y: 180, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 4752215781372956488}
