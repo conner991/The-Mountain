@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public CharacterController2D controller;
-    public Animator animator;
+    public Animator animation;
 
     public float runSpeed = 40f;
     public float horizontalMove = 0f;
@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
             }
             //else runSpeed = 40f;
         }
-            animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+            animation.SetFloat("Speed", Mathf.Abs(horizontalMove));
             //wallCling = false;
  
 
@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Invoke("SetWallCheckToTrue", 0.1f);
             }
-            animator.SetBool("isJumping", true);
+            animation.SetBool("isJumping", true);
 
             if (jumpTimer < 450)
                 jumpTimer = 450;
@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnLanding()
     {
-        animator.SetBool("isJumping", false);
+        animation.SetBool("isJumping", false);
         if (CharacterController2D.inst.m_Grounded)
             wallJumpCheck = false;
     }

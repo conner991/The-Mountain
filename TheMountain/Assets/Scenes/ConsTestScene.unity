@@ -664,6 +664,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2875945970478919048, guid: e237837ee6c461446a828927dc1cb85b, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1767535960}
     - target: {fileID: 9179677978331480979, guid: e237837ee6c461446a828927dc1cb85b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1005,6 +1009,11 @@ PrefabInstance:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3941933879683264810, guid: 3dc0fef121544ef479508f9bb61291fe, type: 3}
   m_PrefabInstance: {fileID: 1662388330}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &1767535960 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2086994979354699581, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+  m_PrefabInstance: {fileID: 598073583}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2019683960
 GameObject:

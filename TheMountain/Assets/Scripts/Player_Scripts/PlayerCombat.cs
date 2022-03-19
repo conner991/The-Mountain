@@ -19,6 +19,8 @@ public class PlayerCombat : MonoBehaviour
     public float attackRate = 1f;  
     // player can attack at start of game
     float nextAttackTime = 0f;
+    // Grab the attack animation 
+    public Animator animation;
 
     void Update()
     {
@@ -28,15 +30,25 @@ public class PlayerCombat : MonoBehaviour
         if (SwordPickUp.inst.hasSword == true)
         {
             if (Time.time >= nextAttackTime && Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                // attack function is called
-                Attack();
+            {   
                 // console shows that attack was performed
-                Debug.Log("Attacking");
+                Debug.Log("Player is Attacking");
+                // Set attack animation to true
+                animation.SetBool("isAttacking", true);
+                Invoke("SetAttackToFalse", 0.1f);
+                
+                
                 // next attack time is set to current time plus the attack rate
                 nextAttackTime = Time.time + attackRate;
             }
         }
+    }
+
+    void SetAttackToFalse()
+    {
+        // attack function is called
+        //Attack();
+        animation.SetBool("isAttacking", false);
     }
 
     void Attack()
