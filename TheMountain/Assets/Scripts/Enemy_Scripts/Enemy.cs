@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     // current health of enemy
     int currentHealth;
     // Grab animations
-    Animator animation;
+    private Animator animation;
 
 
     // current health is initialized to max health

@@ -20,7 +20,7 @@ public class PlayerCombat : MonoBehaviour
     // player can attack at start of game
     float nextAttackTime = 0f;
     // Grab the attack animation 
-    public Animator animation;
+    private Animator animation;
 
     void Update()
     {

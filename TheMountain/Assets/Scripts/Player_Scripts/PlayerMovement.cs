@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public CharacterController2D controller;
-    public Animator animation;
+    private  Animator animation;
 
     public float runSpeed = 40f;
     public float horizontalMove = 0f;
@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D m_Rigidbody2D;
 
     public static PlayerMovement inst;
+
     private void Awake()
     {
         inst = this;
