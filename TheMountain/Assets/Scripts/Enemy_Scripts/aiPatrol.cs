@@ -37,6 +37,9 @@ public class aiPatrol : MonoBehaviour
     public float lineOfSight;
     private float defaultSpeed;
 
+    // Grab the animations
+    private Animator animation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -128,13 +131,20 @@ public class aiPatrol : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.GetComponent<PlayerHealth>().TakeDamage(20);
+            DamagePlayer();
         }
 
         // can check for collision with attack hitbox here, or use a trigger instead to give
         // enemy damage
 
         // depends on what works better
+    }
+
+    private void DamagePlayer()
+    {
+        //animation.SetTrigger("mushroomMeleeAttack");
+        animation.SetTrigger("skeleton_meleeAttack");
+        player.GetComponent<PlayerHealth>().TakeDamage(20);
     }
 
     // for debugging
