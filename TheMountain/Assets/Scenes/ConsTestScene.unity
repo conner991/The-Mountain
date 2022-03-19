@@ -357,8 +357,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1009706713}
+  - component: {fileID: 1009706714}
   m_Layer: 0
-  m_Name: FlyingEnemyBite1
+  m_Name: FlyingEyeBite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,6 +380,26 @@ Transform:
   m_Father: {fileID: 769647524}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1009706714
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009706712}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: db27310b8ac2947f799d831c1e99a464, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1139103165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -452,7 +473,7 @@ GameObject:
   - component: {fileID: 1644477477}
   - component: {fileID: 1644477476}
   m_Layer: 0
-  m_Name: GroundEnemy1
+  m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,7 +506,7 @@ Animator:
   m_GameObject: {fileID: 1644477470}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c303227dd18924418b5c737739afe84c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -752,9 +773,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemies (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4699360952448976054, guid: 7fc9449b603f743d0be61f51ccd93916, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699360952591268409, guid: 7fc9449b603f743d0be61f51ccd93916, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699360952630664760, guid: 7fc9449b603f743d0be61f51ccd93916, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962355623580009187, guid: 7fc9449b603f743d0be61f51ccd93916, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5962355624150750983, guid: 7fc9449b603f743d0be61f51ccd93916, type: 3}
       propertyPath: m_Offset.x
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962355624150750987, guid: 7fc9449b603f743d0be61f51ccd93916, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5962355624150750991, guid: 7fc9449b603f743d0be61f51ccd93916, type: 3}
       propertyPath: m_LocalPosition.x
@@ -763,6 +804,22 @@ PrefabInstance:
     - target: {fileID: 5962355624150750991, guid: 7fc9449b603f743d0be61f51ccd93916, type: 3}
       propertyPath: m_LocalPosition.y
       value: 8.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962355624622981299, guid: 7fc9449b603f743d0be61f51ccd93916, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6406365659761656466, guid: 7fc9449b603f743d0be61f51ccd93916, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6406365660772736269, guid: 7fc9449b603f743d0be61f51ccd93916, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6406365661067642388, guid: 7fc9449b603f743d0be61f51ccd93916, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fc9449b603f743d0be61f51ccd93916, type: 3}
@@ -775,8 +832,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2019683961}
+  - component: {fileID: 2019683962}
   m_Layer: 0
-  m_Name: FlyingEnemyRanged1
+  m_Name: FlyingEyeRanged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -797,6 +855,26 @@ Transform:
   m_Father: {fileID: 769647524}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2019683962
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019683960}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c6f0a6992e2d45d3b80239fcf15ab02, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &4510030207451129424
 PrefabInstance:
   m_ObjectHideFlags: 0
