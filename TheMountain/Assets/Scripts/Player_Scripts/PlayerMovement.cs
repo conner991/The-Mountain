@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public CharacterController2D controller;
-    private Animator animation;
+    public Animator animation;
 
     public float runSpeed = 40f;
     public float horizontalMove = 0f;
@@ -50,12 +50,14 @@ public class PlayerMovement : MonoBehaviour
             wallJumpForce = 
             m_Rigidbody2D.AddForce(-CharacterController2D.inst.targetVelocity);
         }*/
+
         if (!CharacterController2D.inst.m_Grounded && CharacterController2D.inst.m_OnWall && !wallJumpCheck) //Wall contact off ground check
         {
             m_Rigidbody2D.AddForce(-m_Rigidbody2D.velocity);
             m_Rigidbody2D.gravityScale = 0f;
             wallCling = true;
         }
+
         else
         {
 
@@ -65,20 +67,23 @@ public class PlayerMovement : MonoBehaviour
             {
                 runSpeed = 80f;
             }
+
             if (Time.time >= nextDashTime && Dash.inst.dashActive)
             {
                 m_Rigidbody2D.gravityScale = 0f;
                 runSpeed = 200f;
                 nextDashTime = Time.time + dashRate;
             }
+
             if (!Sprint.inst.sprintActive && !Dash.inst.dashActive)
             {
                 runSpeed = 40f;
             }
             //else runSpeed = 40f;
         }
-            animation.SetFloat("Speed", Mathf.Abs(horizontalMove));
-            //wallCling = false;
+        
+        animation.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        animation.SetBool("isGrounded", CharacterController2D.inst.m_Grounded);
  
 
         if (Input.GetKey(KeyCode.Space))

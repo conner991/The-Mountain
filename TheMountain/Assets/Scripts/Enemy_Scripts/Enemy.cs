@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     // current health of enemy
     int currentHealth;
     // Grab animations
-    private Animator animation;
+    public Animator animation;
 
 
     // current health is initialized to max health
@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
     // enemy takes damage
     public void TakeDamage(int damage)
     {   
-        Invoke("TakeDamageAnimation", 0.3f);
         currentHealth -= damage;
 
         // if the current health is 0 or less the Die() function is called
@@ -34,19 +33,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void TakeDamageAnimation()
-    {
-        animation.SetTrigger("skeleton_takeDamage");
-    }
-
-    void DeathAnimation()
-    {
-        animation.SetTrigger("skeleton_death");
-    }
-
     void Die()
     {   
-        Invoke("DeathAnimation", 0.3f);
         // console outputs that enemy died
         Debug.Log("Enemy died");
         // collider is turned off

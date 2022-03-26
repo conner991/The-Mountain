@@ -21,7 +21,7 @@ public class aiFlying : MonoBehaviour
     public float lineOfSight;
 
     // Grab the animations
-    private Animator animation;
+    public Animator animation;
 
     // Start is called before the first frame update
     void Start()
@@ -73,9 +73,18 @@ public class aiFlying : MonoBehaviour
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
     }
 
+    void TakeDamageAnimation()
+    {
+        animation.SetTrigger("flyingEyeBite_takeDamage");
+    }
+
+    void DeathAnimation()
+    {
+        animation.SetTrigger("flyingEyeBite_death");
+    }
+
     private void DamagePlayer()
     {   
-        animation = gameObject.GetComponent<Animator>();
         animation.SetTrigger("flyingEyeBite_attack");
         player.GetComponent<PlayerHealth>().TakeDamage(20);
     }

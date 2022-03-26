@@ -38,7 +38,7 @@ public class aiPatrol : MonoBehaviour
     private float defaultSpeed;
 
     // Grab the animations
-    private Animator animation;
+    public Animator animation;
 
     // Start is called before the first frame update
     void Start()
@@ -140,9 +140,18 @@ public class aiPatrol : MonoBehaviour
         // depends on what works better
     }
 
+    void TakeDamageAnimation()
+    {
+        animation.SetTrigger("skeleton_takeDamage");
+    }
+
+    void DeathAnimation()
+    {
+        animation.SetTrigger("skeleton_death");
+    }
+
     private void DamagePlayer()
     {
-        //animation.SetTrigger("mushroomMeleeAttack");
         animation.SetTrigger("skeleton_meleeAttack");
         player.GetComponent<PlayerHealth>().TakeDamage(20);
     }

@@ -273,9 +273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 2086994979354699580}
+  animation: {fileID: 2086994979354699527}
   runSpeed: 40
-  horizontalMove: 0
-  jumpTimer: 0
+  horizontalMove: 10
+  jumpTimer: 5
   wallCling: 0
   wallJumpCheck: 0
   dashRate: 3
@@ -297,9 +298,10 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 72
-  attackRange: 1.39
+  attackRange: 1.15
   attackDamage: 40
   attackRate: 1
+  animation: {fileID: 2086994979354699527}
 --- !u!114 &2086994979354699577
 MonoBehaviour:
   m_ObjectHideFlags: 0

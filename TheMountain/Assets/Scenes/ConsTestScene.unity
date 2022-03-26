@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  animation: {fileID: 2019683962}
 --- !u!1001 &598073583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -206,6 +207,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2086994979012149493, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2086994979012149493, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.262
+      objectReference: {fileID: 0}
     - target: {fileID: 2086994979354699522, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -253,6 +262,18 @@ PrefabInstance:
     - target: {fileID: 2086994979354699579, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2086994979354699581, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2086994979602239704, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2086994979602239704, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
@@ -307,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  animation: {fileID: 1644477472}
 --- !u!212 &641245887
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -435,6 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  animation: {fileID: 1009706714}
 --- !u!1 &769647523
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,6 +568,7 @@ MonoBehaviour:
   yStart: 0
   player: {fileID: 598073584}
   lineOfSight: 10
+  animation: {fileID: 1009706714}
 --- !u!114 &1009706716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  animation: {fileID: 1009706714}
 --- !u!50 &1009706717
 Rigidbody2D:
   serializedVersion: 4
@@ -905,6 +930,7 @@ MonoBehaviour:
   speed: 5
   player: {fileID: 598073584}
   lineOfSight: 10
+  animation: {fileID: 1644477472}
 --- !u!114 &1644477477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -918,6 +944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  animation: {fileID: 1644477472}
 --- !u!1 &1647032468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,7 +1059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f1c01b26ddce54f8a9919274b5f546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasSword: 0
+  hasSword: 1
 --- !u!1 &2019683960
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,11 +1135,12 @@ MonoBehaviour:
   xStart: 0
   yStart: 0
   player: {fileID: 598073584}
-  lineOfSight: 15
-  range: 0
+  lineOfSight: 14.58
+  range: 8
   bullet: {fileID: 7037351033376972821, guid: 1637bb26f31415947b11e8346dc756f4, type: 3}
-  bulletSource: {fileID: 0}
+  bulletSource: {fileID: 2019683960}
   fireRate: 2
+  animation: {fileID: 2019683962}
 --- !u!114 &2019683964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1126,6 +1154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  animation: {fileID: 2019683962}
 --- !u!61 &2019683965
 BoxCollider2D:
   m_ObjectHideFlags: 0
