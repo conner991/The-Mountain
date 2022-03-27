@@ -15,6 +15,11 @@ public class aiPatrol : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
 
+    // max health is 100
+    public int maxHealth = 100;
+    // current health of enemy
+    int currentHealth;
+
     const float groundedRadius = 0.2f;
     private bool isGrounded;
     private Rigidbody2D rigidBody;
@@ -40,9 +45,17 @@ public class aiPatrol : MonoBehaviour
     // Grab the animations
     public Animator animation;
 
+
+    //////////////////////////////////////////////////////////////////////////////
+    //////////////////////////// START AND UPDATES ///////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////
+
+
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        currentHealth = maxHealth;
+
         rigidBody = GetComponent<Rigidbody2D>();
 
         if (OnLandEvent == null)
@@ -110,6 +123,10 @@ public class aiPatrol : MonoBehaviour
         }
     }
 
+    //////////////////////////////////////////////////////////////////////////////
+    //////////////////////////// FUNCTIONS ///////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////
+
     void GroundPatrol()
     {
         if (mustTurn)
@@ -131,7 +148,7 @@ public class aiPatrol : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            DamagePlayer();
+            AttackPlayer();
         }
 
         // can check for collision with attack hitbox here, or use a trigger instead to give
@@ -139,6 +156,43 @@ public class aiPatrol : MonoBehaviour
 
         // depends on what works better
     }
+
+    private void AttackPlayer()
+    {
+        animation.SetTrigger("skeleton_meleeAttack");
+        player.GetComponent<PlayerHealth>().TakeDamage(10);
+    }
+
+    // enemy takes damage
+    public void TakeDamage(int damage)
+    {   
+        currentHealth -= damage;
+
+        // if the current health is 0 or less the Die() function is called
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+
+    void Die()
+    {   
+        // console outputs that enemy died
+        Debug.Log("Enemy died");
+        DeathAnimation();
+        // collider is turned off
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+        // enemy is destroyed
+        Destroy(gameObject);
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    //////////////////////////// ANIMATIONS //////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////
+
 
     void TakeDamageAnimation()
     {
@@ -150,11 +204,9 @@ public class aiPatrol : MonoBehaviour
         animation.SetTrigger("skeleton_death");
     }
 
-    private void DamagePlayer()
-    {
-        animation.SetTrigger("skeleton_meleeAttack");
-        player.GetComponent<PlayerHealth>().TakeDamage(20);
-    }
+    //////////////////////////////////////////////////////////////////////////////
+    //////////////////////////// DEBUGGING //////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////
 
     // for debugging
     private void OnDrawGizmosSelected()

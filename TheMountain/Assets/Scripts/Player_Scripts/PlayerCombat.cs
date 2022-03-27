@@ -48,7 +48,7 @@ public class PlayerCombat : MonoBehaviour
     void SetAttackToFalse()
     {
         // attack function is called
-        //Attack();
+        Attack();
         animation.SetBool("isAttacking", false);
     }
 
@@ -60,9 +60,13 @@ public class PlayerCombat : MonoBehaviour
         // if enemy is closer or equal to player attack range, enemy takes damage
         foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-            // console shows that enemy was hit
-            Debug.Log("Enemy hit");
+            if (enemy.name == "Skeleton")
+            {
+                enemy.GetComponent<aiPatrol>().TakeDamage(attackDamage);
+                // console shows that enemy was hit
+                Debug.Log("Skeleton Enemy hit");
+            }
+            
         }
     }
     // this is the size of the circle shown when the attack range is adjusted
