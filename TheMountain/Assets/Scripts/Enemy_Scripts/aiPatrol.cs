@@ -15,6 +15,12 @@ public class aiPatrol : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
 
+    ////// New stuff
+    [SerializeField] private float attackCooldown;
+    [SerializeField] private int damage;
+    private float cooldownTimer = Mathf.Infinity;
+
+
     // max health is 100
     public int maxHealth = 100;
     // current health of enemy
@@ -43,13 +49,16 @@ public class aiPatrol : MonoBehaviour
     private float defaultSpeed;
 
     // Grab the animations
-    public Animator animation;
+    private Animator animation;
 
 
     //////////////////////////////////////////////////////////////////////////////
-    //////////////////////////// START AND UPDATES ///////////////////////////////
+    //////////////////////////// AWAKE, START AND UPDATES ///////////////////////////////
     //////////////////////////////////////////////////////////////////////////////
-
+    private void Awake() 
+    {
+        animation = GetComponent<Animator>();    
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -101,11 +110,15 @@ public class aiPatrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //cooldownTimer = Time.deltaTime;
+
+
         if (!isHostile || isPatrolling)
         {
             GroundPatrol();
         }
 
+        // If the player is seen and if enemy is hostile
         float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
         if ((distanceFromPlayer < lineOfSight) && isHostile)
         {
@@ -144,23 +157,37 @@ public class aiPatrol : MonoBehaviour
     }
 
     // damage player if touch
-    private void OnCollisionEnter2D(Collision2D collision)
+    private bool OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             AttackPlayer();
+            
+            return true;
         }
 
         // can check for collision with attack hitbox here, or use a trigger instead to give
         // enemy damage
 
         // depends on what works better
+        return false;
     }
 
     private void AttackPlayer()
     {
         animation.SetTrigger("skeleton_meleeAttack");
-        player.GetComponent<PlayerHealth>().TakeDamage(10);
+
+        
+    }
+
+    private void DamagePlayer()
+    {   
+        // if player is still in sight
+        if()
+        {
+            // damage player
+            player.GetComponent<PlayerHealth>().TakeDamage(10);
+        }
     }
 
     // enemy takes damage
