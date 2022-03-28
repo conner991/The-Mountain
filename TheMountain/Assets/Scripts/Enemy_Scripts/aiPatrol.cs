@@ -55,10 +55,10 @@ public class aiPatrol : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////
     //////////////////////////// AWAKE, START AND UPDATES ///////////////////////////////
     //////////////////////////////////////////////////////////////////////////////
-    private void Awake() 
-    {
-        animation = GetComponent<Animator>();    
-    }
+    // private void Awake() 
+    // {
+    //     animation = GetComponent<Animator>();    
+    // }
 
     // Start is called before the first frame update
     void Start()
@@ -113,12 +113,15 @@ public class aiPatrol : MonoBehaviour
         //cooldownTimer = Time.deltaTime;
 
 
+        // if enemy is either not hostile or is patrolling, move enemy with GroundPatrol()
         if (!isHostile || isPatrolling)
         {
             GroundPatrol();
         }
 
-        // If the player is seen and if enemy is hostile
+        //animation.SetBool("skeleton_moving", true);
+
+        // If the player is seen and if enemy is hostile, check if enemy needs to flip
         float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
         if ((distanceFromPlayer < lineOfSight) && isHostile)
         {
@@ -148,6 +151,7 @@ public class aiPatrol : MonoBehaviour
         }
 
         rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime, rigidBody.velocity.y);
+        
     }
 
     void Flip()
@@ -157,37 +161,25 @@ public class aiPatrol : MonoBehaviour
     }
 
     // damage player if touch
-    private bool OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-        {
-            AttackPlayer();
+        {   
+            // attack player
+            animation.SetTrigger("skeleton_meleeAttack");
             
-            return true;
         }
 
         // can check for collision with attack hitbox here, or use a trigger instead to give
         // enemy damage
 
         // depends on what works better
-        return false;
-    }
-
-    private void AttackPlayer()
-    {
-        animation.SetTrigger("skeleton_meleeAttack");
-
-        
     }
 
     private void DamagePlayer()
     {   
-        // if player is still in sight
-        if()
-        {
-            // damage player
-            player.GetComponent<PlayerHealth>().TakeDamage(10);
-        }
+        // damage player
+        player.GetComponent<PlayerHealth>().TakeDamage(10);
     }
 
     // enemy takes damage
@@ -207,7 +199,7 @@ public class aiPatrol : MonoBehaviour
     {   
         // console outputs that enemy died
         Debug.Log("Enemy died");
-        DeathAnimation();
+        //DeathAnimation();
         // collider is turned off
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
