@@ -21,7 +21,12 @@ public class PlayerCombat : MonoBehaviour
     // player can attack at start of game
     float nextAttackTime = 0f;
     // Grab the attack animation 
-    public Animator animation;
+    private Animator animation;
+
+    void Awake() 
+    {
+        animation = GetComponent<Animator>();    
+    }
 
     void Update()
     {
@@ -62,7 +67,7 @@ public class PlayerCombat : MonoBehaviour
         {
             if (enemy.name == "Skeleton")
             {
-                enemy.GetComponent<aiPatrol>().TakeDamage(attackDamage);
+                enemy.GetComponent<ai_MeleePatrol>().TakeDamage(attackDamage);
                 // console shows that enemy was hit
                 Debug.Log("Skeleton Enemy hit");
             }

@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public CharacterController2D controller;
-    public Animator animation;
+    private Animator animation;
 
     public float runSpeed = 40f;
     public float horizontalMove = 0f;
@@ -23,7 +23,8 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement inst;
 
     private void Awake()
-    {
+    {   
+        animation = GetComponent<Animator>();
         inst = this;
     }
     // Start is called before the first frame update

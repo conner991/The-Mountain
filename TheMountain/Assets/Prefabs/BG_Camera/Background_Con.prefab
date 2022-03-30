@@ -360,7 +360,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4458607635396081080}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.4699998, y: 4.42237, z: -39.236}
   m_LocalScale: {x: 8.05386, y: 7.189662, z: 4.6022053}
   m_ConstrainProportionsScale: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fa9a386cc5942e196eff9cac393878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 2086994979354699522, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+  target: {fileID: 0}
   offset: {x: 0, y: 0, z: -10}
   smoothFactor: 4
 --- !u!1 &4458607635668797936
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd2ea5c8b43046e7903572b315633d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 3941933879683264810, guid: 3dc0fef121544ef479508f9bb61291fe, type: 3}
+  camera: {fileID: 0}
   parallaxEffect: 0.8
 --- !u!1 &4458607636380536636
 GameObject:
@@ -761,7 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd2ea5c8b43046e7903572b315633d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 3941933879683264810, guid: 3dc0fef121544ef479508f9bb61291fe, type: 3}
+  camera: {fileID: 0}
   parallaxEffect: 0.3
 --- !u!1 &4458607636401215566
 GameObject:

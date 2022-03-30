@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2086994978403686624}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2086994979012149493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086994979012149494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11, y: -1.17, z: 0}
+  m_LocalPosition: {x: 0.11, y: -1.262, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -82,7 +82,8 @@ GameObject:
   - component: {fileID: 2086994979354699578}
   - component: {fileID: 2086994979354699526}
   - component: {fileID: 2767211195673055361}
-  m_Layer: 0
+  - component: {fileID: 3740365102970314295}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -235,14 +236,14 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 64
   m_WhatIsWall:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1280
   m_GroundCheck: {fileID: 2086994979012149493}
   m_CeilingCheck: {fileID: 2086994979400475285}
   m_WallCheck: {fileID: 2086994978403686624}
-  m_Grounded: 1
+  m_Grounded: 0
   m_OnWall: 0
   targetVelocity: {x: 0, y: 0, z: 0}
   OnLandEvent:
@@ -297,9 +298,9 @@ MonoBehaviour:
   player: {fileID: 2086994979354699522}
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 8
   attackRange: 1.15
-  attackDamage: 40
+  attackDamage: 10
   attackRate: 1
   animation: {fileID: 2086994979354699527}
 --- !u!114 &2086994979354699577
@@ -316,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxLives: 4
-  currentHealth: 0
+  currentHealth: 100
 --- !u!114 &2086994979354699578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,6 +362,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashActive: 0
+--- !u!114 &3740365102970314295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086994979354699579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f1c01b26ddce54f8a9919274b5f546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasSword: 1
 --- !u!1 &2086994979400475286
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2086994979400475285}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2086994979602239704}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +430,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086994979602239705}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4, y: -0.64, z: 0}
+  m_LocalPosition: {x: 0.8, y: -0.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
