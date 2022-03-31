@@ -11,18 +11,19 @@ using UnityEngine.Events;
  */
 public class ai_MeleePatrol : MonoBehaviour
 {
-    // [Header ("Patrol Points")]
-    // [SerializeField] private Transform leftEdge;
-    // [SerializeField] private Transform rightEdge;
 
     // check if enemy is on ground
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
 
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask playerLayer;
+
     ////// New stuff
-    // [SerializeField] private float attackCooldown;
-    // [SerializeField] private int damage;
-    // private float cooldownTimer = Mathf.Infinity;
+    [SerializeField] private float attackCooldown;
+    private float cooldownTimer = Mathf.Infinity;
+    [SerializeField] private int damage;
 
 
     // max health is 100
@@ -63,6 +64,7 @@ public class ai_MeleePatrol : MonoBehaviour
     void Awake() 
     {
         animation = GetComponent<Animator>();    
+        //aliveCollider = gameObject.GetComponent<Collider>();
     }
 
     // Start is called before the first frame update
@@ -116,7 +118,8 @@ public class ai_MeleePatrol : MonoBehaviour
 
     // Update is called once per frame
     private void Update()
-    {
+    {   
+        cooldownTimer += Time.deltaTime;
 
         // if enemy is either hostile or is patrolling, move enemy with GroundPatrol()
         if ((isHostile || isPatrolling) && (move == true))
@@ -138,8 +141,8 @@ public class ai_MeleePatrol : MonoBehaviour
                 Flip();
             }
 
-            move = true;
 
+            move = true;
             isPatrolling = false;
         }
 
@@ -165,7 +168,7 @@ public class ai_MeleePatrol : MonoBehaviour
         if (move == true)
         {
             animation.SetBool("skeleton_moving", true);
-            rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime, rigidBody.velocity.y);
+            rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime, rigidBody.velocity.y * 0);
         }
 
 
@@ -189,7 +192,7 @@ public class ai_MeleePatrol : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
 
-            rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0.1f, rigidBody.velocity.y);
+            rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0.1f, rigidBody.velocity.y * 0);
             
             // attack player
             animation.SetTrigger("skeleton_meleeAttack");
@@ -207,10 +210,20 @@ public class ai_MeleePatrol : MonoBehaviour
         move = true;
     }
 
-    private void DamagePlayer()
+    private void AttackPlayer()
     {   
-        // damage player
-        player.GetComponent<PlayerHealth>().TakeDamage(10);
+
+        // 2d collider that uses attackPoint, attackRange, and enemyLayers for inspector
+        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
+
+        // if enemy is closer or equal to player attack range, enemy takes damage
+        foreach(Collider2D player in hitPlayer)
+        {
+            player.GetComponent<PlayerHealth>().TakeDamage(10);
+            // console shows that enemy was hit
+            Debug.Log("Attacking player");
+        }
+        
     }
 
     // enemy takes damage
@@ -218,10 +231,14 @@ public class ai_MeleePatrol : MonoBehaviour
     {   
         currentHealth -= damage;
 
+        animation.SetTrigger("skeleton_takeDamage");
+
         // if the current health is 0 or less the Die() function is called
         if (currentHealth <= 0)
-        {
-            Die();
+        {   
+            Invoke("Die", 2f);
+            animation.SetTrigger("skeleton_death");
+            //aliveCollider.enabled = false;
         }
     }
 
@@ -230,12 +247,17 @@ public class ai_MeleePatrol : MonoBehaviour
     {   
         // console outputs that enemy died
         Debug.Log("Enemy died");
-        //DeathAnimation();
         // collider is turned off
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
         // enemy is destroyed
         Destroy(gameObject);
+    }
+
+    private void OnDisable() 
+    {
+        // Disable the moving animations
+        animation.SetBool("skeleton_moving", false);
     }
 
 
@@ -244,15 +266,7 @@ public class ai_MeleePatrol : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////
 
 
-    void TakeDamageAnimation()
-    {
-        animation.SetTrigger("skeleton_takeDamage");
-    }
 
-    void DeathAnimation()
-    {
-        animation.SetTrigger("skeleton_death");
-    }
 
     //////////////////////////////////////////////////////////////////////////////
     //////////////////////////// DEBUGGING //////////////////////////////////////

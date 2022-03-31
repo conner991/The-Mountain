@@ -20,12 +20,13 @@ public class PlayerCombat : MonoBehaviour
     public float attackRate = 1f;  
     // player can attack at start of game
     float nextAttackTime = 0f;
+
     // Grab the attack animation 
     private Animator animation;
 
     void Awake() 
     {
-        animation = GetComponent<Animator>();    
+        animation = GetComponent<Animator>();
     }
 
     void Update()
@@ -74,6 +75,13 @@ public class PlayerCombat : MonoBehaviour
             
         }
     }
+
+    private void OnDisable() 
+    {
+        
+    }
+
+
     // this is the size of the circle shown when the attack range is adjusted
     void OnDrawGizmosSelected()
     {
