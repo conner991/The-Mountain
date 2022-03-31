@@ -18,15 +18,6 @@ public class WellTeleport : MonoBehaviour
     {
         blackOut = false;
         reset = false;
-        //blackImage.SetActive(false);
-        /*if (!blackImage.activeSelf)
-        {
-            Color temp = blackImage.GetComponent<Image>().color;
-            temp = new Color(temp.r, temp.g, temp.b, 0.0f);
-            blackImage.GetComponent<Image>().color = temp;
-            blackImage.SetActive(true);
-        }*/
-        //StartCoroutine(FadeInAndOut(false, 1f));
     }
 
     // Update is called once per frame
@@ -44,10 +35,6 @@ public class WellTeleport : MonoBehaviour
             touchedTrigger = true;
             blackImage.SetActive(true);
             StartCoroutine(FadeInAndOut(true, 1f));
-            //Invoke("Wait", 1.0f);
-            //Player.transform.position = new Vector3(33.5f, 1.1f, 3);
-            //Invoke("Move", 3f);
-            //Invoke("End", 1f);
         }
 
         Color checkAlpha = blackImage.GetComponent<Image>().color;
@@ -60,7 +47,6 @@ public class WellTeleport : MonoBehaviour
         {
             Debug.Log("Teleporting");
             Player.transform.position = new Vector3(33.5f, 1.1f, 3);
-            //StartCoroutine(FadeInAndOut(false, 0.5f));
             blackOut = false;
             touchedTrigger = false;
             Invoke("Wait", 1.5f);
@@ -100,19 +86,6 @@ public class WellTeleport : MonoBehaviour
                 yield return null;
             }
         }
-    }
-
-    void Move()
-    {
-        Debug.Log("Teleporting");
-        Player.transform.position = new Vector3(33.5f, 1.1f, 3);
-        
-    }
-    void End()
-    {
-        Debug.Log("Fading back");
-        //StartCoroutine(FadeInAndOut(false, 1f));
-        blackImage.SetActive(false);
     }
 
     void Wait()
