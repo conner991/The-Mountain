@@ -192,8 +192,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: 93076521e6f976444abce672b7f14d8c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -274,7 +274,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 2086994979354699580}
-  animation: {fileID: 2086994979354699527}
   runSpeed: 40
   horizontalMove: 10
   jumpTimer: 5
@@ -302,7 +301,6 @@ MonoBehaviour:
   attackRange: 1.15
   attackDamage: 10
   attackRate: 1
-  animation: {fileID: 2086994979354699527}
 --- !u!114 &2086994979354699577
 MonoBehaviour:
   m_ObjectHideFlags: 0

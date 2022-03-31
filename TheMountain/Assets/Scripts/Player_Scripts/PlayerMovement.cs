@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         wallJumpCheck = false;
-        //animation = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame

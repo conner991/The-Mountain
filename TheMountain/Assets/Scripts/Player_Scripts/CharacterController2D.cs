@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {	
-	const float groundCheckRadius = 0.2f;
+	const float groundCheckRadius = 0.1f;
 	[SerializeField] Transform groundCheckCollider;
 	[SerializeField] private float m_JumpForce = 0f;                            // Amount of force added when the player jumps.
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
@@ -15,7 +15,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform m_WallCheck;                          // A position marking where to check for walls
 
 	const float k_GroundedRadius = .3f; // Radius of the overlap circle to determine if grounded
-    const float k_OnWallRadius = .7f; // Radius of the overlap circle to determine if Close to a wall
+    const float k_OnWallRadius = 0.5f; // Radius of the overlap circle to determine if Close to a wall
     public bool m_Grounded;            // Whether or not the player is grounded.
     public bool m_OnWall;            // Whether or not the player is on the wall.
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
