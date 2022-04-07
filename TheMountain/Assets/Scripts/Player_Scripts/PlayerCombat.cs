@@ -9,16 +9,25 @@ public class PlayerCombat : MonoBehaviour
     // create empty and set it to middle of player
     // here it is declared
     public Transform attackPoint;
+    public Transform player;
     // this will be set in the inspector. set it to layer that each enemy is in
     public LayerMask enemyLayers;
     // default setting for range of attack. can be changed in inspector
     public float attackRange = 0.5f;
     // default setting for damage of player attack. can be changed in inspector
-    public int attackDamage = 40;
+    public int attackDamage = 10;
     // attacks can only be done two times per second
     public float attackRate = 1f;  
     // player can attack at start of game
     float nextAttackTime = 0f;
+
+    // Grab the attack animation 
+    private Animator animation;
+
+    void Awake() 
+    {
+        animation = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -28,15 +37,25 @@ public class PlayerCombat : MonoBehaviour
         if (SwordPickUp.inst.hasSword == true)
         {
             if (Time.time >= nextAttackTime && Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                // attack function is called
-                Attack();
+            {   
                 // console shows that attack was performed
-                Debug.Log("Attacking");
+                Debug.Log("Player is Attacking");
+                // Set attack animation to true
+                animation.SetBool("isAttacking", true);
+                Invoke("SetAttackToFalse", 0.1f);
+                
+                
                 // next attack time is set to current time plus the attack rate
                 nextAttackTime = Time.time + attackRate;
             }
         }
+    }
+
+    void SetAttackToFalse()
+    {
+        // attack function is called
+        Attack();
+        animation.SetBool("isAttacking", false);
     }
 
     void Attack()
@@ -47,11 +66,22 @@ public class PlayerCombat : MonoBehaviour
         // if enemy is closer or equal to player attack range, enemy takes damage
         foreach(Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-            // console shows that enemy was hit
-            Debug.Log("Enemy hit");
+            if (enemy.name == "Skeleton")
+            {
+                enemy.GetComponent<ai_MeleePatrol>().TakeDamage(attackDamage);
+                // console shows that enemy was hit
+                Debug.Log("Skeleton Enemy hit");
+            }
+            
         }
     }
+
+    private void OnDisable() 
+    {
+        
+    }
+
+
     // this is the size of the circle shown when the attack range is adjusted
     void OnDrawGizmosSelected()
     {

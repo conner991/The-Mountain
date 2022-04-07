@@ -10,8 +10,19 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     public int maxLives = 4;
     // current health and lives declarations
-    int currentHealth;
+    public int currentHealth;
     int currentLives;
+
+    private bool dead = false;
+
+    public static PlayerHealth inst;
+
+    private Animator animation;
+    private void Awake()
+    {
+        animation = GetComponent<Animator>();
+        inst = this;
+    }
 
     // variables initiated at first frame
     void Start()
@@ -38,35 +49,80 @@ public class PlayerHealth : MonoBehaviour
         // console outputs text that shows player was hit
         Debug.Log("Player hit");
         // this statement runs each time the player dies
-        if (currentHealth <= 0)
+
+    
+        animation.SetBool("isHurt", true);
+        Invoke("PlayerHurtAnimation", 0.5f);
+
+        // When the player is getting hurt
+        if (currentHealth > 0)
         {
+            
             // current lives subtracted by one
-            currentLives--;
+            //currentLives--;
             GetComponent<LifeCount>().LoseLife();
-            // die function runs
-            Die();
-            currentHealth = 100;
         }
+
+        // When the player is dead
+        else 
+        {
+            if (!dead) 
+            {
+                //animation.SetTrigger("die");
+                GetComponent<PlayerMovement>().enabled = false;
+                Die();
+                currentHealth = 100;
+                dead = true;
+            }
+            
+        }
+
+
+        
+
+    
     }
 
     void Die()
     {
         Debug.Log("Player died");
         // if else for console outputting how many lives left
-        if (currentLives == 0)
-        {
-            Debug.Log("No lives left. Game over.");
-            // game pauses and inputs no longer work
-            Time.timeScale = 0;
-            return;
-        }
-        if (currentLives == 1) 
-        {
-            Debug.Log(currentLives + " life left.");
-        }
-        else 
-        {
-            Debug.Log(currentLives + " lives left.");
-        }
+
+        animation.SetTrigger("die");
+        Invoke("PlayerDeathAnimation", 2f);
+
+        
+
+        // if (currentLives == 0)
+        // {   
+
+        //     Debug.Log("No lives left. Game over.");
+        //     // game pauses and inputs no longer work
+        //     Time.timeScale = 0;
+        //     return;
+        // }
+        // if (currentLives == 1) 
+        // {
+        //     Debug.Log(currentLives + " life left.");
+        // }
+        // else 
+        // {
+        //     Debug.Log(currentLives + " lives left.");
+        // }
     }
+
+    void PlayerHurtAnimation()
+    {
+        animation.SetBool("isHurt", false);
+    }
+
+    void PlayerDeathAnimation()
+    {
+        // collider is turned off
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+        // enemy is destroyed
+        Destroy(gameObject);
+    }
+
 }

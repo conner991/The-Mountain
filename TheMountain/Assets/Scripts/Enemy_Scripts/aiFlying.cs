@@ -20,6 +20,9 @@ public class aiFlying : MonoBehaviour
     public Transform player;
     public float lineOfSight;
 
+    // Grab the animations
+    public Animator animation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,14 +63,30 @@ public class aiFlying : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-        {
-            player.GetComponent<PlayerHealth>().TakeDamage(20);
+        {   
+            DamagePlayer();
         }
     }
 
     void Flip()
     {
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+    }
+
+    void TakeDamageAnimation()
+    {
+        animation.SetTrigger("flyingEyeBite_takeDamage");
+    }
+
+    void DeathAnimation()
+    {
+        animation.SetTrigger("flyingEyeBite_death");
+    }
+
+    private void DamagePlayer()
+    {   
+        animation.SetTrigger("flyingEyeBite_attack");
+        player.GetComponent<PlayerHealth>().TakeDamage(20);
     }
 
     // for debugging

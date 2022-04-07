@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public CharacterController2D controller;
-    public Animator animator;
+    private Animator animation;
 
     public float runSpeed = 40f;
     public float horizontalMove = 0f;
@@ -16,11 +16,15 @@ public class PlayerMovement : MonoBehaviour
     public float jumpTimer = 0;
     public bool wallCling;
     public bool wallJumpCheck;
+    float nextDashTime = 0f;
+    public float dashRate = 3f;
     public Rigidbody2D m_Rigidbody2D;
 
     public static PlayerMovement inst;
+
     private void Awake()
-    {
+    {   
+        animation = GetComponent<Animator>();
         inst = this;
     }
     // Start is called before the first frame update
@@ -46,24 +50,40 @@ public class PlayerMovement : MonoBehaviour
             wallJumpForce = 
             m_Rigidbody2D.AddForce(-CharacterController2D.inst.targetVelocity);
         }*/
+
         if (!CharacterController2D.inst.m_Grounded && CharacterController2D.inst.m_OnWall && !wallJumpCheck) //Wall contact off ground check
         {
             m_Rigidbody2D.AddForce(-m_Rigidbody2D.velocity);
             m_Rigidbody2D.gravityScale = 0f;
             wallCling = true;
         }
+
         else
         {
+
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
             m_Rigidbody2D.gravityScale = 3f;
             if (Sprint.inst.sprintActive)
             {
                 runSpeed = 80f;
             }
-            else runSpeed = 40f;
+
+            if (Time.time >= nextDashTime && Dash.inst.dashActive)
+            {
+                m_Rigidbody2D.gravityScale = 0f;
+                runSpeed = 200f;
+                nextDashTime = Time.time + dashRate;
+            }
+
+            if (!Sprint.inst.sprintActive && !Dash.inst.dashActive)
+            {
+                runSpeed = 40f;
+            }
+            //else runSpeed = 40f;
         }
-            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-            animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-            //wallCling = false;
+        
+        animation.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        animation.SetBool("isGrounded", CharacterController2D.inst.m_Grounded);
  
 
         if (Input.GetKey(KeyCode.Space))
@@ -83,11 +103,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonUp("Jump"))
         {
+
             if (!wallJumpCheck && wallCling && !CharacterController2D.inst.m_Grounded)
             {
                 Invoke("SetWallCheckToTrue", 0.1f);
             }
-            animator.SetBool("isJumping", true);
+            animation.SetBool("isJumping", true);
 
             if (jumpTimer < 450)
                 jumpTimer = 450;
@@ -99,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnLanding()
     {
-        animator.SetBool("isJumping", false);
+        animation.SetBool("isJumping", false);
         if (CharacterController2D.inst.m_Grounded)
             wallJumpCheck = false;
     }

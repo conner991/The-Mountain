@@ -38,7 +38,6 @@ public class groundbreak : MonoBehaviour
     void Floorbreak()
     {
         Destroy(gameObject);
-        Debug.Log("GROUNDBREAK");
     }
 
 

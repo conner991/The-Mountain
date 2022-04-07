@@ -27,6 +27,9 @@ public class aiShoot : MonoBehaviour
     public float fireRate;
     private float fireRateCooldown;
 
+    // Grab the animations
+    public Animator animation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,13 +53,15 @@ public class aiShoot : MonoBehaviour
             }
 
             buffer = 0;
-        }
+        }   
+
+        //Shoot bullet at player
         else if (distanceFromPlayer <= range && fireRateCooldown < Time.time)
         {
-            Instantiate(bullet, bulletSource.transform.position, Quaternion.identity);
-            fireRateCooldown = Time.time + fireRate;
-            buffer = 0;
+            Invoke("Fire", 0.1f);
+            ShootPlayer();
         }
+
         else if (buffer >= 3)
         {
             transform.position = Vector2.MoveTowards(this.transform.position, originPoint, speed * Time.deltaTime);
@@ -72,6 +77,29 @@ public class aiShoot : MonoBehaviour
     void Flip()
     {
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+    }
+
+    void Fire() 
+    {
+        Instantiate(bullet, bulletSource.transform.position, Quaternion.identity);
+        fireRateCooldown = Time.time + fireRate;
+        buffer = 0;
+    }
+
+    private void ShootPlayer()
+    {     
+        Debug.Log("Bullet away!");
+        animation.SetTrigger("flyingEyeRanged_shootingAttack");
+    }
+
+    void TakeDamageAnimation()
+    {
+        animation.SetTrigger("flyingEyeRanged_takeDamage");
+    }
+
+    void DeathAnimation()
+    {
+        animation.SetTrigger("flyingEyeRanged_death");
     }
 
     // for debugging

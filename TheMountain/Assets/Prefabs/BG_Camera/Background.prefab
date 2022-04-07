@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2306800696742181577}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.33236, y: -0.27, z: 8.525477}
-  m_LocalScale: {x: 0.07672679, y: 0.06661931, z: 0.21728712}
+  m_LocalPosition: {x: 0.37, y: 0.12, z: 8.525477}
+  m_LocalScale: {x: 0.08, y: 0.13, z: 0.21728712}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2306800697986646092}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 0
   m_Size: {x: 32, y: 18}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  parallaxEffect: 0.5
+  parallaxEffect: 0.3
 --- !u!1 &2306800696981679547
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +109,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2306800696981679546}
   - component: {fileID: 2306800696981679544}
-  - component: {fileID: 2306800696981679545}
   m_Layer: 0
   m_Name: APB Sky (7)
   m_TagString: Untagged
@@ -184,20 +183,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2306800696981679545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2306800696981679547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd2ea5c8b43046e7903572b315633d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  parallaxEffect: 1
 --- !u!1 &2306800697494659655
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +193,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2306800697494659654}
   - component: {fileID: 2306800697494659652}
-  - component: {fileID: 2306800697494659653}
   m_Layer: 0
   m_Name: APB Sky (5)
   m_TagString: Untagged
@@ -283,20 +267,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2306800697494659653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2306800697494659655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd2ea5c8b43046e7903572b315633d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  parallaxEffect: 1
 --- !u!1 &2306800697746250251
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +277,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2306800697746250250}
   - component: {fileID: 2306800697746250248}
-  - component: {fileID: 2306800697746250249}
   m_Layer: 0
   m_Name: APB Sky (2)
   m_TagString: Untagged
@@ -382,20 +351,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2306800697746250249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2306800697746250251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd2ea5c8b43046e7903572b315633d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  parallaxEffect: 1
 --- !u!1 &2306800697872862579
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +361,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2306800697872862578}
   - component: {fileID: 2306800697872862576}
-  - component: {fileID: 2306800697872862577}
   m_Layer: 0
   m_Name: APB Sky (6)
   m_TagString: Untagged
@@ -481,20 +435,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2306800697872862577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2306800697872862579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd2ea5c8b43046e7903572b315633d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  parallaxEffect: 1
 --- !u!1 &2306800697880470433
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +445,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2306800697880470432}
   - component: {fileID: 2306800697880470446}
-  - component: {fileID: 2306800697880470445}
   m_Layer: 0
   m_Name: APB Sky
   m_TagString: Untagged
@@ -580,20 +519,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2306800697880470445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2306800697880470433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd2ea5c8b43046e7903572b315633d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  parallaxEffect: 1
 --- !u!1 &2306800697986646093
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +528,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2306800697986646092}
+  - component: {fileID: 2379739988041538065}
   m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
@@ -635,6 +561,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2379739988041538065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2306800697986646093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fa9a386cc5942e196eff9cac393878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0, z: -10}
+  smoothFactor: 4
 --- !u!1 &2306800697987484482
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +586,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2306800697987484481}
   - component: {fileID: 2306800697987484495}
-  - component: {fileID: 2306800697987484480}
   m_Layer: 0
   m_Name: APB Sky (3)
   m_TagString: Untagged
@@ -720,20 +660,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2306800697987484480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2306800697987484482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd2ea5c8b43046e7903572b315633d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  parallaxEffect: 1
 --- !u!1 &2306800698259192837
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +670,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2306800698259192836}
   - component: {fileID: 2306800698259192834}
-  - component: {fileID: 2306800698259192835}
   m_Layer: 0
   m_Name: APB Sky (1)
   m_TagString: Untagged
@@ -819,20 +744,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2306800698259192835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2306800698259192837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd2ea5c8b43046e7903572b315633d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  parallaxEffect: 1
 --- !u!1 &2306800698386500376
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,7 +754,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2306800698386500359}
   - component: {fileID: 2306800698386500357}
-  - component: {fileID: 2306800698386500358}
   m_Layer: 0
   m_Name: APB Sky (4)
   m_TagString: Untagged
@@ -918,20 +828,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2306800698386500358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2306800698386500376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd2ea5c8b43046e7903572b315633d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  parallaxEffect: 1
 --- !u!1 &2306800698811478398
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,6 +838,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2306800698811478397}
   - component: {fileID: 2306800698811478396}
+  - component: {fileID: 4650239745703109662}
   m_Layer: 0
   m_Name: Alpine Parallax Background - Mountains
   m_TagString: Untagged
@@ -1016,3 +913,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4650239745703109662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2306800698811478398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abd2ea5c8b43046e7903572b315633d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
+  parallaxEffect: 0.8
