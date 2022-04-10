@@ -64,7 +64,6 @@ public class ai_MeleePatrol : MonoBehaviour
     void Awake() 
     {
         animation = GetComponent<Animator>();    
-        //aliveCollider = gameObject.GetComponent<Collider>();
     }
 
     // Start is called before the first frame update
@@ -120,6 +119,21 @@ public class ai_MeleePatrol : MonoBehaviour
     private void Update()
     {   
         cooldownTimer += Time.deltaTime;
+
+
+
+        if (cooldownTimer >= attackCooldown)
+        {
+            // Attack 
+        }
+
+
+
+
+
+
+
+
 
         // if enemy is either hostile or is patrolling, move enemy with GroundPatrol()
         if ((isHostile || isPatrolling) && (move == true))
