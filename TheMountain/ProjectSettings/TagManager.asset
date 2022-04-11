@@ -15,7 +15,7 @@ TagManager:
   - Ground
   - Player
   - Wall
-  - 
+  - decorative
   - 
   - 
   - 
@@ -41,6 +41,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: decorative
+    uniqueID: 1336133989
     locked: 0
   - name: Enemies
     uniqueID: 1065794667

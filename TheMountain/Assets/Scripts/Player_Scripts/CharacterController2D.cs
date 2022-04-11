@@ -23,6 +23,8 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     public Vector3 targetVelocity;
     private Vector3 m_Velocity = Vector3.zero;
+	public PhysicsMaterial2D stickMaterial;
+	public PhysicsMaterial2D fallMaterial;
 
 	[Header("Events")]
 	[Space]
@@ -65,6 +67,7 @@ public class CharacterController2D : MonoBehaviour
 			if (colliders[i].gameObject != gameObject)
 			{
 				m_Grounded = true;
+				GetComponent<CapsuleCollider2D>().sharedMaterial = stickMaterial;
 				if (!wasGrounded)
 					OnLandEvent.Invoke();
 			}
@@ -124,8 +127,9 @@ public class CharacterController2D : MonoBehaviour
             print(Input.GetAxisRaw("Horizontal"));
             print(m_JumpForce);
             m_Rigidbody2D.AddForce(new Vector2(Input.GetAxisRaw("Horizontal")* m_JumpForce/2, m_JumpForce*1.5f)); // CHANGE THIS FOR WALL JUMP HEIGHT
-            //PlayerMovement.inst.horizontalMove = Input.GetAxisRaw("Horizontal") * PlayerMovement.inst.runSpeed;
-        }
+			//PlayerMovement.inst.horizontalMove = Input.GetAxisRaw("Horizontal") * PlayerMovement.inst.runSpeed;
+			GetComponent<CapsuleCollider2D>().sharedMaterial = fallMaterial;
+		}
 
     }
 
