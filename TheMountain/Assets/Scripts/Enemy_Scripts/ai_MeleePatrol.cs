@@ -18,12 +18,13 @@ public class ai_MeleePatrol : MonoBehaviour
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
-    public LayerMask playerLayer;
 
     ////// New stuff
     [SerializeField] private float attackCooldown;
     private float cooldownTimer = Mathf.Infinity;
     [SerializeField] private int damage;
+    [SerializeField] private BoxCollider2D boxCollider;
+    [SerializeField] private LayerMask playerLayer;
 
 
     // max health is 100
@@ -121,12 +122,17 @@ public class ai_MeleePatrol : MonoBehaviour
         cooldownTimer += Time.deltaTime;
 
 
-
-        if (cooldownTimer >= attackCooldown)
+        // Attack only when the player is in sight
+        if (PlayerInSight())
         {
-            // Attack 
+            if (cooldownTimer >= attackCooldown)
+            {
+                // Attack 
+            }
         }
 
+
+        
 
 
 
@@ -169,6 +175,20 @@ public class ai_MeleePatrol : MonoBehaviour
     //////////////////////////////////////////////////////////////////////////////
     //////////////////////////// FUNCTIONS ///////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////
+    
+
+
+    private bool PlayerInSight()
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.left, 0, playerLayer);
+        
+        bool seesPlayer = hit.collider;
+
+        // Returns true if player is within hit collider raycast
+        return seesPlayer; 
+    }
+
+
 
     void GroundPatrol()
     {
@@ -196,22 +216,23 @@ public class ai_MeleePatrol : MonoBehaviour
 
 
     // damage player if touch
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {   
-        // Disable the moving animation
-        animation.SetBool("skeleton_moving", false);
-
-        move = false;
+       //BoxCollider2D square = GetComponentInChildren<BoxCollider2D>("Square");
 
         if (collision.gameObject.CompareTag("Player"))
         {
+            move = false;
+            // Disable the moving animation
+            animation.SetBool("skeleton_moving", false);
 
-            rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0.1f, rigidBody.velocity.y * 0);
+            rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0, rigidBody.velocity.y * 0);
             
             // attack player
             animation.SetTrigger("skeleton_meleeAttack");
             
         }
+
 
         // can check for collision with attack hitbox here, or use a trigger instead to give
         // enemy damage
@@ -291,5 +312,6 @@ public class ai_MeleePatrol : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lineOfSight);
+        Gizmos.DrawWireCube(boxCollider.bounds.center, boxCollider.bounds.size);
     }
 }
