@@ -51,17 +51,17 @@ public class AudioMgr : MonoBehaviour
     {
         Play("Wind"); //Main theme or background audio
     }
-    void Update()
-    {
-        if (audioFile != null)
-        {
-            if (!CC2D.m_Grounded)
-            {
-                audioFile.Stop();   //This needs to be changed
-            }
-        }
-    }
-    // Update is called once per frame
+    //void Update()
+    //{
+    //    if (audioFile != null)
+    //    {
+    //        if (!CC2D.m_Grounded)
+    //        {
+    //            audioFile.Stop();   //This needs to be changed
+    //        }
+    //    }
+    //}
+    //// Update is called once per frame
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);

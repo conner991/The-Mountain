@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float runSpeed = 40f;
     public float horizontalMove = 0f;
+    public float runningJumpDirection;
+    public bool runningJumpCheck;
     bool jump = false;
     // bool hasjumped = true;
     public float jumpTimer = 0;
@@ -63,9 +65,20 @@ public class PlayerMovement : MonoBehaviour
 
             horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
             m_Rigidbody2D.gravityScale = 3f;
-            if (Sprint.inst.sprintActive)
+            if (Sprint.inst.sprintActive && (CharacterController2D.inst.m_Grounded || CharacterController2D.inst.m_OnWall))
             {
                 runSpeed = 80f;
+                runningJumpDirection = Input.GetAxisRaw("Horizontal");
+                runningJumpCheck = true;
+            }
+            else if (Sprint.inst.sprintActive && runningJumpCheck && runningJumpDirection == Input.GetAxisRaw("Horizontal"))
+            {
+                runSpeed = 80f;
+            }
+            else
+            {
+                runningJumpCheck = false;
+                runSpeed = 40f;
             }
 
             if (Time.time >= nextDashTime && Dash.inst.dashActive)
@@ -88,14 +101,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            if (jumpTimer < 800 && CharacterController2D.inst.m_Grounded)
-                jumpTimer += Time.deltaTime * 800;
-            else if (jumpTimer < 800 && wallCling && !wallJumpCheck) //Wall jump enable
+            if (jumpTimer < 1000 && CharacterController2D.inst.m_Grounded)
+                jumpTimer += Time.deltaTime * 1000;
+            else if (jumpTimer < 1000 && wallCling && !wallJumpCheck) //Wall jump enable
             {
-                jumpTimer += Time.deltaTime * 800;
+                jumpTimer += Time.deltaTime * 1000;
             }
-            else if (jumpTimer > 800)
-                jumpTimer = 800;
+            else if (jumpTimer > 1000)
+                jumpTimer = 1000;
 
             //print(jumpTimer);
         }
