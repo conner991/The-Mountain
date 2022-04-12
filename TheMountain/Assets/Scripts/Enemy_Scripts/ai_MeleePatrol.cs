@@ -15,6 +15,9 @@ public class ai_MeleePatrol : MonoBehaviour
     // check if enemy is on ground
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform leftEdge;
+    [SerializeField] private Transform rightEdge;
+
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
@@ -81,14 +84,14 @@ public class ai_MeleePatrol : MonoBehaviour
             OnLandEvent = new UnityEvent();
         }
 
-        if (isHostile)
+        else if (isHostile)
         {
-            isPatrolling = true;
+            isPatrolling = false;
         }
 
         else
         {
-            isPatrolling = false;
+            isPatrolling = true;
         }
     }
 
@@ -98,8 +101,8 @@ public class ai_MeleePatrol : MonoBehaviour
         isGrounded = false;
         mustTurn = false;
 
-        // The enemy is grounded if a circlecast to the groundcheck position hits anything designated as ground
-        // This can be done using layers instead but Sample Assets will not overwrite your project settings.
+        // // The enemy is grounded if a circlecast to the groundcheck position hits anything designated as ground
+        // // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, groundLayer);
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -115,6 +118,11 @@ public class ai_MeleePatrol : MonoBehaviour
         {
             mustTurn = true;
         }
+
+        // if (isPatrolling)
+        // {
+        //     mustTurn = !Physics2D.OverlapCircle(groundCheck.position, groundedRadius, groundLayer);
+        // }
     }
 
     // Update is called once per frame
@@ -141,30 +149,24 @@ public class ai_MeleePatrol : MonoBehaviour
                 animation.SetTrigger("skeleton_meleeAttack");
             }
 
-
         }
 
-
-        
-
-
-
-
-
-
-
-
-        // if enemy is either hostile or is patrolling, move enemy with GroundPatrol()
+        // // if enemy is either hostile or is patrolling, move enemy with GroundPatrol()
         if ((isHostile || isPatrolling) && (move == true))
         {   
             GroundPatrol();
         }
 
+        // if enemy is either hostile or is patrolling, move enemy with GroundPatrol()
+        // if (isPatrolling && (move == true))
+        // {   
+        //     GroundPatrol();
+        // }
 
         // Get distance from player
         float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
 
-        // If player is within the enemies line of sight AND is hostile AND move is true
+        // This flip check is only for interacting with the player
         if ((distanceFromPlayer < lineOfSight) && isHostile && (move == true))
         {   
             // Check if enemy needs to flip
@@ -173,7 +175,6 @@ public class ai_MeleePatrol : MonoBehaviour
             {
                 Flip();
             }
-
 
             move = true;
             isPatrolling = false;
@@ -189,7 +190,27 @@ public class ai_MeleePatrol : MonoBehaviour
     //////////////////////////// FUNCTIONS ///////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////
     
+    void GroundPatrol()
+    {
+        if (mustTurn)
+        {
+            Flip();
+        }
 
+        if (move == true)
+        {
+            animation.SetBool("skeleton_moving", true);
+            rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime, rigidBody.velocity.y * 0);
+        }
+    }
+
+    void Flip()
+    {   
+        isPatrolling = false;
+        transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+        speed *= -1;
+        isPatrolling = true;
+    }
 
     private bool PlayerInSight()
     {
@@ -202,59 +223,6 @@ public class ai_MeleePatrol : MonoBehaviour
         // Returns true if player is within hit collider raycast
         return seesPlayer; 
     }
-
-
-
-    void GroundPatrol()
-    {
-        if (mustTurn)
-        {
-            Flip();
-        }
-
-        
-
-        if (move == true)
-        {
-            animation.SetBool("skeleton_moving", true);
-            rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime, rigidBody.velocity.y * 0);
-        }
-
-
-    }
-
-    void Flip()
-    {
-        transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
-        speed *= -1;
-    }
-
-
-    // damage player if touch
-    // private void OnCollisionStay2D(Collision2D collision)
-    // {   
-    //    //BoxCollider2D square = GetComponentInChildren<BoxCollider2D>("Square");
-
-    //     if (collision.gameObject.CompareTag("Player"))
-    //     {
-    //         move = false;
-    //         // Disable the moving animation
-    //         animation.SetBool("skeleton_moving", false);
-
-    //         rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0, rigidBody.velocity.y * 0);
-            
-    //         // attack player
-    //         animation.SetTrigger("skeleton_meleeAttack");
-            
-    //     }
-
-
-    //     // can check for collision with attack hitbox here, or use a trigger instead to give
-    //     // enemy damage
-
-    //     // depends on what works better
-    // }
-
 
     private void ReturnToRun()
     {
