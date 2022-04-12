@@ -10,7 +10,11 @@ public class AudioMgr : MonoBehaviour
     public FootStepClass[] footSteps;
     public Sound[] sounds;
     public CharacterController2D CC2D;
+    private string previousAmbiance;
+    private string nextAmbiance;
+    private bool startAmbiance;
     static AudioSource audioFile;
+    private float fadeTime = 0.001f;
 
     void Awake()
     {
@@ -49,7 +53,8 @@ public class AudioMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Play("Wind"); //Main theme or background audio
+        startAmbiance = true;
+        PlayAmbiance("Wind"); //Main theme or background audio
     }
     //void Update()
     //{
@@ -73,7 +78,18 @@ public class AudioMgr : MonoBehaviour
         s.source.Play();
     }
 
-    // Update is called once per frame
+    public void PlayAmbiance(string name) //update ambiance
+    {
+        nextAmbiance = name;
+        if (startAmbiance == false)
+            StartCoroutine(FadeOut());
+
+        StartCoroutine(FadeIn());
+
+        previousAmbiance = name;
+        startAmbiance = false;
+    }
+
     public void Playfoot(int name)
     {
         FootStepClass fs = Array.Find(footSteps, sound => sound.name == name);
@@ -84,5 +100,41 @@ public class AudioMgr : MonoBehaviour
         }
         audioFile = fs.source;
         fs.source.Play();
+    }
+
+    public IEnumerator FadeOut()
+    {
+
+        Sound s = Array.Find(sounds, sound => sound.name == previousAmbiance);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found.");
+        }
+
+        while (s.volume > 0f)
+        {
+            s.volume -= fadeTime;
+            yield return new WaitForSeconds(0.001f);
+        }
+        s.volume = 0f;
+    }
+
+    public IEnumerator FadeIn()
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == nextAmbiance);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found.");
+        }
+
+        s.volume = 0.000f;
+        s.source.Play();
+
+        while (s.volume < 1f)
+        {
+            s.volume += fadeTime;
+            yield return new WaitForSeconds(0.001f);
+        }
+        s.volume = 1f;
     }
 }

@@ -319,6 +319,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  CC2D: {fileID: 2086994979354699580, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
 --- !u!114 &4974483446052503530
 MonoBehaviour:
   m_ObjectHideFlags: 0
