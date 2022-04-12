@@ -21,6 +21,7 @@ public class ai_MeleePatrol : MonoBehaviour
 
     ////// New stuff
     [SerializeField] private float attackCooldown;
+    [SerializeField] private float rayCastColliderDistance;
     private float cooldownTimer = Mathf.Infinity;
     [SerializeField] private int damage;
     [SerializeField] private BoxCollider2D boxCollider;
@@ -125,10 +126,22 @@ public class ai_MeleePatrol : MonoBehaviour
         // Attack only when the player is in sight
         if (PlayerInSight())
         {
+            
             if (cooldownTimer >= attackCooldown)
             {
-                // Attack 
+                // Attack
+                Invoke("ReturnToRun", 1f);
+                cooldownTimer = 0;
+                move = false;
+                animation.SetBool("skeleton_moving", false);
+
+                rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0, rigidBody.velocity.y * 0);
+                
+                // attack player
+                animation.SetTrigger("skeleton_meleeAttack");
             }
+
+
         }
 
 
@@ -180,7 +193,9 @@ public class ai_MeleePatrol : MonoBehaviour
 
     private bool PlayerInSight()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.left, 0, playerLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center + transform.right * attackRange * transform.localScale.x * rayCastColliderDistance, 
+                                            new Vector3(boxCollider.bounds.size.x * attackRange, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
+                                            0, Vector2.left, 0, playerLayer);
         
         bool seesPlayer = hit.collider;
 
@@ -216,36 +231,39 @@ public class ai_MeleePatrol : MonoBehaviour
 
 
     // damage player if touch
-    private void OnCollisionStay2D(Collision2D collision)
-    {   
-       //BoxCollider2D square = GetComponentInChildren<BoxCollider2D>("Square");
+    // private void OnCollisionStay2D(Collision2D collision)
+    // {   
+    //    //BoxCollider2D square = GetComponentInChildren<BoxCollider2D>("Square");
 
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            move = false;
-            // Disable the moving animation
-            animation.SetBool("skeleton_moving", false);
+    //     if (collision.gameObject.CompareTag("Player"))
+    //     {
+    //         move = false;
+    //         // Disable the moving animation
+    //         animation.SetBool("skeleton_moving", false);
 
-            rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0, rigidBody.velocity.y * 0);
+    //         rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0, rigidBody.velocity.y * 0);
             
-            // attack player
-            animation.SetTrigger("skeleton_meleeAttack");
+    //         // attack player
+    //         animation.SetTrigger("skeleton_meleeAttack");
             
-        }
+    //     }
 
 
-        // can check for collision with attack hitbox here, or use a trigger instead to give
-        // enemy damage
+    //     // can check for collision with attack hitbox here, or use a trigger instead to give
+    //     // enemy damage
 
-        // depends on what works better
-    }
+    //     // depends on what works better
+    // }
 
-    private void OnCollisionExit2D(Collision2D collision)
+
+    private void ReturnToRun()
     {
         move = true;
     }
+    
 
-    private void AttackPlayer()
+    // This damage player function gets called by an event trigger in the animation 
+    private void DamagePlayer()
     {   
 
         // 2d collider that uses attackPoint, attackRange, and enemyLayers for inspector
@@ -256,7 +274,7 @@ public class ai_MeleePatrol : MonoBehaviour
         {
             player.GetComponent<PlayerHealth>().TakeDamage(10);
             // console shows that enemy was hit
-            Debug.Log("Attacking player");
+            Debug.Log("Damaging player");
         }
         
     }
@@ -312,6 +330,7 @@ public class ai_MeleePatrol : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lineOfSight);
-        Gizmos.DrawWireCube(boxCollider.bounds.center, boxCollider.bounds.size);
+        Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * attackRange * transform.localScale.x * rayCastColliderDistance, 
+            new Vector3(boxCollider.bounds.size.x * attackRange, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     }
 }

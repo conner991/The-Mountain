@@ -91,8 +91,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174941648645176572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.41, y: -3.4, z: 0}
-  m_LocalScale: {x: 4.8124266, y: 5.673633, z: 1}
+  m_LocalPosition: {x: -39.8, y: -3.34, z: 0}
+  m_LocalScale: {x: 5, y: 5.673633, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 174941649650491999}
@@ -187,7 +187,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.15, y: 0}
+  m_Offset: {x: -0.01, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -198,7 +198,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.43, y: 0.51}
+  m_Size: {x: 0.34, y: 0.51}
   m_EdgeRadius: 0
 --- !u!95 &174941648645176514
 Animator:
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174941648645176572}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ef60a0196d9b448190a3af8163e995e, type: 3}
   m_Name: 
@@ -237,12 +237,14 @@ MonoBehaviour:
     m_Bits: 64
   groundCheck: {fileID: 174941649641965382}
   attackPoint: {fileID: 174941648298217039}
-  attackRange: 0.5
+  attackRange: 1.21
+  attackCooldown: 0
+  rayCastColliderDistance: 0.17
+  damage: 0
+  boxCollider: {fileID: 174941648645176515}
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  attackCooldown: 0
-  damage: 0
   maxHealth: 100
   OnLandEvent:
     m_PersistentCalls:
