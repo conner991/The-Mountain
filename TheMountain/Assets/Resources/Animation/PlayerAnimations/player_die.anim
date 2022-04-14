@@ -73,7 +73,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.3249999
+    m_StopTime: 1.525
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -92,4 +92,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 1.525
+    functionName: Finished
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: d50ca7fe5e9f7be4a91f76487b0d718c, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

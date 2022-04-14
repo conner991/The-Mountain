@@ -315,12 +315,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2086994979354699581}
-  Trigger: {fileID: 0}
   blackImage: {fileID: 8168130765217172914}
   maxHealth: 100
   maxLives: 4
   currentHealth: 0
-  currentLives: 0
 --- !u!114 &2086994979354699578
 MonoBehaviour:
   m_ObjectHideFlags: 0
