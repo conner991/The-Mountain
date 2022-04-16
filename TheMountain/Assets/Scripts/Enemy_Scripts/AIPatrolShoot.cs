@@ -99,6 +99,7 @@ public class AIPatrolShoot : MonoBehaviour
         // following and attacking can occur
         if ((distanceFromPlayer < lineOfSight) && (move == true))
         {   
+            Debug.Log("In line of sight ring");
             GroundPatrol();
 
             // Check if enemy needs to flip
@@ -109,19 +110,23 @@ public class AIPatrolShoot : MonoBehaviour
             }
 
             if (PlayerInAttackRange()) 
-            {
+            {   
+                move = false;
+
+                Debug.Log("In PIAR raycast");
+
                 if (cooldownTimer >= attackCooldown)
                 {
                     // Attack
                     Invoke("ReturnToRun", 1f);
                     cooldownTimer = 0;
-                    move = false;
-                    animation.SetBool("skeleton_moving", false);
+                    Debug.Log("In cooldown if(), actually attacking here");
+                    // animation.SetBool("skeleton_moving", false);
 
                     rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0, rigidBody.velocity.y * 0);
                     
                     // attack player animation
-                    animation.SetTrigger("skeleton_meleeAttack");
+                    // animation.SetTrigger("skeleton_meleeAttack");
                 }
             }
 
@@ -205,14 +210,13 @@ public class AIPatrolShoot : MonoBehaviour
     {   
         currentHealth -= damage;
 
-        animation.SetTrigger("skeleton_takeDamage");
+        // animation.SetTrigger("skeleton_takeDamage");
 
         // if the current health is 0 or less the Die() function is called
         if (currentHealth <= 0)
         {   
             Invoke("Die", 2f);
-            animation.SetTrigger("skeleton_death");
-            //aliveCollider.enabled = false;
+            // animation.SetTrigger("skeleton_death");
         }
     }
 
@@ -228,11 +232,11 @@ public class AIPatrolShoot : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // private void OnDisable() 
-    // {
-    //     // Disable the moving animations
-    //     animation.SetBool("skeleton_moving", false);
-    // }
+    private void OnDisable() 
+    {
+        // Disable the moving animations
+        // animation.SetBool("skeleton_moving", false);
+    }
 
 
     //////////////////////////////////////////////////////////////////////////////
