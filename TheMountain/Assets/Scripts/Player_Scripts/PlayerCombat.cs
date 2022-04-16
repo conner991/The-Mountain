@@ -68,7 +68,7 @@ public class PlayerCombat : MonoBehaviour
         {
             if (enemy.name == "Skeleton")
             {
-                enemy.GetComponent<ai_MeleePatrol>().TakeDamage(attackDamage);
+                enemy.GetComponent<AIPatrolMelee>().TakeDamage(attackDamage);
                 // console shows that enemy was hit
                 Debug.Log("Skeleton Enemy hit");
             }
