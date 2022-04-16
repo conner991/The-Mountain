@@ -8,6 +8,8 @@ public class WellTeleport : MonoBehaviour
     [SerializeField] CapsuleCollider2D Player;
     [SerializeField] Collider2D Trigger;
     [SerializeField] public GameObject blackImage;
+    public GameObject caveBackground;
+    public GameObject outdoorsBackground;
     private bool blackOut;
     private bool touchedTrigger;
 
@@ -54,6 +56,9 @@ public class WellTeleport : MonoBehaviour
             blackOut = false;
             touchedTrigger = false;
             Invoke("Wait", 1.5f);
+            FindObjectOfType<AudioMgr>().PlayAmbiance("Wind");
+            caveBackground.SetActive(false);
+            outdoorsBackground.SetActive(true);
         }
     }
 

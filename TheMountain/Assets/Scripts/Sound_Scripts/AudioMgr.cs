@@ -14,7 +14,7 @@ public class AudioMgr : MonoBehaviour
     private string nextAmbiance;
     private bool startAmbiance;
     static AudioSource audioFile;
-    private float fadeTime = 0.001f;
+    private float fadeTime = 0.1f;
 
     void Awake()
     {
@@ -113,7 +113,8 @@ public class AudioMgr : MonoBehaviour
 
         while (s.volume > 0f)
         {
-            s.volume -= fadeTime;
+            s.volume -= fadeTime * Time.deltaTime;
+            s.source.volume = s.volume;
             yield return new WaitForSeconds(0.001f);
         }
         s.volume = 0f;
@@ -132,7 +133,8 @@ public class AudioMgr : MonoBehaviour
 
         while (s.volume < 1f)
         {
-            s.volume += fadeTime;
+            s.volume += Time.deltaTime * fadeTime;
+            s.source.volume = s.volume;
             yield return new WaitForSeconds(0.001f);
         }
         s.volume = 1f;
