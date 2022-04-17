@@ -72,6 +72,13 @@ public class PlayerCombat : MonoBehaviour
                 // console shows that enemy was hit
                 Debug.Log("Skeleton Enemy hit");
             }
+
+            else if (enemy.name == "MushroomMan")
+            {
+                enemy.GetComponent<AIPatrolShoot>().TakeDamage(attackDamage);
+                // console shows that enemy was hit
+                Debug.Log("Mushroom man Enemy hit");
+            }
             
         }
     }

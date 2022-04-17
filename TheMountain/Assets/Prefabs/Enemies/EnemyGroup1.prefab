@@ -83,7 +83,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &174941648645176573
 Transform:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174941648645176572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.2, y: -3.32, z: 0}
+  m_LocalPosition: {x: -27.18, y: -3.21, z: 0}
   m_LocalScale: {x: 5, y: 5.673633, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -259,30 +259,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100767d7cb75a45f9a887b022e7aa21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  groundCheck: {fileID: 174941649641965382}
-  leftEdge: {fileID: 0}
-  rightEdge: {fileID: 0}
+  maxHealth: 100
   attackPoint: {fileID: 174941648298217039}
   attackRange: 0.5
   attackCooldown: 0
   rayCastColliderDistance: 0
   damage: 0
-  bodyCollider: {fileID: 174941648645176515}
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  maxHealth: 100
+  isPatrolling: 0
+  speed: 100
+  lineOfSight: 5
+  player: {fileID: 2086994979354699522, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+  groundCheck: {fileID: 174941649641965382}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  bodyCollider: {fileID: 174941648645176515}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
-  isHostile: 0
-  isPatrolling: 0
-  speed: 100
-  player: {fileID: 2086994979354699522, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
-  lineOfSight: 5
 --- !u!1 &174941649008324250
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +527,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174941649641965377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.396, y: -0.3, z: 0}
+  m_LocalPosition: {x: 0.306, y: -0.267, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -930,7 +927,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3059019316711349064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.242, y: -0.188, z: 0}
+  m_LocalPosition: {x: 0.242, y: -0.193, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -951,6 +948,7 @@ GameObject:
   - component: {fileID: 3651187859697531571}
   - component: {fileID: 3098456141784705840}
   - component: {fileID: 3695485132773929837}
+  - component: {fileID: 1254516502549809772}
   m_Layer: 3
   m_Name: MushroomMan
   m_TagString: Untagged
@@ -966,7 +964,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3566204157746285441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.638, y: -3.616, z: 0}
+  m_LocalPosition: {x: 44.76, y: -3.57, z: 0}
   m_LocalScale: {x: 6.8807774, y: 6.2223964, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1112,25 +1110,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdec6f8ead22409784d00dcbac70ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  groundCheck: {fileID: 202178160332121330}
+  maxHealth: 100
   attackPoint: {fileID: 1957870137480020526}
-  attackRange: 1.52
+  attackRange: 1.09
   attackCooldown: 0
   rayCastColliderDistance: 0.06
   damage: 0
-  bodyCollider: {fileID: 3651187859697531571}
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  maxHealth: 100
-  isHostile: 0
   isPatrolling: 0
-  speed: 200
-  player: {fileID: 2086994979354699522, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+  speed: 250
   lineOfSight: 5
+  player: {fileID: 0}
+  groundCheck: {fileID: 202178160332121330}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  bodyCollider: {fileID: 3651187859697531571}
+  OnLandEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!95 &1254516502549809772
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3566204157746285441}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5c2ebb5c5ce0742b4a13f5aad096cb17, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7204172398404298152
 GameObject:
   m_ObjectHideFlags: 0
