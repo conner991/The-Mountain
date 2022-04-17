@@ -18,10 +18,10 @@ public class AIPatrolShoot : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     [SerializeField] private float attackCooldown;
-    [SerializeField] private float rayCastColliderDistance;
     private float cooldownTimer = Mathf.Infinity;
     [SerializeField] private int damage;
     [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private LayerMask enemyLayer;
     [HideInInspector] public bool isPatrolling;
     public float speed;
     private bool mustTurn;
@@ -36,6 +36,7 @@ public class AIPatrolShoot : MonoBehaviour
     [Header ("World/Physics/Other Parameters")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Collider2D bodyCollider;
+    [SerializeField] private float rayCastColliderDistance;
     private Rigidbody2D rigidBody;
     public UnityEvent OnLandEvent;
     [System.Serializable]
@@ -88,6 +89,11 @@ public class AIPatrolShoot : MonoBehaviour
         if ((distanceFromPlayer < lineOfSight) && (move == true))
         {   
             GroundPatrol();
+
+            if (EnemyCollision())
+            {
+                Flip();
+            }
 
             // Check if enemy needs to flip
             if ((player.position.x > transform.position.x && transform.localScale.x < 0) ||
@@ -160,14 +166,26 @@ public class AIPatrolShoot : MonoBehaviour
 
     private bool PlayerInAttackRange()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(bodyCollider.bounds.center + transform.right * attackRange * transform.localScale.x * rayCastColliderDistance, 
+        RaycastHit2D playerCollisionHit = Physics2D.BoxCast(bodyCollider.bounds.center + transform.right * attackRange * transform.localScale.x * rayCastColliderDistance, 
                                             new Vector3(bodyCollider.bounds.size.x * attackRange, bodyCollider.bounds.size.y, bodyCollider.bounds.size.z),
                                             0, Vector2.left, 0, playerLayer);
         
-        bool closeEnough = hit.collider;
+        bool playerClose = playerCollisionHit.collider;
 
         // Returns true if player is within enemey hit collider raycast, 
-        return closeEnough; 
+        return playerClose; 
+    }
+
+    private bool EnemyCollision()
+    {
+        RaycastHit2D enemyCollisionHit = Physics2D.BoxCast(bodyCollider.bounds.center + transform.right * attackRange * transform.localScale.x * rayCastColliderDistance, 
+                                            new Vector3(bodyCollider.bounds.size.x * attackRange, bodyCollider.bounds.size.y, bodyCollider.bounds.size.z),
+        
+                                            0, Vector2.left, 0, enemyLayer);
+        bool enemyClose = enemyCollisionHit.collider;
+
+        // Returns true if player is within enemey hit collider raycast, 
+        return enemyClose; 
     }
 
     private void ReturnToRun()

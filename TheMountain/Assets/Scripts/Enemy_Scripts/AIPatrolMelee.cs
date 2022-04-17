@@ -22,6 +22,7 @@ public class AIPatrolMelee : MonoBehaviour
     private float cooldownTimer = Mathf.Infinity;
     [SerializeField] private int damage;
     [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private LayerMask enemyLayer;
     [HideInInspector] public bool isPatrolling;
     public float speed;
     private bool mustTurn;
@@ -49,6 +50,7 @@ public class AIPatrolMelee : MonoBehaviour
     void Awake() 
     {
         animation = GetComponent<Animator>();    
+        rigidBody = GetComponent<Rigidbody2D>();
         
     }
 
@@ -58,8 +60,6 @@ public class AIPatrolMelee : MonoBehaviour
         currentHealth = maxHealth;
         move = true;
         isPatrolling = true;
-
-        rigidBody = GetComponent<Rigidbody2D>();
 
         if (OnLandEvent == null)
         {
@@ -88,6 +88,11 @@ public class AIPatrolMelee : MonoBehaviour
         {   
             GroundPatrol();
 
+            if (EnemyCollision())
+            {
+                Flip();
+            }
+
             // Check if enemy needs to flip
             if ((player.position.x > transform.position.x && transform.localScale.x < 0) ||
                 (player.position.x < transform.position.x && transform.localScale.x > 0))
@@ -104,12 +109,12 @@ public class AIPatrolMelee : MonoBehaviour
                     // Attack
                     Invoke("ReturnToRun", 1f);
                     cooldownTimer = 0;
-                    animation.SetBool("MM_run_param", false);
+                    animation.SetBool("skeleton_moving", false);
 
                     rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0, rigidBody.velocity.y * 0);
                     
                     // attack player animation
-                    animation.SetTrigger("MM_attack1_param");
+                    animation.SetTrigger("skeleton_meleeAttack");
                 }
             }
 
@@ -167,6 +172,18 @@ public class AIPatrolMelee : MonoBehaviour
 
         // Returns true if player is within hit collider raycast
         return closeEnough; 
+    }
+
+    private bool EnemyCollision()
+    {
+        RaycastHit2D enemyCollisionHit = Physics2D.BoxCast(bodyCollider.bounds.center + transform.right * attackRange * transform.localScale.x * rayCastColliderDistance, 
+                                            new Vector3(bodyCollider.bounds.size.x * attackRange, bodyCollider.bounds.size.y, bodyCollider.bounds.size.z),
+        
+                                            0, Vector2.left, 0, enemyLayer);
+        bool enemyClose = enemyCollisionHit.collider;
+
+        // Returns true if player is within enemey hit collider raycast, 
+        return enemyClose; 
     }
 
     private void ReturnToRun()

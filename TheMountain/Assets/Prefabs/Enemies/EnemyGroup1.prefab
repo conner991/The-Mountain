@@ -92,7 +92,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174941648645176572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.18, y: -3.21, z: 0}
+  m_LocalPosition: {x: 36.42, y: -3.24, z: 0}
   m_LocalScale: {x: 5, y: 5.673633, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -261,17 +261,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   attackPoint: {fileID: 174941648298217039}
-  attackRange: 0.5
-  attackCooldown: 0
-  rayCastColliderDistance: 0
-  damage: 0
+  attackRange: 0.89
+  attackCooldown: 1
+  rayCastColliderDistance: 0.24
+  damage: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
   isPatrolling: 0
-  speed: 100
-  lineOfSight: 5
-  player: {fileID: 2086994979354699522, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+  speed: 250
+  lineOfSight: 7
+  player: {fileID: 0}
   groundCheck: {fileID: 174941649641965382}
   groundLayer:
     serializedVersion: 2
@@ -527,7 +527,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174941649641965377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.306, y: -0.267, z: 0}
+  m_LocalPosition: {x: 0.222, y: -0.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1011,9 +1011,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1065794667
+  m_SortingLayer: 1
+  m_SortingOrder: 4
   m_Sprite: {fileID: 4723107735738678597, guid: f8b30c2afe165d645b54d500a9c30862, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1114,11 +1114,13 @@ MonoBehaviour:
   attackPoint: {fileID: 1957870137480020526}
   attackRange: 1.09
   attackCooldown: 0
-  rayCastColliderDistance: 0.06
   damage: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
   isPatrolling: 0
   speed: 250
   lineOfSight: 5
@@ -1128,6 +1130,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   bodyCollider: {fileID: 3651187859697531571}
+  rayCastColliderDistance: 0.06
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
