@@ -5,7 +5,7 @@ using UnityEngine;
 public class bulletBehavior : MonoBehaviour
 {
     // bullet information
-    public float speed;
+    public float speed, bulletDisappearTime, damage;
     Rigidbody2D rigidBody;
 
     // Player info
@@ -14,20 +14,38 @@ public class bulletBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        Vector2 bulletDirection = (player.transform.position - transform.position).normalized * speed;
-        rigidBody.velocity = new Vector2(bulletDirection.x, bulletDirection.y);
-        Destroy(this.gameObject, 2);
+        // rigidBody = GetComponent<Rigidbody2D>();
+        // player = GameObject.FindGameObjectWithTag("Player");
+        // Vector2 bulletDirection = (player.transform.position - transform.position).normalized * speed;
+        // rigidBody.velocity = new Vector2(bulletDirection.x, bulletDirection.y);
+        // Destroy(this.gameObject, 2);
+
+
+        StartCoroutine(CountDownTimer());
     }
 
     // Do damage to player
-    private void OnTriggerEnter2D(Collider2D collision)
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if (collision.gameObject.CompareTag("Player"))
+    //     {   
+    //         DamagePlayer();
+    //     }
+    // }
+
+    private void OnCollisionEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {   
             DamagePlayer();
         }
+    }
+
+    IEnumerator CountDownTimer()
+    {
+        yield return new WaitForSeconds(bulletDisappearTime);
+
+        Destroy(gameObject);
     }
 
     private void DamagePlayer()

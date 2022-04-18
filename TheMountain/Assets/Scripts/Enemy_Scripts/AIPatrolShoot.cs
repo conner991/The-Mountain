@@ -15,7 +15,7 @@ public class AIPatrolShoot : MonoBehaviour
     [Header ("Self/Attack/Movement/Player Parameters")]
     public int maxHealth = 100;
     int currentHealth;
-    public Transform attackPoint;
+    public Transform attackPoint, shootPosition;
     public float attackRange = 0.5f;
     [SerializeField] private float attackCooldown;
     private float cooldownTimer = Mathf.Infinity;
@@ -23,13 +23,13 @@ public class AIPatrolShoot : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask enemyLayer;
     [HideInInspector] public bool isPatrolling;
-    public float speed;
-    private bool mustTurn;
-    private bool move;
-    public float lineOfSight;
+    public float runSpeed, lineOfSight, timeBTWShots, shootSpeed;
+    private bool mustTurn, move, canShoot;
+
     public Transform player;
     [SerializeField] private Transform groundCheck;
     const float groundedRadius = 0.2f;
+    public GameObject bullet; 
     /* TODO*/ private bool isDead;
 
 
@@ -95,6 +95,12 @@ public class AIPatrolShoot : MonoBehaviour
                 Flip();
             }
 
+            if (canShoot)
+            {
+                StartCoroutine(Shoot());
+            }
+            
+
             // Check if enemy needs to flip
             if ((player.position.x > transform.position.x && transform.localScale.x < 0) ||
                 (player.position.x < transform.position.x && transform.localScale.x > 0))
@@ -102,7 +108,7 @@ public class AIPatrolShoot : MonoBehaviour
                 Flip();
             }
 
-            if (PlayerInAttackRange()) 
+            if (PlayerInMeleeRange()) 
             {   
                 move = false;
 
@@ -113,7 +119,9 @@ public class AIPatrolShoot : MonoBehaviour
                     cooldownTimer = 0;
                     animation.SetBool("MM_run_param", false);
 
-                    rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0, rigidBody.velocity.y * 0);
+                    // rigidBody.velocity = new Vector2(runSpeed * Time.fixedDeltaTime * 0, rigidBody.velocity.y * 0);
+                    // or 
+                    rigidBody.velocity = Vector2.zero;
                     
                     // attack player animation
                     animation.SetTrigger("MM_attack1_param");
@@ -152,7 +160,7 @@ public class AIPatrolShoot : MonoBehaviour
         if (move == true)
         {
             animation.SetBool("MM_run_param", true);
-            rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime, rigidBody.velocity.y);
+            rigidBody.velocity = new Vector2(runSpeed * Time.fixedDeltaTime, rigidBody.velocity.y);
         }
     }
 
@@ -160,11 +168,23 @@ public class AIPatrolShoot : MonoBehaviour
     {   
         isPatrolling = false;
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
-        speed *= -1;
+        runSpeed *= -1;
         isPatrolling = true;
     }
 
-    private bool PlayerInAttackRange()
+    IEnumerator Shoot()
+    {   
+        canShoot = false;
+        
+        yield return new WaitForSeconds(timeBTWShots);
+        GameObject newBullet = Instantiate(bullet, shootPosition.position, Quaternion.identity);
+
+        newBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(shootSpeed * runSpeed * Time.fixedDeltaTime, 0f);
+
+        canShoot = true;
+    }
+
+    private bool PlayerInMeleeRange()
     {
         RaycastHit2D playerCollisionHit = Physics2D.BoxCast(bodyCollider.bounds.center + transform.right * attackRange * transform.localScale.x * rayCastColliderDistance, 
                                             new Vector3(bodyCollider.bounds.size.x * attackRange, bodyCollider.bounds.size.y, bodyCollider.bounds.size.z),
