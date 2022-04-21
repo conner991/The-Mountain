@@ -178,8 +178,8 @@ public class AIPatrolMelee : MonoBehaviour
     {
         RaycastHit2D enemyCollisionHit = Physics2D.BoxCast(bodyCollider.bounds.center + transform.right * attackRange * transform.localScale.x * rayCastColliderDistance, 
                                             new Vector3(bodyCollider.bounds.size.x * attackRange, bodyCollider.bounds.size.y, bodyCollider.bounds.size.z),
-        
                                             0, Vector2.left, 0, enemyLayer);
+                                            
         bool enemyClose = enemyCollisionHit.collider;
 
         // Returns true if player is within enemey hit collider raycast, 
@@ -218,6 +218,8 @@ public class AIPatrolMelee : MonoBehaviour
         // if the current health is 0 or less the Die() function is called
         if (currentHealth <= 0)
         {   
+            rigidBody.velocity = Vector2.zero;
+            move = false;
             Invoke("Die", 2f);
             animation.SetTrigger("skeleton_death");
             //aliveCollider.enabled = false;

@@ -270,7 +270,7 @@ MonoBehaviour:
     m_Bits: 128
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   isPatrolling: 0
   speed: 250
   lineOfSight: 7
@@ -977,12 +977,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 686725914154977273}
-  - component: {fileID: 3695485132773929837}
   - component: {fileID: 7351011085214903507}
   - component: {fileID: 3302240489781004240}
   - component: {fileID: 3651187859697531571}
   - component: {fileID: 3098456141784705840}
   - component: {fileID: 1254516502549809772}
+  - component: {fileID: 1339212023021222063}
   m_Layer: 3
   m_Name: MushroomMan
   m_TagString: Untagged
@@ -1008,46 +1008,6 @@ Transform:
   m_Father: {fileID: 174941649723581254}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3695485132773929837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3566204157746285441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fdec6f8ead22409784d00dcbac70ff3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  attackPoint: {fileID: 1957870137480020526}
-  shootPosition: {fileID: 8725655001752696980}
-  attackRange: 1.09
-  attackCooldown: 0
-  damage: 0
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  isPatrolling: 0
-  runSpeed: 200
-  lineOfSight: 5
-  timeBTWShots: 3
-  shootSpeed: 3
-  player: {fileID: 0}
-  groundCheck: {fileID: 202178160332121330}
-  bullet: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  bodyCollider: {fileID: 3651187859697531571}
-  rayCastColliderDistance: 0.06
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!212 &7351011085214903507
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1193,6 +1153,42 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1339212023021222063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3566204157746285441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d31686201275240c69759022d57ec938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  attackPoint: {fileID: 1957870137480020526}
+  attackRange: 1.4
+  attackCooldown: 0
+  damage: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 520
+  isPatrolling: 0
+  runSpeed: 250
+  lineOfSight: 6
+  player: {fileID: 0}
+  groundCheck: {fileID: 202178160332121330}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  bodyCollider: {fileID: 3651187859697531571}
+  rayCastColliderDistance: 0.09
+  OnLandEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7204172398404298152
 GameObject:
   m_ObjectHideFlags: 0

@@ -75,7 +75,7 @@ public class PlayerCombat : MonoBehaviour
 
             else if (enemy.name == "MushroomMan")
             {
-                enemy.GetComponent<AIPatrolShoot>().TakeDamage(attackDamage);
+                enemy.GetComponent<AIPatrolMeleeMM>().TakeDamage(attackDamage);
                 // console shows that enemy was hit
                 Debug.Log("Mushroom man Enemy hit");
             }

@@ -9,13 +9,14 @@ using UnityEngine.Events;
  * within the line of sight, chases the player instead. returns to regular patrol when player
  * is out of the light of sight
  */
-public class AIPatrolShoot : MonoBehaviour
+
+public class AIPatrolMeleeMM : MonoBehaviour
 {
 
     [Header ("Self/Attack/Movement/Player Parameters")]
     public int maxHealth = 100;
     int currentHealth;
-    public Transform attackPoint, shootPosition;
+    public Transform attackPoint;
     public float attackRange = 0.5f;
     [SerializeField] private float attackCooldown;
     private float cooldownTimer = Mathf.Infinity;
@@ -23,13 +24,12 @@ public class AIPatrolShoot : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask enemyLayer;
     [HideInInspector] public bool isPatrolling;
-    public float runSpeed, lineOfSight, timeBTWShots, shootSpeed;
+    public float runSpeed, lineOfSight;
     private bool mustTurn, move, canShoot;
 
     public Transform player;
     [SerializeField] private Transform groundCheck;
     const float groundedRadius = 0.2f;
-    public GameObject bullet; 
     /* TODO*/ private bool isDead;
 
 
@@ -37,7 +37,7 @@ public class AIPatrolShoot : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Collider2D bodyCollider;
     [SerializeField] private float rayCastColliderDistance;
-    private Rigidbody2D rigidBody;
+    private Rigidbody2D enemyRigidBody;
     public UnityEvent OnLandEvent;
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
@@ -50,7 +50,7 @@ public class AIPatrolShoot : MonoBehaviour
     void Awake() 
     {
         animation = GetComponent<Animator>();    
-        rigidBody = GetComponent<Rigidbody2D>();
+        enemyRigidBody = GetComponent<Rigidbody2D>();
         
     }
 
@@ -58,8 +58,8 @@ public class AIPatrolShoot : MonoBehaviour
     void Start()
     {   
         currentHealth = maxHealth;
-        move = true;
-        isPatrolling = true;
+        move = true; 
+        isPatrolling = true; 
 
         if (OnLandEvent == null)
         {
@@ -82,7 +82,7 @@ public class AIPatrolShoot : MonoBehaviour
 
 
         // Get distance from player
-        float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
+        float distanceFromPlayer = Vector2.Distance(transform.position, player.position);
 
         // Check if the player is in enemy line of sight, where patrolling stops and 
         // following and attacking can occur
@@ -95,18 +95,28 @@ public class AIPatrolShoot : MonoBehaviour
                 Flip();
             }
 
-            if (canShoot)
-            {
-                StartCoroutine(Shoot());
-            }
-            
-
-            // Check if enemy needs to flip
+            // Check if enemy needs to flip to chase after player
             if ((player.position.x > transform.position.x && transform.localScale.x < 0) ||
                 (player.position.x < transform.position.x && transform.localScale.x > 0))
             {
                 Flip();
             }
+
+            // if (canShoot)
+            // {   
+            //     move = false;
+
+            //     if (cooldownTimer >= attackCooldown)
+            //     {
+            //         Invoke("ReturnToRun", 1f);
+            //         cooldownTimer = 0;
+            //         animation.SetBool("MM_run_param", false);
+            //         enemyRigidBody.velocity = Vector2.zero;
+            //         animation.SetBool("MM_attack2_param", true);
+            //         //StartCoroutine(Shoot());
+            //     }
+
+            // }
 
             if (PlayerInMeleeRange()) 
             {   
@@ -119,17 +129,15 @@ public class AIPatrolShoot : MonoBehaviour
                     cooldownTimer = 0;
                     animation.SetBool("MM_run_param", false);
 
-                    // rigidBody.velocity = new Vector2(runSpeed * Time.fixedDeltaTime * 0, rigidBody.velocity.y * 0);
-                    // or 
-                    rigidBody.velocity = Vector2.zero;
+                    enemyRigidBody.velocity = Vector2.zero;
                     
                     // attack player animation
                     animation.SetTrigger("MM_attack1_param");
                 }
             }
 
-            move = true;
             isPatrolling = false;
+            move = true;
         }
 
         else
@@ -160,7 +168,7 @@ public class AIPatrolShoot : MonoBehaviour
         if (move == true)
         {
             animation.SetBool("MM_run_param", true);
-            rigidBody.velocity = new Vector2(runSpeed * Time.fixedDeltaTime, rigidBody.velocity.y);
+            enemyRigidBody.velocity = new Vector2(runSpeed * Time.fixedDeltaTime, enemyRigidBody.velocity.y);
         }
     }
 
@@ -172,17 +180,16 @@ public class AIPatrolShoot : MonoBehaviour
         isPatrolling = true;
     }
 
-    IEnumerator Shoot()
-    {   
-        canShoot = false;
-        
-        yield return new WaitForSeconds(timeBTWShots);
-        GameObject newBullet = Instantiate(bullet, shootPosition.position, Quaternion.identity);
+    // IEnumerator Shoot()
+    // {   
+    //     canShoot = false;
+    
+    //     yield return new WaitForSeconds(timeBTWShots);
+    //     GameObject newBullet = Instantiate(bullet, shootPosition.position, Quaternion.identity);
+    //     newBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(shootSpeed * runSpeed * Time.fixedDeltaTime, 0f);
 
-        newBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(shootSpeed * runSpeed * Time.fixedDeltaTime, 0f);
-
-        canShoot = true;
-    }
+    //     canShoot = true;
+    // }
 
     private bool PlayerInMeleeRange()
     {
@@ -200,8 +207,8 @@ public class AIPatrolShoot : MonoBehaviour
     {
         RaycastHit2D enemyCollisionHit = Physics2D.BoxCast(bodyCollider.bounds.center + transform.right * attackRange * transform.localScale.x * rayCastColliderDistance, 
                                             new Vector3(bodyCollider.bounds.size.x * attackRange, bodyCollider.bounds.size.y, bodyCollider.bounds.size.z),
-        
                                             0, Vector2.left, 0, enemyLayer);
+
         bool enemyClose = enemyCollisionHit.collider;
 
         // Returns true if player is within enemey hit collider raycast, 
@@ -240,6 +247,7 @@ public class AIPatrolShoot : MonoBehaviour
         // if the current health is 0 or less the Die() function is called
         if (currentHealth <= 0)
         {   
+            enemyRigidBody.velocity = Vector2.zero;
             move = false;
             Invoke("Die", 2f);
             animation.SetTrigger("MM_death_param");

@@ -661,7 +661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  parallaxEffect: 0
+  parallaxEffect: 0.7
 --- !u!1 &4458607636380536636
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  parallaxEffect: 0
+  parallaxEffect: 0.3
 --- !u!1 &4458607636401215566
 GameObject:
   m_ObjectHideFlags: 0

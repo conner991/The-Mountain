@@ -5,7 +5,7 @@ using UnityEngine;
 public class bulletBehavior : MonoBehaviour
 {
     // bullet information
-    public float speed, bulletDisappearTime, damage;
+    public float bulletSpeed, bulletDisappearTime, damage;
     Rigidbody2D rigidBody;
 
     // Player info
@@ -16,7 +16,7 @@ public class bulletBehavior : MonoBehaviour
     {
         // rigidBody = GetComponent<Rigidbody2D>();
         // player = GameObject.FindGameObjectWithTag("Player");
-        // Vector2 bulletDirection = (player.transform.position - transform.position).normalized * speed;
+        // Vector2 bulletDirection = (player.transform.position - transform.position).normalized * bulletSpeed;
         // rigidBody.velocity = new Vector2(bulletDirection.x, bulletDirection.y);
         // Destroy(this.gameObject, 2);
 
@@ -33,11 +33,12 @@ public class bulletBehavior : MonoBehaviour
     //     }
     // }
 
-    private void OnCollisionEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {   
             DamagePlayer();
+            Destroy(gameObject);
         }
     }
 

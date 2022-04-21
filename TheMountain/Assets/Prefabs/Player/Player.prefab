@@ -297,7 +297,7 @@ MonoBehaviour:
   player: {fileID: 2086994979354699522}
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 520
   attackRange: 1.15
   attackDamage: 5
   attackRate: 1
