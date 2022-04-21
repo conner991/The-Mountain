@@ -33,6 +33,9 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         currentLives = maxLives;
 
+        blackImage.SetActive(true);
+        StartCoroutine(FadeInAndOut(false, 0.5f));
+
         blackOut = false;
         reset = false;
     }
@@ -61,8 +64,6 @@ public class PlayerHealth : MonoBehaviour
 
         if (blackOut)
         {
-            Debug.Log("Teleporting to spawn");
-            Player.transform.position = new Vector3(0, 0, 3);
             blackOut = false;
             gameOverTrigger = false;
             currentLives = maxLives;
