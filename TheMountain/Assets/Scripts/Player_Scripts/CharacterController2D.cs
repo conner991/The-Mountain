@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class CharacterController2D : MonoBehaviour
 {	
@@ -14,7 +15,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Transform m_WallCheck;                          // A position marking where to check for walls
 
-	const float k_GroundedRadius = .3f; // Radius of the overlap circle to determine if grounded
+	public const float k_GroundedRadius = 0.1f; // Radius of the overlap circle to determine if grounded
     const float k_OnWallRadius = 0.5f; // Radius of the overlap circle to determine if Close to a wall
     public bool m_Grounded;            // Whether or not the player is grounded.
     public bool m_OnWall;            // Whether or not the player is on the wall.
@@ -23,6 +24,8 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     public Vector3 targetVelocity;
     private Vector3 m_Velocity = Vector3.zero;
+	public PhysicsMaterial2D stickMaterial;
+	public PhysicsMaterial2D fallMaterial;
 
 	[Header("Events")]
 	[Space]
@@ -65,6 +68,7 @@ public class CharacterController2D : MonoBehaviour
 			if (colliders[i].gameObject != gameObject)
 			{
 				m_Grounded = true;
+				GetComponent<CapsuleCollider2D>().sharedMaterial = stickMaterial;
 				if (!wasGrounded)
 					OnLandEvent.Invoke();
 			}
@@ -88,12 +92,16 @@ public class CharacterController2D : MonoBehaviour
 		//only control the player if grounded or airControl is turned on
 		if (m_Grounded || m_AirControl)
 		{
-
-			// Move the character by finding the target velocity
+            if (!m_Grounded)
+            {
+                targetVelocity = new Vector2(move * 8f, m_Rigidbody2D.velocity.y);
+            }
+            else
+			    // Move the character by finding the target velocity
 			targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
 			// And then smoothing it out and applying it to the character
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-
+            
 			// If the input is moving the player right and the player is facing left...
 			if (move > 0 && !m_FacingRight)
 			{
@@ -123,9 +131,10 @@ public class CharacterController2D : MonoBehaviour
             m_JumpForce = PlayerMovement.inst.jumpTimer;
             print(Input.GetAxisRaw("Horizontal"));
             print(m_JumpForce);
-            m_Rigidbody2D.AddForce(new Vector2(Input.GetAxisRaw("Horizontal")* m_JumpForce/2, m_JumpForce*1.5f)); // CHANGE THIS FOR WALL JUMP HEIGHT
-            //PlayerMovement.inst.horizontalMove = Input.GetAxisRaw("Horizontal") * PlayerMovement.inst.runSpeed;
-        }
+            m_Rigidbody2D.AddForce(new Vector2(Input.GetAxisRaw("Horizontal")* m_JumpForce*2, m_JumpForce*1.5f - (Math.Abs(Input.GetAxisRaw("Horizontal")) * m_JumpForce)/2)); // CHANGE THIS FOR WALL JUMP HEIGHT
+			//PlayerMovement.inst.horizontalMove = Input.GetAxisRaw("Horizontal") * PlayerMovement.inst.runSpeed;
+			GetComponent<CapsuleCollider2D>().sharedMaterial = fallMaterial;
+		}
 
     }
 

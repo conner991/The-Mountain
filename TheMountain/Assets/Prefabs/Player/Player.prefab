@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086994979012149494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11, y: -1.262, z: 0}
+  m_LocalPosition: {x: 0.03, y: -1.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -194,7 +194,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 93076521e6f976444abce672b7f14d8c, type: 2}
+  m_Material: {fileID: 6200000, guid: 544cbae54ddd42c47a00f30d717f3539, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -247,6 +247,8 @@ MonoBehaviour:
   m_Grounded: 0
   m_OnWall: 0
   targetVelocity: {x: 0, y: 0, z: 0}
+  stickMaterial: {fileID: 6200000, guid: 93076521e6f976444abce672b7f14d8c, type: 2}
+  fallMaterial: {fileID: 6200000, guid: 544cbae54ddd42c47a00f30d717f3539, type: 2}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -277,6 +279,8 @@ MonoBehaviour:
   controller: {fileID: 2086994979354699580}
   runSpeed: 40
   horizontalMove: 10
+  runningJumpDirection: 0
+  runningJumpCheck: 0
   jumpTimer: 5
   wallCling: 0
   wallJumpCheck: 0

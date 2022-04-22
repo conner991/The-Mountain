@@ -309,16 +309,17 @@ MonoBehaviour:
   sounds:
   - name: Wind
     clip: {fileID: 8300000, guid: 749428170bd956149a4ede7c65dbb8b6, type: 3}
+    volume: 0
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: InCave
+    clip: {fileID: 8300000, guid: a53819cc521b1f24689b00c663d8fbb4, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  - name: Sprinting
-    clip: {fileID: 8300000, guid: c3f3efc1106f84643a38bd21f6826aaf, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
+  CC2D: {fileID: 0}
 --- !u!114 &4974483446052503530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,5 +332,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738fd01cd884f854c994167dd5f33eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CC2D: {fileID: 2086994979354699580, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+  CC2D: {fileID: 0}
   time1: 0
