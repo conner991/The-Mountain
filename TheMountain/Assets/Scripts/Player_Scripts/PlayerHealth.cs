@@ -1,23 +1,26 @@
-// Implemented by Agui Navarro
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] CapsuleCollider2D Player;
+    [SerializeField] public GameObject blackImage;
     // max health and lives initiations
     public int maxHealth = 100;
     public int maxLives = 4;
     // current health and lives declarations
     public int currentHealth;
     int currentLives;
-
     private bool dead = false;
-
     public static PlayerHealth inst;
-
     private Animator animation;
+    private bool blackOut;
+    private bool gameOverTrigger;
+    private bool reset;
+    private bool timeForBlack = false;
     private void Awake()
     {
         animation = GetComponent<Animator>();
@@ -29,6 +32,50 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         currentLives = maxLives;
+
+        blackImage.SetActive(true);
+        StartCoroutine(FadeInAndOut(false, 0.5f));
+
+        blackOut = false;
+        reset = false;
+    }
+
+    void Update()
+    {
+        if (timeForBlack)
+        {
+            if (!blackImage.activeSelf)
+            {
+                Color temp = blackImage.GetComponent<Image>().color;
+                temp = new Color(temp.r, temp.g, temp.b, 0.0f);
+                blackImage.GetComponent<Image>().color = temp;
+                blackImage.SetActive(true);
+            }
+            gameOverTrigger = true;
+            blackImage.SetActive(true);
+            StartCoroutine(FadeInAndOut(true, 1f));
+        }
+
+        Color checkAlpha = blackImage.GetComponent<Image>().color;
+        if (checkAlpha.a >= 1.0f && gameOverTrigger)
+        {
+            blackOut = true;
+        }
+
+        if (blackOut)
+        {
+            blackOut = false;
+            gameOverTrigger = false;
+            currentLives = maxLives;
+            Debug.Log("All lives reset.");
+            Invoke("Wait", 1.5f);
+        }
+
+        if (checkAlpha.a <= 0.0f && reset)
+        {
+            blackImage.SetActive(false);
+            reset = false;
+        }
     }
 
     // if the player collides with an object with the enemy script included in it,
@@ -89,7 +136,7 @@ public class PlayerHealth : MonoBehaviour
         // if else for console outputting how many lives left
 
         animation.SetTrigger("die");
-        Invoke("PlayerDeathAnimation", 2f);
+        //Invoke("PlayerDeathAnimation", 2f);
 
         
 
@@ -125,4 +172,49 @@ public class PlayerHealth : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void Finished()
+    {
+        timeForBlack = true;
+        Invoke("EndGame", 2f);
+    }
+
+    void EndGame()
+    {
+        FindObjectOfType<GameManager>().EndGame();
+    }
+
+    public IEnumerator FadeInAndOut(bool fadeToBlack = true, float time = 1.0f)
+    {
+        Color tempColor = blackImage.GetComponent<Image>().color;
+        float fadeAmount;
+
+        if (fadeToBlack)
+        {
+            while (blackImage.GetComponent<Image>().color.a < 1)
+            {
+                fadeAmount = tempColor.a + (time * Time.deltaTime);
+
+                tempColor = new Color(tempColor.r, tempColor.g, tempColor.b, fadeAmount);
+                blackImage.GetComponent<Image>().color = tempColor;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (blackImage.GetComponent<Image>().color.a > 0)
+            {
+                fadeAmount = tempColor.a - (time * Time.deltaTime);
+
+                tempColor = new Color(tempColor.r, tempColor.g, tempColor.b, fadeAmount);
+                blackImage.GetComponent<Image>().color = tempColor;
+                yield return null;
+            }
+        }
+    }
+
+    void Wait()
+    {
+        reset = true;
+        StartCoroutine(FadeInAndOut(false, 0.5f));
+    }
 }

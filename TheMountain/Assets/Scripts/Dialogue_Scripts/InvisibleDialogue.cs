@@ -5,7 +5,6 @@ using UnityEngine;
 public class InvisibleDialogue : MonoBehaviour
 {
     public GameObject Button;
-    public GameObject DialogueBox;
     bool areDestroyed = false;
     [SerializeField] CapsuleCollider2D Player;
     [SerializeField] Collider2D Trigger;
@@ -13,7 +12,6 @@ public class InvisibleDialogue : MonoBehaviour
     void Start()
     {
         Button.SetActive(false);
-        DialogueBox.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,7 +20,6 @@ public class InvisibleDialogue : MonoBehaviour
         if (!areDestroyed && Player.IsTouching(Trigger))
         {
             Button.SetActive(true);
-            DialogueBox.SetActive(true);
             areDestroyed = true;
         }
     }
