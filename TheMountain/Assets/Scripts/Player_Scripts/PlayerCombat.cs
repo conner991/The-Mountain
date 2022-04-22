@@ -79,6 +79,13 @@ public class PlayerCombat : MonoBehaviour
                 // console shows that enemy was hit
                 Debug.Log("Mushroom man Enemy hit");
             }
+
+            else if (enemy.name == "FlyingEyeBite")
+            {
+                enemy.GetComponent<aiFlying>().TakeDamage(attackDamage);
+                // console shows that enemy was hit
+                Debug.Log("Mushroom man Enemy hit");
+            }
             
         }
     }

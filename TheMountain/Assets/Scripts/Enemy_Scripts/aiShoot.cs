@@ -13,8 +13,9 @@ public class aiShoot : MonoBehaviour
     public float xStart;
     public float yStart;
     private Vector2 originPoint;
+    private Rigidbody2D enemyRigidBody;
 
-    private float buffer; // used to track time
+    private float cooldownTimer = Mathf.Infinity; // used to track time
 
     // player information
     public Transform player;
@@ -30,17 +31,24 @@ public class aiShoot : MonoBehaviour
     // Grab the animations
     public Animator animation;
 
+    void Awake() 
+    {
+        animation = GetComponent<Animator>();    
+        enemyRigidBody = GetComponent<Rigidbody2D>();
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         originPoint = new Vector2(xStart, yStart);
-        buffer = 0;
+        cooldownTimer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        buffer += Time.deltaTime;
+        cooldownTimer += Time.deltaTime;
 
         float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
         if (distanceFromPlayer < lineOfSight && distanceFromPlayer > range)
@@ -52,7 +60,7 @@ public class aiShoot : MonoBehaviour
                 Flip();
             }
 
-            buffer = 0;
+            cooldownTimer = 0;
         }   
 
         //Shoot bullet at player
@@ -62,7 +70,7 @@ public class aiShoot : MonoBehaviour
             ShootPlayer();
         }
 
-        else if (buffer >= 3)
+        else if (cooldownTimer >= 3)
         {
             transform.position = Vector2.MoveTowards(this.transform.position, originPoint, speed * Time.deltaTime);
 
@@ -83,7 +91,7 @@ public class aiShoot : MonoBehaviour
     {
         Instantiate(bullet, bulletSource.transform.position, Quaternion.identity);
         fireRateCooldown = Time.time + fireRate;
-        buffer = 0;
+        cooldownTimer = 0;
     }
 
     private void ShootPlayer()

@@ -45,7 +45,7 @@ public class AIPatrolMelee : MonoBehaviour
 
 
     //////////////////////////////////////////////////////////////////////////////
-    //////////////////////////// AWAKE, START AND UPDATES ///////////////////////////////
+    //////////////////////////// AWAKE, START AND UPDATES ////////////////////////
     //////////////////////////////////////////////////////////////////////////////
     void Awake() 
     {
@@ -80,7 +80,7 @@ public class AIPatrolMelee : MonoBehaviour
         }
 
         // Get distance from player
-        float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
+        float distanceFromPlayer = Vector2.Distance(transform.position, player.position);
 
         // Check if the player is in enemy line of sight, where patrolling stops and 
         // following and attacking can occur
@@ -107,8 +107,8 @@ public class AIPatrolMelee : MonoBehaviour
                 if (cooldownTimer >= attackCooldown)
                 {
                     // Attack
-                    Invoke("ReturnToRun", 1f);
                     cooldownTimer = 0;
+                    Invoke("ReturnToRun", 1f);
                     animation.SetBool("skeleton_moving", false);
 
                     rigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0, rigidBody.velocity.y * 0);
@@ -191,7 +191,7 @@ public class AIPatrolMelee : MonoBehaviour
         move = true;
     }
     
-    // This damage player function gets called by an event trigger in the animation 
+    // This damage player function gets called by an event trigger in the attack animation 
     private void DamagePlayer()
     {   
 
