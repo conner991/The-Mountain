@@ -68,9 +68,23 @@ public class PlayerCombat : MonoBehaviour
         {
             if (enemy.name == "Skeleton")
             {
-                enemy.GetComponent<ai_MeleePatrol>().TakeDamage(attackDamage);
+                enemy.GetComponent<AIPatrolMelee>().TakeDamage(attackDamage);
                 // console shows that enemy was hit
                 Debug.Log("Skeleton Enemy hit");
+            }
+
+            else if (enemy.name == "MushroomMan")
+            {
+                enemy.GetComponent<AIPatrolMeleeMM>().TakeDamage(attackDamage);
+                // console shows that enemy was hit
+                Debug.Log("Mushroom man Enemy hit");
+            }
+
+            else if (enemy.name == "FlyingEyeBite")
+            {
+                enemy.GetComponent<aiFlying>().TakeDamage(attackDamage);
+                // console shows that enemy was hit
+                Debug.Log("Mushroom man Enemy hit");
             }
             
         }
