@@ -426,6 +426,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!19719996 &387103836 stripped
+TilemapCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7656718632640408985, guid: e237837ee6c461446a828927dc1cb85b, type: 3}
+  m_PrefabInstance: {fileID: 1304719473}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &421202534 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3941933879683264810, guid: 3dc0fef121544ef479508f9bb61291fe, type: 3}
@@ -509,6 +514,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61c3b25b6de989d4ab884d390f50b271, type: 3}
+--- !u!1 &756236503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2086994979354699579, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+  m_PrefabInstance: {fileID: 1051786560}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1051786560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -522,11 +532,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2086994979354699522, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.6
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 2086994979354699522, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8
+      value: 46.7
       objectReference: {fileID: 0}
     - target: {fileID: 2086994979354699522, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
       propertyPath: m_LocalPosition.z
@@ -564,7 +574,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3740365102970314295, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
+      propertyPath: hasSword
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3740365102970314295, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
 --- !u!4 &1051786561 stripped
 Transform:
@@ -805,6 +820,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 577eac6e4ddca4203b81d07cdcd99723, type: 3}
+--- !u!1 &1251306551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2905888821326709907, guid: e237837ee6c461446a828927dc1cb85b, type: 3}
+  m_PrefabInstance: {fileID: 1304719473}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1304719473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -813,13 +833,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2875945970478919048, guid: e237837ee6c461446a828927dc1cb85b, type: 3}
-      propertyPath: caveBackground
-      value: 
-      objectReference: {fileID: 8280614974080448393}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2875945970478919048, guid: e237837ee6c461446a828927dc1cb85b, type: 3}
       propertyPath: outdoorsBackground
       value: 
-      objectReference: {fileID: 1520101545}
+      objectReference: {fileID: 4458607635396081080, guid: 3ead5e14b7ea9463f818cc6a02a25e1b, type: 3}
     - target: {fileID: 9179677977744860466, guid: e237837ee6c461446a828927dc1cb85b, type: 3}
       propertyPath: player
       value: 
@@ -872,7 +892,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2875945970478919048, guid: e237837ee6c461446a828927dc1cb85b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e237837ee6c461446a828927dc1cb85b, type: 3}
 --- !u!1 &1362513585
 GameObject:
@@ -1070,12 +1091,29 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2086994979354699580, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
   m_PrefabInstance: {fileID: 1051786560}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 756236503}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b28ac87d3c744549aca531f0270e48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1816514279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756236503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2faf013e5e13454085afa098c77e589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1051786562}
+  Trigger: {fileID: 387103836}
+  blackImage: {fileID: 1251306551}
+  caveBackground: {fileID: 8280614974080448393}
+  outdoorsBackground: {fileID: 1520101545}
 --- !u!1 &1860191618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,6 +1715,10 @@ PrefabInstance:
     - target: {fileID: 8616905348188822844, guid: 169c00b96ef0f6548be2a66a4bcfecf2, type: 3}
       propertyPath: m_Name
       value: WindSwitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616905348188822844, guid: 169c00b96ef0f6548be2a66a4bcfecf2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 169c00b96ef0f6548be2a66a4bcfecf2, type: 3}
