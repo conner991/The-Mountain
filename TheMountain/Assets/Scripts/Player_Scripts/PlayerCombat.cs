@@ -15,7 +15,7 @@ public class PlayerCombat : MonoBehaviour
     // default setting for range of attack. can be changed in inspector
     public float attackRange = 0.5f;
     // default setting for damage of player attack. can be changed in inspector
-    public int attackDamage = 10;
+    public int attackDamage = 33;
     // attacks can only be done two times per second
     public float attackRate = 1f;  
     // player can attack at start of game

@@ -393,7 +393,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 7
 --- !u!61 &174941649008324255
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -460,7 +460,7 @@ MonoBehaviour:
   rayCastColliderDistance: 0
   nextWaypointDistance: 2
   attackPoint: {fileID: 0}
-  attackCooldown: 0.2
+  attackCooldown: 5
   bodyCollider: {fileID: 174941649008324255}
   playerLayer:
     serializedVersion: 2
@@ -472,7 +472,7 @@ MonoBehaviour:
   lineOfSight: 15.52
   range: 7.5
   bullet: {fileID: 7037351033376972821, guid: 1637bb26f31415947b11e8346dc756f4, type: 3}
-  bulletSource: {fileID: 174941649008324250}
+  bulletSource: {fileID: 0}
   fireRate: 1
 --- !u!1 &174941649531184288
 GameObject:
@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  speed: 100
+  speed: 200
   xStart: 0
   yStart: 0
   attackRange: 0.5

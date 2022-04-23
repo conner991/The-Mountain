@@ -158,10 +158,6 @@ PrefabInstance:
       propertyPath: bulletSource
       value: 
       objectReference: {fileID: 298308782}
-    - target: {fileID: 174941649008324249, guid: 8e2ff37b450d64e938e5120820661d36, type: 3}
-      propertyPath: attackCooldown
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 174941649008324250, guid: 8e2ff37b450d64e938e5120820661d36, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -173,14 +169,6 @@ PrefabInstance:
     - target: {fileID: 174941649008324251, guid: 8e2ff37b450d64e938e5120820661d36, type: 3}
       propertyPath: m_LocalPosition.y
       value: 43.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 174941649008324252, guid: 8e2ff37b450d64e938e5120820661d36, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 174941649008324252, guid: 8e2ff37b450d64e938e5120820661d36, type: 3}
-      propertyPath: m_Constraints
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 174941649723581249, guid: 8e2ff37b450d64e938e5120820661d36, type: 3}
       propertyPath: m_Name
