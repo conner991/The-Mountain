@@ -89,7 +89,7 @@ public class aiShoot : MonoBehaviour
         
 
         //Shoot bullet at player
-        else if (distanceFromPlayer <= range && fireRateCooldown < Time.time)
+        if (distanceFromPlayer <= range && fireRateCooldown < Time.time)
         {
             Invoke("Fire", 0.1f);
             ShootPlayer();

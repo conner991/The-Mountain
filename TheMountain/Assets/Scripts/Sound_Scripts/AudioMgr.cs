@@ -14,7 +14,7 @@ public class AudioMgr : MonoBehaviour
     private string nextAmbiance;
     private bool startAmbiance;
     static AudioSource audioFile;
-    private float fadeTime = 0.1f;
+    private float fadeTime = 0.2f;
 
     void Awake()
     {
