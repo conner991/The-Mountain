@@ -86,7 +86,6 @@ public class aiFlying : MonoBehaviour
 
         if (PlayerInAttackRange()) 
         {   
-
             if (cooldownTimer >= attackCooldown)
             {
                 // Attack

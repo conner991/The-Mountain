@@ -84,7 +84,14 @@ public class PlayerCombat : MonoBehaviour
             {
                 enemy.GetComponent<aiFlying>().TakeDamage(attackDamage);
                 // console shows that enemy was hit
-                Debug.Log("Mushroom man Enemy hit");
+                Debug.Log("FlyingEye Bite Enemy hit");
+            }
+
+            else if (enemy.name == "FlyingEyeRanged")
+            {
+                enemy.GetComponent<aiShoot>().TakeDamage(attackDamage);
+                // console shows that enemy was hit
+                Debug.Log("FlyingEye Ranged Enemy hit");
             }
             
         }

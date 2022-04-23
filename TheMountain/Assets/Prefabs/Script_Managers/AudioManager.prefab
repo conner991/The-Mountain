@@ -319,7 +319,7 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  CC2D: {fileID: 0}
+  CC2D: {fileID: 5866810434592880088, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
 --- !u!114 &4974483446052503530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,5 +332,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738fd01cd884f854c994167dd5f33eb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CC2D: {fileID: 0}
+  CC2D: {fileID: 5866810434592880088, guid: 9dc7f35590bb64c42a090ea46773f084, type: 3}
   time1: 0

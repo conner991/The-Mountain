@@ -391,8 +391,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0}
-  smoothFactor: 0
+  offset: {x: 0, y: 0, z: -10}
+  smoothFactor: 4
 --- !u!1 &4458607635668797936
 GameObject:
   m_ObjectHideFlags: 0
