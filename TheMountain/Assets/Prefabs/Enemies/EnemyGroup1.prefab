@@ -452,16 +452,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affe045f157557b4abaee48fa1116593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
   speed: 5
   xStart: 0
   yStart: 0
+  attackRange: 0.5
+  rayCastColliderDistance: 0
+  nextWaypointDistance: 2
+  attackPoint: {fileID: 0}
+  attackCooldown: 0.2
+  bodyCollider: {fileID: 174941649008324255}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
   player: {fileID: 0}
-  lineOfSight: 14.58
-  range: 8
+  lineOfSight: 15.52
+  range: 7.5
   bullet: {fileID: 7037351033376972821, guid: 1637bb26f31415947b11e8346dc756f4, type: 3}
   bulletSource: {fileID: 174941649008324250}
-  fireRate: 2
-  animation: {fileID: 174941649008324248}
+  fireRate: 1
 --- !u!1 &174941649531184288
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +705,7 @@ GameObject:
   - component: {fileID: 174941650018166335}
   - component: {fileID: 174941650018166328}
   - component: {fileID: 5464136892313706882}
+  - component: {fileID: 2302220334700817367}
   m_Layer: 3
   m_Name: FlyingEyeBite
   m_TagString: Untagged
@@ -865,6 +878,36 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &2302220334700817367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174941650018166330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a1e19b237837d42b44fb4fb561c4d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  speed: 100
+  xStart: 0
+  yStart: 0
+  attackRange: 0.5
+  rayCastColliderDistance: 0.14
+  nextWaypointDistance: 2
+  attackPoint: {fileID: 0}
+  attackCooldown: 0.2
+  bodyCollider: {fileID: 174941650018166332}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  player: {fileID: 0}
+  lineOfSight: 10
 --- !u!1 &1521872870668131497
 GameObject:
   m_ObjectHideFlags: 0

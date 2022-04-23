@@ -37,7 +37,7 @@ public class aiFlying : MonoBehaviour
     public float lineOfSight;
 
     // Grab the animations
-    public Animator animation;
+    private Animator animation;
 
 
     //////////////////////////////////////////////////////////////////////////////

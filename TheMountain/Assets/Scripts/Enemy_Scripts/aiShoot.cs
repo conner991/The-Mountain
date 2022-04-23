@@ -26,11 +26,12 @@ public class aiShoot : MonoBehaviour
     bool reachedEndOfPath = false;
     public Transform attackPoint;
     [SerializeField] private float attackCooldown;
+    private float cooldownTimer = Mathf.Infinity; // used to track time
     [SerializeField] private Collider2D bodyCollider;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask enemyLayer;
 
-    private float cooldownTimer = Mathf.Infinity; // used to track time
+    
 
     // player information
     public Transform player;
@@ -41,10 +42,11 @@ public class aiShoot : MonoBehaviour
     public GameObject bullet;
     public GameObject bulletSource;
     public float fireRate;
-    private float fireRateCooldown;
 
     // Grab the animations
-    public Animator animation;
+    private Animator animation;
+
+    private bool isOnCooldown = false;
 
     //////////////////////////////////////////////////////////////////////////////
     //////////////////////////// AWAKE, START AND UPDATES ////////////////////////
@@ -62,8 +64,8 @@ public class aiShoot : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        originPoint = new Vector2(xStart, yStart);
-        InvokeRepeating("UpdatePath", 0f, 0.5f);
+        // originPoint = new Vector2(xStart, yStart);
+        // InvokeRepeating("UpdatePath", 0f, 0.5f);
         cooldownTimer = 0;
     }
 
@@ -74,93 +76,99 @@ public class aiShoot : MonoBehaviour
 
         float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
         
-        // if (distanceFromPlayer < lineOfSight && distanceFromPlayer > range)
-        // {
-        //     transform.position = Vector2.MoveTowards(this.transform.position, player.position, speed * Time.deltaTime);
-        //     if ((player.position.x > transform.position.x && transform.localScale.x < 0) ||
-        //         (player.position.x < transform.position.x && transform.localScale.x > 0))
-        //     {
-        //         Flip();
-        //     }
-
-        //     cooldownTimer = 0;
-        // }   
+        if (distanceFromPlayer < lineOfSight && distanceFromPlayer > range)
+        {
+            transform.position = Vector2.MoveTowards(this.transform.position, player.position, speed * Time.deltaTime);
+            if ((player.position.x > transform.position.x && transform.localScale.x < 0) ||
+                (player.position.x < transform.position.x && transform.localScale.x > 0))
+            {
+                Flip();
+            }
+        }   
 
         
 
         //Shoot bullet at player
-        else if (distanceFromPlayer <= range && fireRateCooldown < Time.time)
+        /*if (distanceFromPlayer <= range && attackCooldown < cooldownTimer)
         {
-            Invoke("Fire", 0.1f);
             ShootPlayer();
+        }*/
+
+        else if (distanceFromPlayer <= range && !isOnCooldown)
+        {
+            StartCoroutine(CoolDownTimer());
         }
 
-        // else if (cooldownTimer >= 3)
-        // {
-        //     transform.position = Vector2.MoveTowards(this.transform.position, originPoint, speed * Time.deltaTime);
+        else if (distanceFromPlayer > lineOfSight)
+        {
+            //
+        }
 
-        //     if ((originPoint.x > transform.position.x && transform.localScale.x < 0) ||
-        //         (originPoint.x < transform.position.x && transform.localScale.x > 0))
-        //     {
-        //         Flip();
-        //     }
-        // }
+        /*else if (cooldownTimer >= 3)
+        {
+            transform.position = Vector2.MoveTowards(this.transform.position, originPoint, speed * Time.deltaTime);
+            if ((originPoint.x > transform.position.x && transform.localScale.x < 0) ||
+                (originPoint.x < transform.position.x && transform.localScale.x > 0))
+            {
+                Flip();
+            }
+        }*/
     }
 
-    void FixedUpdate()
-    {
-        if (path == null)
-            return;
+    // void FixedUpdate()
+    // {
+    //     if (path == null)
+    //         return;
         
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            return;
-        }
+    //     if (currentWaypoint >= path.vectorPath.Count)
+    //     {
+    //         reachedEndOfPath = true;
+    //         return;
+    //     }
 
-        else 
-        {
-            reachedEndOfPath = false;
-        }
+    //     else 
+    //     {
+    //         reachedEndOfPath = false;
+    //     }
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - enemyRigidBody.position).normalized;
-        Vector2 force = direction * speed * Time.deltaTime;
+    //     Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - enemyRigidBody.position).normalized;
+    //     Vector2 force = direction * speed * Time.deltaTime;
 
-        enemyRigidBody.AddForce(force);
+    //     enemyRigidBody.AddForce(force);
 
-        float distance = Vector2.Distance(enemyRigidBody.position, path.vectorPath[currentWaypoint]);
+    //     float distance = Vector2.Distance(enemyRigidBody.position, path.vectorPath[currentWaypoint]);
 
-        if (distance < nextWaypointDistance)
-        {
-            currentWaypoint++;
-        }
+    //     if (distance < nextWaypointDistance)
+    //     {
+    //         currentWaypoint++;
+    //     }
 
-        if ((player.position.x > transform.position.x && transform.localScale.x < 0) ||
-                (player.position.x < transform.position.x && transform.localScale.x > 0))
-        {
-            Flip();
-        }
+    //     if ((player.position.x > transform.position.x && transform.localScale.x < 0) ||
+    //             (player.position.x < transform.position.x && transform.localScale.x > 0))
+    //     {
+    //         Flip();
+    //     }
 
-    }
+    // }
 
     //////////////////////////////////////////////////////////////////////////////
     //////////////////////////// FUNCTIONS ///////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////
 
-    void OnPathComplete(Path p)
-    {
-        if (!p.error)
-        {
-            path = p;
-            currentWaypoint = 0;
-        }
-    }
+    // void OnPathComplete(Path p)
+    // {
+    //     if (!p.error)
+    //     {
+    //         path = p;
+    //         currentWaypoint = 0;
+    //     }
+    // }
 
-    void UpdatePath()
-    {
-        if (seeker.IsDone())
-            seeker.StartPath(enemyRigidBody.position, player.position, OnPathComplete);
-    }
+    // void UpdatePath()
+    // {
+    //     if (seeker.IsDone())
+    //         seeker.StartPath(enemyRigidBody.position, player.position, OnPathComplete);
+    // }
 
     // private bool PlayerInAttackRange()
     // {
@@ -194,8 +202,8 @@ public class aiShoot : MonoBehaviour
     void Fire() 
     {
         Instantiate(bullet, bulletSource.transform.position, Quaternion.identity);
-        fireRateCooldown = Time.time + fireRate;
-        cooldownTimer = 0;
+        //attackCooldown = Time.time + fireRate;
+        //cooldownTimer = 0;
     }
 
     private void DamagePlayer()
@@ -216,14 +224,14 @@ public class aiShoot : MonoBehaviour
     {   
         currentHealth -= damage;
 
-        animation.SetTrigger("flyingEyeBite_takeDamage");
+        animation.SetTrigger("flyingEyeRanged_takeDamage");
 
         // if the current health is 0 or less the Die() function is called
         if (currentHealth <= 0)
         {   
             enemyRigidBody.velocity = Vector2.zero;
             Invoke("Die", 2f);
-            animation.SetTrigger("flyingEyeBite_death");
+            animation.SetTrigger("flyingEyeRanged_death");
             //aliveCollider.enabled = false;
         }
     }
@@ -245,16 +253,6 @@ public class aiShoot : MonoBehaviour
         animation.SetTrigger("flyingEyeRanged_shootingAttack");
     }
 
-    void TakeDamageAnimation()
-    {
-        animation.SetTrigger("flyingEyeRanged_takeDamage");
-    }
-
-    void DeathAnimation()
-    {
-        animation.SetTrigger("flyingEyeRanged_death");
-    }
-
     // for debugging
     private void OnDrawGizmosSelected()
     {
@@ -262,4 +260,21 @@ public class aiShoot : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, lineOfSight);
         Gizmos.DrawWireSphere(transform.position, range);
     }
+
+    IEnumerator CoolDownTimer()
+    {
+        isOnCooldown = true;
+
+        yield return new WaitForSeconds(attackCooldown);
+
+        if (enabled)
+        {
+            ShootPlayer();
+            //Instantiate(bullet, bulletSource.transform.position, Quaternion.identity);
+            Invoke("Fire", 0.5f);
+        }
+        isOnCooldown = false;
+    }
 }
+
+

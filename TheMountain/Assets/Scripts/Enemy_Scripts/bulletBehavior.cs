@@ -14,26 +14,16 @@ public class bulletBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // rigidBody = GetComponent<Rigidbody2D>();
-        // player = GameObject.FindGameObjectWithTag("Player");
-        // Vector2 bulletDirection = (player.transform.position - transform.position).normalized * bulletSpeed;
-        // rigidBody.velocity = new Vector2(bulletDirection.x, bulletDirection.y);
-        // Destroy(this.gameObject, 2);
-
+        rigidBody = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        Vector2 bulletDirection = (player.transform.position - transform.position).normalized * bulletSpeed;
+        rigidBody.velocity = new Vector2(bulletDirection.x, bulletDirection.y);
 
         StartCoroutine(CountDownTimer());
     }
 
     // Do damage to player
-    // private void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     if (collision.gameObject.CompareTag("Player"))
-    //     {   
-    //         DamagePlayer();
-    //     }
-    // }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {   
