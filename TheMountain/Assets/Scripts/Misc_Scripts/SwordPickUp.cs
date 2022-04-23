@@ -17,6 +17,7 @@ public class SwordPickUp : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            FindObjectOfType<AudioMgr>().Play("Achievement");
             Destroy(gameObject);
             hasSword = true;
         }

@@ -40,6 +40,7 @@ public class PlayerCombat : MonoBehaviour
             {   
                 // console shows that attack was performed
                 Debug.Log("Player is Attacking");
+
                 // Set attack animation to true
                 animation.SetBool("isAttacking", true);
                 Invoke("SetAttackToFalse", 0.1f);
@@ -54,7 +55,7 @@ public class PlayerCombat : MonoBehaviour
     void SetAttackToFalse()
     {
         // attack function is called
-        Attack();
+        //Attack();
         animation.SetBool("isAttacking", false);
     }
 
@@ -64,13 +65,34 @@ public class PlayerCombat : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         // if enemy is closer or equal to player attack range, enemy takes damage
-        foreach(Collider2D enemy in hitEnemies)
+        foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.name == "Skeleton")
             {
-                enemy.GetComponent<ai_MeleePatrol>().TakeDamage(attackDamage);
+                enemy.GetComponent<AIPatrolMelee>().TakeDamage(attackDamage);
                 // console shows that enemy was hit
                 Debug.Log("Skeleton Enemy hit");
+            }
+
+            else if (enemy.name == "MushroomMan")
+            {
+                enemy.GetComponent<AIPatrolMeleeMM>().TakeDamage(attackDamage);
+                // console shows that enemy was hit
+                Debug.Log("Mushroom man Enemy hit");
+            }
+
+            else if (enemy.name == "FlyingEyeBite")
+            {
+                enemy.GetComponent<aiFlying>().TakeDamage(attackDamage);
+                // console shows that enemy was hit
+                Debug.Log("FlyingEye Bite Enemy hit");
+            }
+
+            else if (enemy.name == "FlyingEyeRanged")
+            {
+                enemy.GetComponent<aiShoot>().TakeDamage(attackDamage);
+                // console shows that enemy was hit
+                Debug.Log("FlyingEye Ranged Enemy hit");
             }
             
         }
@@ -88,5 +110,10 @@ public class PlayerCombat : MonoBehaviour
         if (attackPoint == null)
             return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);   
+    }
+
+    void attackSound()
+    {
+        FindObjectOfType<AudioMgr>().Play("SwordSwing");
     }
 }

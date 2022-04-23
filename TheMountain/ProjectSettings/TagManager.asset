@@ -15,7 +15,7 @@ TagManager:
   - Ground
   - Player
   - Wall
-  - 
+  - decorative
   - 
   - 
   - 
@@ -42,6 +42,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: decorative
+    uniqueID: 1336133989
+    locked: 0
   - name: Enemies
     uniqueID: 1065794667
+    locked: 0
+  - name: Enemies2
+    uniqueID: 1541701573
     locked: 0
