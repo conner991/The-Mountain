@@ -60,6 +60,7 @@ public class AIPatrolMelee : MonoBehaviour
         currentHealth = maxHealth;
         move = true;
         isPatrolling = true;
+        attackCooldown = 1f;
 
         if (OnLandEvent == null)
         {
@@ -70,7 +71,7 @@ public class AIPatrolMelee : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {   
-        cooldownTimer += Time.deltaTime;
+        cooldownTimer += Time.deltaTime / 2;
 
 
         // // if enemy is either hostile or is patrolling, move enemy with GroundPatrol()
@@ -115,6 +116,7 @@ public class AIPatrolMelee : MonoBehaviour
                     
                     // attack player animation
                     animation.SetTrigger("skeleton_meleeAttack");
+                    FindObjectOfType<AudioMgr>().Play("EnemySwing");
                 }
             }
 
@@ -214,6 +216,7 @@ public class AIPatrolMelee : MonoBehaviour
         currentHealth -= damage;
 
         animation.SetTrigger("skeleton_takeDamage");
+        FindObjectOfType<AudioMgr>().Play("SkeletonHit");
 
         // if the current health is 0 or less the Die() function is called
         if (currentHealth <= 0)
@@ -231,6 +234,7 @@ public class AIPatrolMelee : MonoBehaviour
     {   
         // console outputs that enemy died
         Debug.Log("PatrolMelee enemy died");
+        FindObjectOfType<AudioMgr>().Play("SkeletonDeath");
         // collider is turned off
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
