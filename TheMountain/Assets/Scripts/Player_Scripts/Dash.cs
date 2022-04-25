@@ -18,7 +18,7 @@ public class Dash : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             dashActive = true;
-            Invoke("EndDash", 0.1f);
+            Invoke("EndDash", 0.3f);
         }
     }
 
