@@ -13,11 +13,11 @@ public class PlayerCombat : MonoBehaviour
     // this will be set in the inspector. set it to layer that each enemy is in
     public LayerMask enemyLayers;
     // default setting for range of attack. can be changed in inspector
-    public float attackRange = 0.5f;
+    public float attackRange;
     // default setting for damage of player attack. can be changed in inspector
-    public int attackDamage = 33;
+    public int attackDamage;
     // attacks can only be done two times per second
-    public float attackRate = 1f;  
+    public float attackRate;  
     // player can attack at start of game
     float nextAttackTime = 0f;
 

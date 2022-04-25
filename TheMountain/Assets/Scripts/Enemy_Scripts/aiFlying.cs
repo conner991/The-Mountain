@@ -90,7 +90,8 @@ public class aiFlying : MonoBehaviour
             {
                 // Attack
                 cooldownTimer = 0;
-                enemyRigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0, enemyRigidBody.velocity.y * 0);
+                // enemyRigidBody.velocity = new Vector2(speed * Time.fixedDeltaTime * 0, enemyRigidBody.velocity.y * 0);
+                enemyRigidBody.velocity = Vector2.zero;
                 
                 // attack player animation
                 animation.SetTrigger("flyingEyeBite_attack");
@@ -213,7 +214,7 @@ public class aiFlying : MonoBehaviour
         // if enemy is closer or equal to player attack range, enemy takes damage
         foreach(Collider2D player in hitPlayer)
         {
-            player.GetComponent<PlayerHealth>().TakeDamage(10);
+            player.GetComponent<PlayerHealth>().TakeDamage(5);
             // console shows that enemy was hit
             Debug.Log("Damaging player");
         }

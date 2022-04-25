@@ -304,7 +304,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 520
   attackRange: 1.15
-  attackDamage: 5
+  attackDamage: 50
   attackRate: 1
 --- !u!114 &5866810434592880093
 MonoBehaviour:
@@ -321,7 +321,6 @@ MonoBehaviour:
   Player: {fileID: 5866810434592880089}
   blackImage: {fileID: 381844453018597855}
   maxHealth: 100
-  maxLives: 4
   currentHealth: 100
 --- !u!114 &5866810434592880094
 MonoBehaviour:

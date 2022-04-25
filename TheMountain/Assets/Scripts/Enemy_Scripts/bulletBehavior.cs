@@ -41,8 +41,8 @@ public class bulletBehavior : MonoBehaviour
 
     private void DamagePlayer()
     {   
-        Debug.Log("Hit Player: Bullet");
-        player.GetComponent<PlayerHealth>().TakeDamage(20);
+        Debug.Log("Hit Player: Bullet from BB");
+        player.GetComponent<PlayerHealth>().TakeDamage(5);
     }
 
     // Update is called once per frame

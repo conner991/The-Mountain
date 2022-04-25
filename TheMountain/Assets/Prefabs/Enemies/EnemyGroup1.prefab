@@ -894,10 +894,10 @@ MonoBehaviour:
   speed: 200
   xStart: 0
   yStart: 0
-  attackRange: 0.5
-  rayCastColliderDistance: 0.14
+  attackRange: 0.83
+  rayCastColliderDistance: 0.26
   nextWaypointDistance: 2
-  attackPoint: {fileID: 0}
+  attackPoint: {fileID: 4365148633199637317}
   attackCooldown: 0.2
   bodyCollider: {fileID: 174941650018166332}
   playerLayer:

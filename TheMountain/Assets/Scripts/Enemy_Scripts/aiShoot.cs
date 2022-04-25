@@ -55,7 +55,7 @@ public class aiShoot : MonoBehaviour
     void Awake() 
     {
         animation = GetComponent<Animator>();    
-        seeker = GetComponent<Seeker>();
+        // seeker = GetComponent<Seeker>();
         enemyRigidBody = GetComponent<Rigidbody2D>();
         
     }
@@ -214,9 +214,9 @@ public class aiShoot : MonoBehaviour
         // if enemy is closer or equal to player attack range, enemy takes damage
         foreach(Collider2D player in hitPlayer)
         {
-            player.GetComponent<PlayerHealth>().TakeDamage(10);
+            player.GetComponent<PlayerHealth>().TakeDamage(5);
             // console shows that enemy was hit
-            Debug.Log("Damaging player");
+            Debug.Log("Damaging player from aiShoot");
         }
     }
 
@@ -232,7 +232,6 @@ public class aiShoot : MonoBehaviour
             enemyRigidBody.velocity = Vector2.zero;
             Invoke("Die", 2f);
             animation.SetTrigger("flyingEyeRanged_death");
-            //aliveCollider.enabled = false;
         }
     }
 

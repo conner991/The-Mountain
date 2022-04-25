@@ -10,10 +10,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] public GameObject blackImage;
     // max health and lives initiations
     public int maxHealth = 100;
-    public int maxLives = 4;
     // current health and lives declarations
     public int currentHealth;
-    int currentLives;
     private bool dead = false;
     public static PlayerHealth inst;
     private Animator animation;
@@ -31,7 +29,6 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        currentLives = maxLives;
 
         blackImage.SetActive(true);
         StartCoroutine(FadeInAndOut(false, 0.5f));
@@ -66,8 +63,7 @@ public class PlayerHealth : MonoBehaviour
         {
             blackOut = false;
             gameOverTrigger = false;
-            currentLives = maxLives;
-            Debug.Log("All lives reset.");
+            //Debug.Log("All lives reset.");
             Invoke("Wait", 1.5f);
         }
 
@@ -80,13 +76,13 @@ public class PlayerHealth : MonoBehaviour
 
     // if the player collides with an object with the enemy script included in it,
     // the player takes 20 damage
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.gameObject.CompareTag("Enemy"))
-        {
-            TakeDamage(20);
-        }
-    }
+    // public void OnCollisionEnter(Collision collision)
+    // {
+    //     if (collision.collider.gameObject.CompareTag("Enemy"))
+    //     {
+    //         TakeDamage(20);
+    //     }
+    // }
 
     // take damage function
     public void TakeDamage(int damage)
@@ -101,33 +97,16 @@ public class PlayerHealth : MonoBehaviour
         animation.SetBool("isHurt", true);
         Invoke("PlayerHurtAnimation", 0.5f);
 
-        // When the player is getting hurt
-        if (currentHealth > 0)
+        // When the player loses all health
+        if (currentHealth <= 0)
         {
-            
-            // current lives subtracted by one
-            //currentLives--;
-            GetComponent<LifeCount>().LoseLife();
+            //animation.SetTrigger("die");
+            GetComponent<PlayerMovement>().enabled = false;
+            Die();
+            currentHealth = 100;
+            dead = true;
+            // GetComponent<LifeCount>().LoseLife();
         }
-
-        // When the player is dead
-        else 
-        {
-            if (!dead) 
-            {
-                //animation.SetTrigger("die");
-                GetComponent<PlayerMovement>().enabled = false;
-                Die();
-                currentHealth = 100;
-                dead = true;
-            }
-            
-        }
-
-
-        
-
-    
     }
 
     void Die()
