@@ -101,7 +101,9 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             //animation.SetTrigger("die");
-            GetComponent<PlayerMovement>().enabled = false;
+            if (GetComponent<PlayerMovement>() != null)
+                GetComponent<PlayerMovement>().enabled = false;
+                
             Die();
             currentHealth = 100;
             dead = true;
