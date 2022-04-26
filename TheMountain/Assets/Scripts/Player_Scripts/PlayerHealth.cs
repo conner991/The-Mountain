@@ -8,10 +8,10 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] CapsuleCollider2D Player;
     [SerializeField] public GameObject blackImage;
-    // max health and lives initiations
+    [SerializeField] Collider2D Checkpoint1;
+    [SerializeField] Collider2D Checkpoint2;
     public int maxHealth = 100;
     public int maxLives = 4;
-    // current health and lives declarations
     public int currentHealth;
     int currentLives;
     private bool dead = false;
@@ -21,6 +21,8 @@ public class PlayerHealth : MonoBehaviour
     private bool gameOverTrigger;
     private bool reset;
     private bool timeForBlack = false;
+
+    private int checkpoint = 0;
     private void Awake()
     {
         animation = GetComponent<Animator>();
@@ -42,6 +44,15 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        if (Player.IsTouching(Checkpoint1))
+        {
+            checkpoint = 1;
+        }
+        if (Player.IsTouching(Checkpoint2))
+        {
+            checkpoint = 2;
+        }
+
         if (timeForBlack)
         {
             if (!blackImage.activeSelf)
@@ -60,10 +71,23 @@ public class PlayerHealth : MonoBehaviour
         if (checkAlpha.a >= 1.0f && gameOverTrigger)
         {
             blackOut = true;
+            animation.SetTrigger("isIdle");
         }
 
         if (blackOut)
         {
+            switch (checkpoint)
+            {
+                case 0:
+                    Player.transform.position = new Vector3(0, 2, 3);
+                    break;
+                case 1:
+                    Player.transform.position = new Vector3(300, 47, 3);
+                    break;
+                case 2:
+                    Player.transform.position = new Vector3(850, 275, 3);
+                    break;
+            }
             blackOut = false;
             gameOverTrigger = false;
             currentLives = maxLives;
@@ -117,6 +141,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 //animation.SetTrigger("die");
                 GetComponent<PlayerMovement>().enabled = false;
+                GameObject.Find("Skeleton").GetComponent<AIPatrolMelee>().enabled = false;
                 Die();
                 currentHealth = 100;
                 dead = true;
@@ -175,11 +200,13 @@ public class PlayerHealth : MonoBehaviour
     void Finished()
     {
         timeForBlack = true;
-        Invoke("EndGame", 2f);
+        GetComponent<PlayerMovement>().enabled = true;
+        //Invoke("EndGame", 2f);
     }
 
     void EndGame()
     {
+
         FindObjectOfType<GameManager>().EndGame();
     }
 
@@ -215,6 +242,7 @@ public class PlayerHealth : MonoBehaviour
     void Wait()
     {
         reset = true;
+        GameObject.Find("Skeleton").GetComponent<AIPatrolMelee>().enabled = true;
         StartCoroutine(FadeInAndOut(false, 0.5f));
     }
 }
