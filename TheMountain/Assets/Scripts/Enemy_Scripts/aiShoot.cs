@@ -30,6 +30,7 @@ public class aiShoot : MonoBehaviour
     [SerializeField] private Collider2D bodyCollider;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask enemyLayer;
+    private bool isDead;
 
     
 
@@ -115,8 +116,14 @@ public class aiShoot : MonoBehaviour
         }*/
     }
 
-    // void FixedUpdate()
-    // {
+    void FixedUpdate()
+    {
+
+        if (isDead) 
+        {
+            enemyRigidBody.AddForce(Physics.gravity * enemyRigidBody.mass);
+        }
+
     //     if (path == null)
     //         return;
         
@@ -149,7 +156,7 @@ public class aiShoot : MonoBehaviour
     //         Flip();
     //     }
 
-    // }
+    }
 
     //////////////////////////////////////////////////////////////////////////////
     //////////////////////////// FUNCTIONS ///////////////////////////////////////
@@ -229,6 +236,7 @@ public class aiShoot : MonoBehaviour
         // if the current health is 0 or less the Die() function is called
         if (currentHealth <= 0)
         {   
+            isDead = true;
             enemyRigidBody.velocity = Vector2.zero;
             Invoke("Die", 2f);
             animation.SetTrigger("flyingEyeRanged_death");

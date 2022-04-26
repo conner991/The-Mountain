@@ -891,12 +891,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  speed: 200
-  xStart: 0
-  yStart: 0
-  attackRange: 0.83
+  speed: 400
+  xStart: 1
+  yStart: 1
+  attackRange: 1
   rayCastColliderDistance: 0.26
-  nextWaypointDistance: 2
+  nextWaypointDistance: 3
   attackPoint: {fileID: 4365148633199637317}
   attackCooldown: 0.2
   bodyCollider: {fileID: 174941650018166332}
@@ -905,7 +905,7 @@ MonoBehaviour:
     m_Bits: 128
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 512
   player: {fileID: 0}
   lineOfSight: 10
 --- !u!1 &1521872870668131497

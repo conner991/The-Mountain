@@ -151,6 +151,11 @@ public class AIPatrolMeleeMM : MonoBehaviour
         {
             mustTurn = !Physics2D.OverlapCircle(groundCheck.position, groundedRadius, groundLayer);
         }
+
+        if (isDead) 
+        {
+            enemyRigidBody.velocity = Vector2.zero;
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////////
@@ -246,9 +251,10 @@ public class AIPatrolMeleeMM : MonoBehaviour
         // if the current health is 0 or less the Die() function is called
         if (currentHealth <= 0)
         {   
+            isDead = true;
             enemyRigidBody.velocity = Vector2.zero;
             move = false;
-            Invoke("Die", 2f);
+            Invoke("Die", 1f);
             animation.SetTrigger("MM_death_param");
         }
     }

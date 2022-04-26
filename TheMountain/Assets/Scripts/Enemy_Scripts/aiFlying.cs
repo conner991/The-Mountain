@@ -29,6 +29,7 @@ public class aiFlying : MonoBehaviour
     [SerializeField] private Collider2D bodyCollider;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask enemyLayer;
+    private bool isDead;
 
     private float cooldownTimer = Mathf.Infinity; // used to track time
 
@@ -56,7 +57,7 @@ public class aiFlying : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        originPoint = new Vector2(xStart, yStart);
+        //originPoint = new Vector2(xStart, yStart);
         InvokeRepeating("UpdatePath", 0f, 0.5f);
         cooldownTimer = 0;
     }
@@ -142,6 +143,11 @@ public class aiFlying : MonoBehaviour
                 (player.position.x < transform.position.x && transform.localScale.x > 0))
         {
             Flip();
+        }
+
+        if (isDead) 
+        {
+            enemyRigidBody.AddForce(Physics.gravity * enemyRigidBody.mass);
         }
 
     }
@@ -234,6 +240,7 @@ public class aiFlying : MonoBehaviour
         // if the current health is 0 or less the Die() function is called
         if (currentHealth <= 0)
         {   
+            isDead = true;
             enemyRigidBody.velocity = Vector2.zero;
             Invoke("Die", 2f);
             animation.SetTrigger("flyingEyeBite_death");

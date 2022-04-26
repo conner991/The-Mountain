@@ -115,7 +115,7 @@ public class PlayerHealth : MonoBehaviour
         // if else for console outputting how many lives left
 
         animation.SetTrigger("die");
-        //Invoke("PlayerDeathAnimation", 2f);
+        Invoke("PlayerDeathAnimation", 2f);
 
         
 
@@ -148,11 +148,15 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
         // enemy is destroyed
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     void Finished()
     {
+        // GetComponent<Collider2D>().enabled = false;
+        // this.enabled = false;
+        // // enemy is destroyed
+        // Destroy(gameObject);
         timeForBlack = true;
         Invoke("EndGame", 2f);
     }

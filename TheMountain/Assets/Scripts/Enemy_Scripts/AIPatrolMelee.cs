@@ -221,9 +221,13 @@ public class AIPatrolMelee : MonoBehaviour
         // if the current health is 0 or less the Die() function is called
         if (currentHealth <= 0)
         {   
-            rigidBody.velocity = Vector2.zero;
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x * 0, rigidBody.velocity.y * 0);
             move = false;
-            Invoke("Die", 2f);
+            Invoke("Die", 1f);
+
+            if (GetComponent<Collider2D>() != null)
+                GetComponent<Collider2D>().enabled = false;
+
             animation.SetTrigger("skeleton_death");
             //aliveCollider.enabled = false;
         }
