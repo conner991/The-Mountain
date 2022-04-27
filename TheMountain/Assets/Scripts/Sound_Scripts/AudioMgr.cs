@@ -54,8 +54,9 @@ public class AudioMgr : MonoBehaviour
     void Start()
     {
         startAmbiance = true;
-        PlayAmbiance("Wind"); //Main theme or background audio
+        PlayAmbiance("ConnerMusic"); //Main theme or background audio
     }
+
     //void Update()
     //{
     //    if (audioFile != null)

@@ -34,7 +34,8 @@ public class MainMenuIntroAnimation : MonoBehaviour
             {
                 case 0: //new game
                     StartCoroutine(FadeInAndOut(true, 1.5f));
-                    //SceneManager.LoadScene("Level1.1-Conn");
+                    SceneManager.LoadScene("Level1.1-Conn");
+                    FindObjectOfType<AudioMgr>().PlayAmbiance("Wind");
                     break;
                 case 1: //options
                     break;
