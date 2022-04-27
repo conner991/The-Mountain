@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 /* simple patrol ai: doubles for hostile patrollers and non hostile patrollers
  * non hostile patrollers: patrols the ground. turns if meeting wall or ledge
@@ -32,6 +33,7 @@ public class AIPatrolMelee : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     const float groundedRadius = 0.2f;
     /* TODO*/ private bool isDead;
+    Scene currentScene;
 
 
     [Header ("World/Physics/Other Parameters")]
@@ -73,6 +75,10 @@ public class AIPatrolMelee : MonoBehaviour
     {   
         cooldownTimer += Time.deltaTime / 2;
 
+        if (player == null && currentScene.name == "Level1.1-Conn")
+        {
+            AttachPlayer();
+        }
 
         // // if enemy is either hostile or is patrolling, move enemy with GroundPatrol()
         if (isPatrolling)
@@ -116,7 +122,6 @@ public class AIPatrolMelee : MonoBehaviour
                     
                     // attack player animation
                     animation.SetTrigger("skeleton_meleeAttack");
-                    FindObjectOfType<AudioMgr>().Play("EnemySwing");
                 }
             }
 
@@ -273,4 +278,16 @@ public class AIPatrolMelee : MonoBehaviour
             new Vector3(bodyCollider.bounds.size.x * attackRange, bodyCollider.bounds.size.y, bodyCollider.bounds.size.z));
         Gizmos.DrawWireSphere(groundCheck.position, groundedRadius);
     }
+
+    void SkeletonAttackSound()
+    {
+        FindObjectOfType<AudioMgr>().Play("EnemySwing");
+    }
+
+    void AttachPlayer()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+    }
+
+
 }

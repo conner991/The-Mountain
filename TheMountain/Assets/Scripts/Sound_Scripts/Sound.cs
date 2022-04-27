@@ -5,7 +5,9 @@ using UnityEngine;
 public class Sound
 {
     public string name;
-
+    
+    public AudioMixerGroup audioMixer;
+    //public Audio.AudioMixerGroup outputAudioMixerGroup;
     public AudioClip clip;
     [Range(0f, 1f)]
     public float volume;
@@ -17,4 +19,5 @@ public class Sound
 
     [HideInInspector]
     public AudioSource source;
+
 }

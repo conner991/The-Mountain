@@ -9,6 +9,7 @@ TagManager:
   - FlyingEyeRanged
   - FlyingEyeBite
   - MushroomMan
+  - HealthItem
   layers:
   - Default
   - TransparentFX

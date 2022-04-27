@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -7,6 +8,12 @@ using UnityEngine.UI;
 public class AudioMenuHelper : MonoBehaviour
 {
     public GameObject audioTextCheck;
+
+    public AudioMixer Main;
+    //public AudioMixerGroup MAIN;
+    //public AudioMixerGroup BGM;
+    //public AudioMixerGroup BGS;
+
     [SerializeField] Animator audioAnimator;
 
     [SerializeField] Slider MainVolumeSlider;
@@ -68,6 +75,7 @@ public class AudioMenuHelper : MonoBehaviour
                 }
                 temp = (int)(MainVolumeSlider.value * 100);
                 MainVolumeNumber.text = temp.ToString();
+                Main.SetFloat("Master", Mathf.Log10(MainVolumeSlider.value) * 20);
 
                 break;
             case 1:
@@ -95,6 +103,7 @@ public class AudioMenuHelper : MonoBehaviour
                 }
                 temp = (int)(BGMVolumeSlider.value * 100);
                 BGMVolumeNumber.text = temp.ToString();
+                Main.SetFloat("BGM", Mathf.Log10(BGMVolumeSlider.value) * 20);
 
                 break;
             case 2:
@@ -122,6 +131,7 @@ public class AudioMenuHelper : MonoBehaviour
                 }
                 temp = (int)(BGSVolumeSlider.value * 100);
                 BGSVolumeNumber.text = temp.ToString();
+                Main.SetFloat("BGS", Mathf.Log10(BGSVolumeSlider.value) * 20);
 
                 break;
             case 3:

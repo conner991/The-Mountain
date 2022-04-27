@@ -7,9 +7,12 @@ public class HealthItemController : MonoBehaviour
 {
 
     [SerializeField] public GameObject healthItem;
+    [SerializeField] public GameObject healthItem2;
+    [SerializeField] public GameObject healthItem3;
     [SerializeField] CapsuleCollider2D player;
     [SerializeField] PlayerHealth playerHealth;
     private bool pickUpAllowed;
+    int item;
 
     public void Update()
     {
@@ -22,16 +25,21 @@ public class HealthItemController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Hello");
-        if (collision.gameObject.name.Equals("HealthItem"))
+        if (collision.CompareTag("HealthItem"))
         {
-
+            if (collision.name == healthItem.name)
+                    item = 1;
+            if (collision.name == healthItem2.name)
+                item = 2;
+                if (collision.name == healthItem3.name)
+                    item = 3;
             pickUpAllowed = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name.Equals("HealthItem"))
+        if (collision.CompareTag("HealthItem"))
         {
             pickUpAllowed = false;
         }     
@@ -43,6 +51,11 @@ public class HealthItemController : MonoBehaviour
         player.GetComponent<PlayerHealth>().currentHealth += 50;
         if (player.GetComponent<PlayerHealth>().currentHealth > 100)
             player.GetComponent<PlayerHealth>().currentHealth = 100;
-        Destroy(healthItem);
+        if (item == 1)
+            Destroy(healthItem);
+        else if (item == 2)
+            Destroy(healthItem2);
+        else if (item == 3)
+            Destroy(healthItem3);
     }
 }

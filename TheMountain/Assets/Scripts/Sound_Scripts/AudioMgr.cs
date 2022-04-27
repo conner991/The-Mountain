@@ -38,6 +38,7 @@ public class AudioMgr : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.outputAudioMixerGroup = s.audioMixer;
         }
         
         foreach (FootStepClass fs in footSteps)
@@ -46,6 +47,7 @@ public class AudioMgr : MonoBehaviour
             fs.source.clip = fs.clip;
 
             fs.source.volume = fs.volume;
+            fs.source.outputAudioMixerGroup = fs.audioMixer;
             //fs.source.pitch = fs.pitch;
         }
     }
