@@ -355,6 +355,12 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: ConnerMusic
+    clip: {fileID: 8300000, guid: 158772b78e2117041920ab4ff9a7322d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
   CC2D: {fileID: 0}
 --- !u!114 &4974483446052503530
 MonoBehaviour:
