@@ -141,7 +141,30 @@ public class PlayerHealth : MonoBehaviour
             {
                 //animation.SetTrigger("die");
                 GetComponent<PlayerMovement>().enabled = false;
-                GameObject.Find("Skeleton").GetComponent<AIPatrolMelee>().enabled = false;
+
+                GameObject skeleton = GameObject.FindWithTag("Skeleton");
+                GameObject flyingRange = GameObject.FindWithTag("FlyingEyeRanged");
+                GameObject flyingBite = GameObject.FindWithTag("FlyingEyeBite");
+                GameObject mushroomMan = GameObject.FindWithTag("MushroomMan");
+
+                if (skeleton)
+                {
+                    skeleton.GetComponent<AIPatrolMelee>().enabled = false;
+                }
+                if (flyingRange)
+                {
+                    flyingRange.GetComponent<aiShoot>().enabled = false;
+                }
+                if (flyingBite)
+                {
+                    flyingBite.GetComponent<aiFlying>().enabled = false;
+                }
+                if (mushroomMan)
+                {
+                    mushroomMan.GetComponent<AIPatrolMeleeMM>().enabled = false;
+                }
+                // GameObject.FindWithTag("FlyingEyeBite").GetComponent<aiFlying>().enabled = false;
+                // GameObject.FindWithTag("MushroomMan").GetComponent<AIPatrolMeleeMM>().enabled = false;
                 Die();
                 currentHealth = 100;
                 dead = true;
@@ -200,7 +223,6 @@ public class PlayerHealth : MonoBehaviour
     void Finished()
     {
         timeForBlack = true;
-        GetComponent<PlayerMovement>().enabled = true;
         //Invoke("EndGame", 2f);
     }
 
@@ -242,7 +264,31 @@ public class PlayerHealth : MonoBehaviour
     void Wait()
     {
         reset = true;
-        GameObject.Find("Skeleton").GetComponent<AIPatrolMelee>().enabled = true;
+
+        GameObject skeleton = GameObject.FindWithTag("Skeleton");
+        GameObject flyingRange = GameObject.FindWithTag("FlyingEyeRanged");
+        GameObject flyingBite = GameObject.FindWithTag("FlyingEyeBite");
+        GameObject mushroomMan = GameObject.FindWithTag("MushroomMan");
+
+        if (skeleton)
+        {
+            skeleton.GetComponent<AIPatrolMelee>().enabled = true;
+        }
+        if (flyingRange)
+        {
+            flyingRange.GetComponent<aiShoot>().enabled = true;
+        }
+        if (flyingBite)
+        {
+            flyingBite.GetComponent<aiFlying>().enabled = true;
+        }
+        if (mushroomMan)
+        {
+            mushroomMan.GetComponent<AIPatrolMeleeMM>().enabled = true;
+        }
+
+        GetComponent<PlayerMovement>().enabled = true;
+
         StartCoroutine(FadeInAndOut(false, 0.5f));
     }
 }
