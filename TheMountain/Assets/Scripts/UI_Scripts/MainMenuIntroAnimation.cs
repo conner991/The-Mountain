@@ -22,21 +22,34 @@ public class MainMenuIntroAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // check if opening transition is done
         if (blackImage.GetComponent<Image>().color.a <= 0)
         {
             introAnimator.SetBool("BeginLogo", true);
-            Invoke("SetOptionsAnim", 5.0f);
+        }
+
+        // check if all intro animations are done
+        if (introAnimator.GetBool("BeginLogo"))
+        {
+            if (introAnimator.GetCurrentAnimatorStateInfo(0).IsName("optionsFadeIn") &&
+                introAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+            {
+                introAnimator.SetBool("BeginSelection", true);
+            }
         }
         
-        if (introAnimator.GetBool("pressed"))
+        // check for if pressed last
+        if (introAnimator.GetBool("pressed") && introAnimator.GetBool("BeginSelection"))
         {
             switch (introAnimator.GetInteger("MenuIndex"))
             {
                 case 0: //new game
                     StartCoroutine(FadeInAndOut(true, 1.5f));
-                    //SceneManager.LoadScene("Level1.1-Conn");
+                    //invoke to let the transition play out
+                    Invoke("BeginGame", 2.0f);
                     break;
                 case 1: //options
+                    StartCoroutine(OptionsSceneChange());               
                     break;
                 case 2: //quit
                     StartCoroutine(FadeInAndOut(true, 1.5f));
@@ -77,14 +90,14 @@ public class MainMenuIntroAnimation : MonoBehaviour
         }
     }
 
-    void SetOptionsAnim()
+    void BeginGame()
     {
-        introAnimator.SetBool("BeginOptions", true);
-        Invoke("BeginSelectionAnim", 0.25f);
+        //SceneManager.LoadScene("Level1.1-Conn");
     }
 
-    void BeginSelectionAnim()
+    IEnumerator OptionsSceneChange()
     {
-        introAnimator.SetBool("BeginSelection", true);
+        yield return new WaitForSeconds(0.7f);
+        MainMenuMgr.inst.SetActiveMenu("OptionsMenu");
     }
 }
