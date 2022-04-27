@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     public int maxLives = 4;
     public int currentHealth;
+    int currentLives;
     private bool dead = false;
     public static PlayerHealth inst;
     private Animator animation;
@@ -32,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        currentLives = maxLives;
 
         blackImage.SetActive(true);
         StartCoroutine(FadeInAndOut(false, 0.5f));
@@ -88,7 +90,8 @@ public class PlayerHealth : MonoBehaviour
             }
             blackOut = false;
             gameOverTrigger = false;
-            //Debug.Log("All lives reset.");
+            currentLives = maxLives;
+            Debug.Log("All lives reset.");
             Invoke("Wait", 1.5f);
         }
 
@@ -101,13 +104,13 @@ public class PlayerHealth : MonoBehaviour
 
     // if the player collides with an object with the enemy script included in it,
     // the player takes 20 damage
-    // public void OnCollisionEnter(Collision collision)
-    // {
-    //     if (collision.collider.gameObject.CompareTag("Enemy"))
-    //     {
-    //         TakeDamage(20);
-    //     }
-    // }
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(20);
+        }
+    }
 
     // take damage function
     public void TakeDamage(int damage)
@@ -122,11 +125,21 @@ public class PlayerHealth : MonoBehaviour
         animation.SetBool("isHurt", true);
         Invoke("PlayerHurtAnimation", 0.5f);
 
-        // When the player loses all health
-        if (currentHealth <= 0)
+        // When the player is getting hurt
+        if (currentHealth > 0)
         {
-            //animation.SetTrigger("die");
-            if (GetComponent<PlayerMovement>() != null)
+
+            // current lives subtracted by one
+            //currentLives--;
+            GetComponent<LifeCount>().LoseLife();
+        }
+
+        // When the player is dead
+        else
+        {
+            if (!dead)
+            {
+                //animation.SetTrigger("die");
                 GetComponent<PlayerMovement>().enabled = false;
 
                 GameObject skeleton = GameObject.FindWithTag("Skeleton");
@@ -158,6 +171,11 @@ public class PlayerHealth : MonoBehaviour
             }
 
         }
+
+
+
+
+
     }
 
     void Die()
@@ -166,23 +184,23 @@ public class PlayerHealth : MonoBehaviour
         // if else for console outputting how many lives left
 
         animation.SetTrigger("die");
-        Invoke("PlayerDeathAnimation", 2f);
+        //Invoke("PlayerDeathAnimation", 2f);
 
 
 
         // if (currentLives == 0)
-        // {
+        // {   
 
         //     Debug.Log("No lives left. Game over.");
         //     // game pauses and inputs no longer work
         //     Time.timeScale = 0;
         //     return;
         // }
-        // if (currentLives == 1)
+        // if (currentLives == 1) 
         // {
         //     Debug.Log(currentLives + " life left.");
         // }
-        // else
+        // else 
         // {
         //     Debug.Log(currentLives + " lives left.");
         // }
@@ -199,15 +217,11 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
         // enemy is destroyed
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     void Finished()
     {
-        // GetComponent<Collider2D>().enabled = false;
-        // this.enabled = false;
-        // // enemy is destroyed
-        // Destroy(gameObject);
         timeForBlack = true;
         //Invoke("EndGame", 2f);
     }
