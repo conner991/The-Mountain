@@ -9,52 +9,55 @@ public class MainMenuController : MonoBehaviour
 {
     public int currentIndex;
     [SerializeField] private int maxIndex;
-    [SerializeField] Animator introAnimator;
+    [SerializeField] Animator menuAnimator;
+
+    public static MainMenuController inst;
+    private void Awake()
+    {
+        inst = this;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        currentIndex = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (introAnimator.GetBool("BeginSelection"))
+        if (menuAnimator.GetBool("BeginSelection") && !menuAnimator.GetBool("pressed"))
         {
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 if (currentIndex < maxIndex)
                 {
                     currentIndex++;
-                    introAnimator.SetInteger("MenuIndex", currentIndex);
+                    menuAnimator.SetInteger("MenuIndex", currentIndex);
                 }
                 else
                 {
                     currentIndex = 0;
-                    introAnimator.SetInteger("MenuIndex", currentIndex);
+                    menuAnimator.SetInteger("MenuIndex", currentIndex);
                 }
-                //endOfAnim = false;
-                //StartCoroutine(checkEndOfAnim());
             }
             else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (currentIndex > 0)
                 {
                     currentIndex--;
-                    introAnimator.SetInteger("MenuIndex", currentIndex);
+                    menuAnimator.SetInteger("MenuIndex", currentIndex);
                 }
                 else
                 {
                     currentIndex = maxIndex;
-                    introAnimator.SetInteger("MenuIndex", currentIndex);
+                    menuAnimator.SetInteger("MenuIndex", currentIndex);
                 }
-                //endOfAnim = false;
-                //StartCoroutine(checkEndOfAnim());
             }
             else if (Input.GetKeyDown(KeyCode.Return))
             {
-                introAnimator.SetBool("pressed", true);
+                menuAnimator.SetBool("pressed", true);
+                currentIndex = 0;
             }
         }
     }
