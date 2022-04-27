@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LifeCount : MonoBehaviour
 {
     public Image[] lives;
-    public int maxLives = 5;
+    public int maxLives = 4;
     int livesRemaining;
 
     void Start()
@@ -26,18 +26,14 @@ public class LifeCount : MonoBehaviour
         if (livesRemaining == 0) {
             return;
         }
+        // Decrease the value of the lives remaining
+        livesRemaining--;
+        // Hide one of the life images
+        lives[livesRemaining].enabled = false;
 
-
-
-
-        // // Decrease the value of the lives remaining
-        // livesRemaining--;
-        // // Hide one of the life images
-        // lives[livesRemaining].enabled = false;
-
-        // // If we run out of lives, we lose the game
-        // /*if (livesRemaining == 0) {
-        //     Debug.Log("You Lose");
-        // }*/
+        // If we run out of lives, we lose the game
+        /*if (livesRemaining == 0) {
+            Debug.Log("You Lose");
+        }*/
     }
 }
