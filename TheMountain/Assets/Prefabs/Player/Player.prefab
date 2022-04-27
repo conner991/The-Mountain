@@ -320,6 +320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 5866810434592880089}
   blackImage: {fileID: 381844453018597855}
+  Checkpoint1: {fileID: 0}
+  Checkpoint2: {fileID: 0}
   maxHealth: 100
   currentHealth: 100
 --- !u!114 &5866810434592880094

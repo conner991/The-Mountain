@@ -79,11 +79,11 @@ GameObject:
   - component: {fileID: 2530118223748380469}
   m_Layer: 3
   m_Name: Skeleton
-  m_TagString: Enemy
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &174941648645176573
 Transform:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174941648645176572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.42, y: -3.24, z: 0}
+  m_LocalPosition: {x: 301.4, y: 42.2, z: 0}
   m_LocalScale: {x: 5, y: 5.673633, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -192,7 +192,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.45, y: 0.51}
+    oldSize: {x: 1.5, y: 1.5}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -218,7 +218,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.45, y: 0.51}
+    oldSize: {x: 1.5, y: 1.5}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -243,7 +243,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -257,8 +257,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 100767d7cb75a45f9a887b022e7aa21d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   maxHealth: 100
   attackPoint: {fileID: 174941648298217039}
   attackRange: 0.89
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 174941649008324249}
   m_Layer: 3
   m_Name: FlyingEyeRanged
-  m_TagString: Untagged
+  m_TagString: FlyingEyeRanged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174941649008324250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.29, y: 5.68, z: 0}
+  m_LocalPosition: {x: 85.3, y: -33.8, z: 0}
   m_LocalScale: {x: 5.776233, y: 5.226505, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -411,7 +411,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.41, y: 0.31}
+    oldSize: {x: 1.5, y: 1.5}
     newSize: {x: 0.41, y: 0.31}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -436,7 +436,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -450,8 +450,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: affe045f157557b4abaee48fa1116593, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   maxHealth: 100
   speed: 5
   xStart: 0
@@ -708,11 +708,11 @@ GameObject:
   - component: {fileID: 2302220334700817367}
   m_Layer: 3
   m_Name: FlyingEyeBite
-  m_TagString: Untagged
+  m_TagString: FlyingEyeBite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &174941650018166331
 Transform:
   m_ObjectHideFlags: 0
@@ -721,7 +721,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174941650018166330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 52.75, y: 2.54, z: 0}
+  m_LocalPosition: {x: 138.84, y: -40.52, z: 0}
   m_LocalScale: {x: 5.8228, y: 5.2957, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -800,7 +800,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.41, y: 0.31}
+    oldSize: {x: 1.5, y: 1.5}
     newSize: {x: 0.41, y: 0.31}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -846,7 +846,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -860,8 +860,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   version: 1
   drawGizmos: 1
   detailedGizmos: 0
@@ -888,8 +888,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8a1e19b237837d42b44fb4fb561c4d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   maxHealth: 100
   speed: 400
   xStart: 1
@@ -948,7 +948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 202178160332121330}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1016,9 +1016,9 @@ GameObject:
   - component: {fileID: 3098456141784705840}
   - component: {fileID: 1254516502549809772}
   - component: {fileID: 1339212023021222063}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: MushroomMan
-  m_TagString: Untagged
+  m_TagString: MushroomMan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1031,7 +1031,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3566204157746285441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.76, y: -3.57, z: 0}
+  m_LocalPosition: {x: 43.7, y: -33.4, z: 0}
   m_LocalScale: {x: 6.8807774, y: 6.2223964, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1131,7 +1131,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.23, y: 0.37}
+    oldSize: {x: 1.5, y: 1.5}
     newSize: {x: 0.23, y: 0.37}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1157,7 +1157,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.23, y: 0.37}
+    oldSize: {x: 1.5, y: 1.5}
     newSize: {x: 0.23, y: 0.37}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1182,7 +1182,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -1196,8 +1196,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d31686201275240c69759022d57ec938, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   maxHealth: 100
   attackPoint: {fileID: 1957870137480020526}
   attackRange: 1.4
@@ -1231,7 +1231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1957870137480020526}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,9 +8,10 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] CapsuleCollider2D Player;
     [SerializeField] public GameObject blackImage;
-    // max health and lives initiations
-    public int maxHealth = 5;
-    // current health and lives declarations
+    [SerializeField] Collider2D Checkpoint1;
+    [SerializeField] Collider2D Checkpoint2;
+    public int maxHealth = 100;
+    public int maxLives = 4;
     public int currentHealth;
     private bool dead = false;
     public static PlayerHealth inst;
@@ -19,6 +20,8 @@ public class PlayerHealth : MonoBehaviour
     private bool gameOverTrigger;
     private bool reset;
     private bool timeForBlack = false;
+
+    private int checkpoint = 0;
     private void Awake()
     {
         animation = GetComponent<Animator>();
@@ -39,6 +42,15 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        if (Player.IsTouching(Checkpoint1))
+        {
+            checkpoint = 1;
+        }
+        if (Player.IsTouching(Checkpoint2))
+        {
+            checkpoint = 2;
+        }
+
         if (timeForBlack)
         {
             if (!blackImage.activeSelf)
@@ -57,10 +69,23 @@ public class PlayerHealth : MonoBehaviour
         if (checkAlpha.a >= 1.0f && gameOverTrigger)
         {
             blackOut = true;
+            animation.SetTrigger("isIdle");
         }
 
         if (blackOut)
         {
+            switch (checkpoint)
+            {
+                case 0:
+                    Player.transform.position = new Vector3(0, 2, 3);
+                    break;
+                case 1:
+                    Player.transform.position = new Vector3(300, 47, 3);
+                    break;
+                case 2:
+                    Player.transform.position = new Vector3(850, 275, 3);
+                    break;
+            }
             blackOut = false;
             gameOverTrigger = false;
             //Debug.Log("All lives reset.");
@@ -93,7 +118,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player hit");
         // this statement runs each time the player dies
 
-    
+
         animation.SetBool("isHurt", true);
         Invoke("PlayerHurtAnimation", 0.5f);
 
@@ -103,11 +128,35 @@ public class PlayerHealth : MonoBehaviour
             //animation.SetTrigger("die");
             if (GetComponent<PlayerMovement>() != null)
                 GetComponent<PlayerMovement>().enabled = false;
-                
-            Die();
-            currentHealth = 100;
-            dead = true;
-            // GetComponent<LifeCount>().LoseLife();
+
+                GameObject skeleton = GameObject.FindWithTag("Skeleton");
+                GameObject flyingRange = GameObject.FindWithTag("FlyingEyeRanged");
+                GameObject flyingBite = GameObject.FindWithTag("FlyingEyeBite");
+                GameObject mushroomMan = GameObject.FindWithTag("MushroomMan");
+
+                if (skeleton)
+                {
+                    skeleton.GetComponent<AIPatrolMelee>().enabled = false;
+                }
+                if (flyingRange)
+                {
+                    flyingRange.GetComponent<aiShoot>().enabled = false;
+                }
+                if (flyingBite)
+                {
+                    flyingBite.GetComponent<aiFlying>().enabled = false;
+                }
+                if (mushroomMan)
+                {
+                    mushroomMan.GetComponent<AIPatrolMeleeMM>().enabled = false;
+                }
+                // GameObject.FindWithTag("FlyingEyeBite").GetComponent<aiFlying>().enabled = false;
+                // GameObject.FindWithTag("MushroomMan").GetComponent<AIPatrolMeleeMM>().enabled = false;
+                Die();
+                currentHealth = 100;
+                dead = true;
+            }
+
         }
     }
 
@@ -119,21 +168,21 @@ public class PlayerHealth : MonoBehaviour
         animation.SetTrigger("die");
         Invoke("PlayerDeathAnimation", 2f);
 
-        
+
 
         // if (currentLives == 0)
-        // {   
+        // {
 
         //     Debug.Log("No lives left. Game over.");
         //     // game pauses and inputs no longer work
         //     Time.timeScale = 0;
         //     return;
         // }
-        // if (currentLives == 1) 
+        // if (currentLives == 1)
         // {
         //     Debug.Log(currentLives + " life left.");
         // }
-        // else 
+        // else
         // {
         //     Debug.Log(currentLives + " lives left.");
         // }
@@ -160,11 +209,12 @@ public class PlayerHealth : MonoBehaviour
         // // enemy is destroyed
         // Destroy(gameObject);
         timeForBlack = true;
-        Invoke("EndGame", 2f);
+        //Invoke("EndGame", 2f);
     }
 
     void EndGame()
     {
+
         FindObjectOfType<GameManager>().EndGame();
     }
 
@@ -200,6 +250,31 @@ public class PlayerHealth : MonoBehaviour
     void Wait()
     {
         reset = true;
+
+        GameObject skeleton = GameObject.FindWithTag("Skeleton");
+        GameObject flyingRange = GameObject.FindWithTag("FlyingEyeRanged");
+        GameObject flyingBite = GameObject.FindWithTag("FlyingEyeBite");
+        GameObject mushroomMan = GameObject.FindWithTag("MushroomMan");
+
+        if (skeleton)
+        {
+            skeleton.GetComponent<AIPatrolMelee>().enabled = true;
+        }
+        if (flyingRange)
+        {
+            flyingRange.GetComponent<aiShoot>().enabled = true;
+        }
+        if (flyingBite)
+        {
+            flyingBite.GetComponent<aiFlying>().enabled = true;
+        }
+        if (mushroomMan)
+        {
+            mushroomMan.GetComponent<AIPatrolMeleeMM>().enabled = true;
+        }
+
+        GetComponent<PlayerMovement>().enabled = true;
+
         StartCoroutine(FadeInAndOut(false, 0.5f));
     }
 }

@@ -5,7 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    bool gameHasEnded = false;
+    private bool gameHasEnded = false;
+    private bool isPaused = false;
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (!isPaused)
+            {
+                Pause();
+            }
+            else
+            {
+                Resume();
+            }
+        }
+    }
     public void EndGame()
     {
         if (gameHasEnded == false)
@@ -16,8 +31,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Pause()
+    {
+        Time.timeScale = 0;
+        isPaused = true;
+    }
+    
+    void Resume()
+    {
+        Time.timeScale = 1;
+        isPaused = false;
+    }
+
     void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
 }
