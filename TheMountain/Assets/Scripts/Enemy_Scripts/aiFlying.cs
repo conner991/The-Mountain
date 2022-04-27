@@ -220,7 +220,7 @@ public class aiFlying : MonoBehaviour
         // if enemy is closer or equal to player attack range, enemy takes damage
         foreach(Collider2D player in hitPlayer)
         {
-            player.GetComponent<PlayerHealth>().TakeDamage(5);
+            player.GetComponent<PlayerHealth>().TakeDamage(1);
             // console shows that enemy was hit
             Debug.Log("Damaging player");
         }

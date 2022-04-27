@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] CapsuleCollider2D Player;
     [SerializeField] public GameObject blackImage;
     // max health and lives initiations
-    public int maxHealth = 100;
+    public int maxHealth = 5;
     // current health and lives declarations
     public int currentHealth;
     private bool dead = false;

@@ -4,26 +4,34 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthItemController : MonoBehaviour
-{   
+{
+
+    [SerializeField] public GameObject healthItem;
+    [SerializeField] CapsuleCollider2D player;
+    [SerializeField] PlayerHealth playerHealth;
     private bool pickUpAllowed;
 
-    public void Update() 
+    public void Update()
     {
         if (pickUpAllowed && Input.GetKeyDown(KeyCode.E))
-            PickUp(); 
+        {
+            PickUp();
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) 
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name.Equals("Player"))
+        Debug.Log("Hello");
+        if (collision.gameObject.name.Equals("HealthItem"))
         {
+
             pickUpAllowed = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name.Equals("Player"))
+        if (collision.gameObject.name.Equals("HealthItem"))
         {
             pickUpAllowed = false;
         }     
@@ -31,6 +39,10 @@ public class HealthItemController : MonoBehaviour
 
     private void PickUp()
     {
-        Destroy(gameObject);
+        //playercurrentHealth += 50;
+        player.GetComponent<PlayerHealth>().currentHealth += 50;
+        if (player.GetComponent<PlayerHealth>().currentHealth > 100)
+            player.GetComponent<PlayerHealth>().currentHealth = 100;
+        Destroy(healthItem);
     }
 }

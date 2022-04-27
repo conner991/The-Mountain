@@ -4,7 +4,7 @@ using System;
 
 public class CharacterController2D : MonoBehaviour
 {	
-	const float groundCheckRadius = 0.1f;
+	const float groundCheckRadius = 0.5f;
 	[SerializeField] Transform groundCheckCollider;
 	[SerializeField] private float m_JumpForce = 0f;                            // Amount of force added when the player jumps.
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement

@@ -13,7 +13,7 @@ public class AmbianceSwitch : MonoBehaviour
         {
             if (switchType.name == "WindSwitch")
             {
-                Debug.Log("Hello");
+                //Debug.Log("Hello");
                 FindObjectOfType<AudioMgr>().PlayAmbiance("Wind");
                 caveBackground.SetActive(false);
                 outdoorsBackground.SetActive(true);
