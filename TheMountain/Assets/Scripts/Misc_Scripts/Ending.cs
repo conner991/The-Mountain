@@ -1,0 +1,103 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class Ending : MonoBehaviour
+{
+    [SerializeField] CapsuleCollider2D Player;
+    [SerializeField] Collider2D Trigger;
+    [SerializeField] public GameObject blackImage;
+    private bool blackOut;
+    private bool touchedTrigger;
+    private bool reset;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        blackOut = false;
+        reset = false;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Player.IsTouching(Trigger))
+        {
+            if (!blackImage.activeSelf)
+            {
+                Color temp = blackImage.GetComponent<Image>().color;
+                temp = new Color(temp.r, temp.g, temp.b, 0.0f);
+                blackImage.GetComponent<Image>().color = temp;
+                blackImage.SetActive(true);
+            }
+            touchedTrigger = true;
+            blackImage.SetActive(true);
+            StartCoroutine(FadeInAndOut(true, 1f));
+        }
+
+        Color checkAlpha = blackImage.GetComponent<Image>().color;
+        if (checkAlpha.a >= 1.0f && touchedTrigger)
+        {
+            blackOut = true;
+        }
+
+        if (blackOut)
+        {
+            Debug.Log("Changing scenes");
+            //Player.transform.position = new Vector3(33.5f, 1.1f, 3);
+            blackOut = false;
+            touchedTrigger = false;
+            Invoke("Wait", 1.5f);
+        }
+
+        if (checkAlpha.a <= 0.0f && reset)
+        {
+            blackImage.SetActive(false);
+            reset = false;
+        }
+
+        if (checkAlpha.a <= 0.0f && reset)
+        {
+            blackImage.SetActive(false);
+            reset = false;
+        }
+    }
+
+    public IEnumerator FadeInAndOut(bool fadeToBlack = true, float time = 1.0f)
+    {
+        Color tempColor = blackImage.GetComponent<Image>().color;
+        float fadeAmount;
+
+        if (fadeToBlack)
+        {
+            while (blackImage.GetComponent<Image>().color.a < 1)
+            {
+                fadeAmount = tempColor.a + (time * Time.deltaTime);
+
+                tempColor = new Color(tempColor.r, tempColor.g, tempColor.b, fadeAmount);
+                blackImage.GetComponent<Image>().color = tempColor;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (blackImage.GetComponent<Image>().color.a > 0)
+            {
+                fadeAmount = tempColor.a - (time * Time.deltaTime);
+
+                tempColor = new Color(tempColor.r, tempColor.g, tempColor.b, fadeAmount);
+                blackImage.GetComponent<Image>().color = tempColor;
+                yield return null;
+            }
+        }
+    }
+
+    void Wait()
+    {
+        SceneManager.LoadScene("EndingCutscene");
+        reset = true;
+        //StartCoroutine(FadeInAndOut(false, 0.5f));
+    }
+}

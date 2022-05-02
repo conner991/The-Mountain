@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Skeleton
+  - FlyingEyeRanged
+  - FlyingEyeBite
+  - MushroomMan
+  - HealthItem
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Enemy
+  - Water
+  - UI
+  - Ground
+  - Player
+  - Wall
+  - decorative
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: decorative
+    uniqueID: 1336133989
+    locked: 0
+  - name: Enemies
+    uniqueID: 1065794667
+    locked: 0
+  - name: Enemies2
+    uniqueID: 1541701573
+    locked: 0
