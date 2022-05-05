@@ -1,6 +1,6 @@
 # The Mountain
 
-UNR CS 425 and 426 Senior Project
+A UNR CS 425 and 426 Senior Project
 
 ## NOTE FOR GRADING (Hey Vinh :)
 
